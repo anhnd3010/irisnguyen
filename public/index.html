@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Irisnguyen — Product &amp; Graphic Designer</title>
+  <meta name="description" content="Iris — a designer based in Hanoi with over 9 years of experience in product design, graphic design and branding. Available for work.">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Irisnguyen — Product &amp; Graphic Designer">
+  <meta property="og:description" content="Elevate your vision with my creative magic. Product design, graphic design and branding from Hanoi.">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Lexend:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- The intro plays on a visitor's first load only. Decided here, before the
+       body paints, so a returning visitor never sees the veil flash up. -->
+  <script>
+    try {
+      if (localStorage.getItem('intro-seen')) document.documentElement.classList.add('intro-seen');
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <!-- ===================== Intro =====================
+       A veil the logo is cut OUT of, so the letters are holes onto the page
+       rather than shapes drawn on top. The glyphs fade in one at a time, then
+       the whole cut-out scales up until one opening swallows the screen. -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <svg class="intro__cut" focusable="false">
+      <defs>
+        <path id="intro-g0" d="M0 33.5705V7.0234L6.81459 0V33.5705H0Z"></path>
+        <path id="intro-g1" d="M10.9922 33.5711V10.7893H17.4661L17.7642 18.2116L16.4865 16.7958C16.8272 15.5659 17.3809 14.4647 18.1475 13.4923C18.9425 12.5198 19.8654 11.7475 20.9159 11.1755C21.9665 10.6034 23.0881 10.3174 24.2806 10.3174C24.7917 10.3174 25.2602 10.3603 25.6862 10.4461C26.1405 10.5319 26.5522 10.632 26.9213 10.7464L25.0473 18.3404C24.7349 18.1401 24.309 17.9828 23.7695 17.8684C23.2585 17.7254 22.719 17.6539 22.1511 17.6539C21.5264 17.6539 20.9443 17.7683 20.4048 17.9971C19.8654 18.1973 19.411 18.4977 19.0419 18.8981C18.6728 19.2985 18.3747 19.7705 18.1475 20.3139C17.9488 20.8574 17.8494 21.4723 17.8494 22.1588V33.5711H10.9922Z"></path>
+        <path id="intro-g2" d="M29.9062 33.5714V10.7896H36.7208V33.5714H29.9062Z"></path>
+        <rect id="intro-g3" x="29.6211" y="1.58545" width="6.81" height="6.81"></rect>
+        <path id="intro-g4" d="M49.5882 34.0002C47.3734 34.0002 45.4143 33.6426 43.7106 32.9276C42.0354 32.2125 40.7008 31.2543 39.707 30.053L43.8384 26.4491C44.7186 27.3358 45.7124 27.9937 46.8198 28.4227C47.9271 28.8231 48.9777 29.0234 49.9715 29.0234C50.369 29.0234 50.724 28.9804 51.0363 28.8946C51.3486 28.8088 51.6042 28.6944 51.8029 28.5514C52.0301 28.3798 52.2004 28.1939 52.314 27.9937C52.4276 27.7648 52.4844 27.5074 52.4844 27.2214C52.4844 26.6494 52.2288 26.206 51.7177 25.8914C51.4622 25.7484 51.0363 25.5768 50.44 25.3765C49.8437 25.1763 49.0771 24.9475 48.1401 24.6901C46.8056 24.3469 45.6414 23.9464 44.6476 23.4888C43.6822 23.0025 42.8872 22.4448 42.2625 21.8155C41.6946 21.2149 41.2545 20.557 40.9422 19.842C40.6298 19.0983 40.4737 18.2689 40.4737 17.3536C40.4737 16.2953 40.715 15.3371 41.1977 14.479C41.7088 13.621 42.3761 12.8773 43.1995 12.248C44.0513 11.6188 45.0167 11.1469 46.0957 10.8322C47.2031 10.489 48.3388 10.3174 49.503 10.3174C50.7523 10.3174 51.9449 10.4604 53.0807 10.7464C54.2164 11.0324 55.267 11.4329 56.2324 11.9477C57.2262 12.4626 58.1064 13.0775 58.8731 13.7926L55.2954 17.8255C54.7843 17.3393 54.2022 16.9102 53.5492 16.5384C52.9245 16.138 52.2714 15.8233 51.59 15.5945C50.9085 15.3657 50.2838 15.2513 49.716 15.2513C49.2901 15.2513 48.9067 15.2942 48.566 15.38C48.2537 15.4372 47.9839 15.5516 47.7568 15.7232C47.5296 15.8662 47.3593 16.0522 47.2457 16.281C47.1321 16.4812 47.0753 16.7243 47.0753 17.0103C47.0753 17.2964 47.1463 17.5681 47.2883 17.8255C47.4586 18.0829 47.6858 18.2975 47.9697 18.4691C48.2537 18.6407 48.708 18.8409 49.3326 19.0697C49.9573 19.2699 50.8091 19.5274 51.8881 19.842C53.2226 20.2138 54.3726 20.6285 55.338 21.0862C56.3034 21.5438 57.07 22.0873 57.6379 22.7165C58.0922 23.2028 58.433 23.7748 58.6601 24.4327C58.8873 25.0619 59.0008 25.7484 59.0008 26.492C59.0008 27.9508 58.5891 29.2522 57.7657 30.3963C56.9707 31.5118 55.8633 32.3984 54.4436 33.0563C53.0239 33.6855 51.4054 34.0002 49.5882 34.0002Z"></path>
+
+        <mask id="intro-mask">
+          <rect width="100%" height="100%" fill="#fff"></rect>
+          <!-- The reveal: a hole that opens from nothing to past the corners.
+               Its radius is written from script each frame. -->
+          <circle class="intro__iris" r="0" fill="#000"></circle>
+        </mask>
+      </defs>
+
+      <rect class="intro__veil" width="100%" height="100%" mask="url(#intro-mask)"></rect>
+
+      <!-- The lettering. Rendered, not in <defs>, so the wipes are ordinary
+           reliable transitions. --i is the letter's turn in the sequence, so
+           the dot of the "i" shares its stem's number and they fill together. -->
+      <g class="intro__logo intro__letters">
+        <use class="intro__paint"                 style="--i:0" href="#intro-g0"></use>
+        <use class="intro__paint intro__paint--up" style="--i:1" href="#intro-g1"></use>
+        <use class="intro__paint"                 style="--i:2" href="#intro-g2"></use>
+        <use class="intro__paint"                 style="--i:2" href="#intro-g3"></use>
+        <use class="intro__paint intro__paint--up" style="--i:3" href="#intro-g4"></use>
+      </g>
+    </svg>
+  </div>
+  <noscript><style>.intro { display: none; }</style></noscript>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="#home" aria-label="Irisnguyen — home">
+        <img src="assets/brand/logo.svg" alt="" width="59" height="34">
+      </a>
+
+      <!-- Stays above the open menu and turns into its close button: the two
+           icons share one cell and cross-fade. -->
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <img class="burger__open" src="assets/icons/hamburger.svg" alt="" width="30" height="24">
+        <svg class="burger__close" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M13.3926 34.6068L34.6058 13.3936M34.6074 34.6068L13.3942 13.3936"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== Menu =====================
+       Full-screen sheet under the header, as on the reference site. -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="menu__links" aria-label="Main">
+      <a class="menu__link" href="#home" style="--order: 0">Home</a>
+      <a class="menu__link" href="about.html" style="--order: 1">About</a>
+      <a class="menu__link" href="project.html" style="--order: 2">Projects</a>
+    </nav>
+
+    <div class="menu__info" data-cursor="kv">
+      <p><strong>Address:</strong> <span>Hanoi, Vietnamese</span></p>
+      <p><strong>Mobile:</strong> <a href="tel:+84387676414">+84 387 676 414</a></p>
+      <p><strong>Email:</strong> <a class="menu__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a></p>
+    </div>
+
+    <!-- Each word fills with the product-design reel from the services list
+         while hovered, as on the reference. preload="none": nothing is
+         fetched until a word is actually hovered. -->
+    <div class="menu__ticker" data-cursor="kv" aria-hidden="true">
+      <div class="menu__track">
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ===================== Hero / KV ===================== -->
+    <section class="hero" id="home">
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <h1 class="hero__title" data-cursor="kv">
+          <span class="hero__line">Elevate Your <span class="u-purple">Vision</span></span>
+          <span class="hero__line">With My</span>
+          <span class="hero__line hero__line--art">
+            <span class="creative">
+              <span class="creative__box" aria-hidden="true"></span>
+              <img class="creative__word" src="assets/icons/word-creative.svg" alt="Creative" width="571" height="114">
+              <span class="creative__handle creative__handle--tl" aria-hidden="true"></span>
+              <span class="creative__handle creative__handle--tr" aria-hidden="true"></span>
+              <span class="creative__handle creative__handle--bl" aria-hidden="true"></span>
+              <span class="creative__handle creative__handle--br" aria-hidden="true"></span>
+              <img class="creative__cursor" src="assets/icons/cursor.svg" alt="" aria-hidden="true">
+            </span>
+            <span class="magic">
+              <img class="magic__word" src="assets/icons/word-magic.svg" alt="Magic" width="407" height="131">
+              <img class="magic__sparkle" src="assets/icons/sparkle-md.svg" alt="" aria-hidden="true">
+            </span>
+          </span>
+
+          <img class="hero__sparkle hero__sparkle--lg" src="assets/icons/sparkle-lg.svg" alt="" aria-hidden="true">
+          <img class="hero__sparkle hero__sparkle--sm" src="assets/icons/sparkle-sm.svg" alt="" aria-hidden="true">
+        </h1>
+      </div>
+
+      <!-- ===================== Tool marquee ===================== -->
+      <section class="marquee" aria-label="Tools I work with">
+        <div class="marquee__track" aria-hidden="true">
+          <span class="marquee__item"><img src="assets/images/logo-photoshop.png"   alt="" style="width:82.83%;height:57.22%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-chatgpt.png"     alt="" style="width:83.62%;height:57.22%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-gemini.png"      alt="" style="width:68.46%;height:57.22%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-framer.png"      alt="" style="width:75.27%;height:55.79%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-figma.png"       alt="" style="width:76.06%;height:47.92%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-adobe.png"       alt="" style="width:86.19%;height:51.50%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-spline.png"      alt="" style="width:78.73%;height:54.36%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-illustrator.png" alt="" style="width:73.73%;height:57.22%"></span>
+
+          <span class="marquee__item"><img src="assets/images/logo-photoshop.png"   alt="" style="width:82.83%;height:57.22%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-chatgpt.png"     alt="" style="width:83.62%;height:57.22%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-gemini.png"      alt="" style="width:68.46%;height:57.22%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-framer.png"      alt="" style="width:75.27%;height:55.79%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-figma.png"       alt="" style="width:76.06%;height:47.92%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-adobe.png"       alt="" style="width:86.19%;height:51.50%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-spline.png"      alt="" style="width:78.73%;height:54.36%"></span>
+          <span class="marquee__item"><img src="assets/images/logo-illustrator.png" alt="" style="width:73.73%;height:57.22%"></span>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===================== About / bento ===================== -->
+    <section class="about container" id="about">
+      <h2 class="visually-hidden">About</h2>
+
+      <div class="about__grid">
+
+        <!-- Left: portrait + name -->
+        <article class="card card--profile about__left">
+          <div class="profile__photo">
+            <img class="profile__img" src="assets/images/portrait-color.png" alt="Portrait of Iris" loading="lazy">
+            <div class="profile__clip" aria-hidden="true">
+              <img src="assets/images/portrait-bw.png" alt="" loading="lazy">
+            </div>
+            <span class="profile__divider" aria-hidden="true"></span>
+            <span class="profile__handle" aria-hidden="true"><img src="assets/icons/slider-handle.svg" alt=""></span>
+            <span class="profile__fx" aria-hidden="true"><img src="assets/icons/auto-fix.svg" alt=""></span>
+            <img class="profile__star profile__star--1" src="assets/icons/star-1.svg" alt="" aria-hidden="true">
+            <img class="profile__star profile__star--2" src="assets/icons/star-2.svg" alt="" aria-hidden="true">
+            <img class="profile__star profile__star--3" src="assets/icons/star-3.svg" alt="" aria-hidden="true">
+          </div>
+
+          <div class="profile__name">
+            <div>
+              <p>Hi,</p>
+              <p>I&rsquo;m Iris</p>
+            </div>
+          </div>
+        </article>
+
+        <div class="about__right">
+
+          <div class="about__row about__row--top">
+
+            <!-- Product design -->
+            <article class="card card--discipline">
+              <div class="discipline__label">
+                <p>PRODUCT</p>
+                <p>DESIGN</p>
+              </div>
+              <div class="discipline__art" aria-hidden="true">
+                <span class="pd-line pd-line--1"><img src="assets/icons/pd-line-1.svg" alt=""></span>
+                <span class="pd-box pd-box--3"></span>
+                <span class="pd-glyph pd-glyph--framer"><img src="assets/images/pd-icon-framer.png" alt="" loading="lazy"></span>
+                <span class="pd-node pd-node--b pd-node--9"></span>
+                <span class="pd-node pd-node--b pd-node--10"></span>
+                <span class="pd-node pd-node--b pd-node--11"></span>
+                <span class="pd-node pd-node--b pd-node--12"></span>
+
+                <span class="pd-box pd-box--1"></span>
+                <span class="pd-glyph pd-glyph--figma"><img src="assets/images/pd-icon-figma.png" alt="" loading="lazy"></span>
+                <span class="pd-node pd-node--a pd-node--1"></span>
+                <span class="pd-node pd-node--a pd-node--2"></span>
+                <span class="pd-node pd-node--a pd-node--3"></span>
+                <span class="pd-node pd-node--a pd-node--4"></span>
+
+                <span class="pd-box pd-box--2"></span>
+                <span class="pd-glyph pd-glyph--blue"><img src="assets/images/pd-icon-blue.png" alt="" loading="lazy"></span>
+                <span class="pd-node pd-node--a pd-node--5"></span>
+                <span class="pd-node pd-node--a pd-node--6"></span>
+                <span class="pd-node pd-node--a pd-node--7"></span>
+                <span class="pd-node pd-node--a pd-node--8"></span>
+
+                <span class="pd-line pd-line--2"><img src="assets/icons/pd-line-2.svg" alt=""></span>
+              </div>
+            </article>
+
+            <!-- Graphic design -->
+            <article class="card card--discipline">
+              <div class="discipline__label">
+                <p>GRAPHIC</p>
+                <p>DESIGN</p>
+              </div>
+              <div class="discipline__art" aria-hidden="true">
+                <span class="gd-art"><img src="assets/icons/graphic-illu.svg" alt="" loading="lazy"></span>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="about__row about__row--bottom">
+
+            <!-- Bio -->
+            <article class="card card--bio">
+              <p>I&rsquo;m a designer based in Hanoi with over 9 years of experience in creative and aesthetic design. I&rsquo;m proficient in design software, proactive in my work, and always meet deadlines.</p>
+            </article>
+
+            <!-- Profile CTA -->
+            <article class="card card--cta">
+              <canvas class="cta__shader" aria-hidden="true"></canvas>
+              <span class="cta__pill cta__pill--back" aria-hidden="true"></span>
+              <span class="cta__pill cta__pill--mid" aria-hidden="true"></span>
+              <div class="cta__body">
+                <p>Get a quick look at my background, skills &amp; experience</p>
+                <a class="btn-pill" href="about.html">
+                  My Profile
+                  <img src="assets/icons/arrow-20.svg" alt="" aria-hidden="true">
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Projects ===================== -->
+    <section class="projects container" id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Blending aesthetics and usability in every project</p>
+      </div>
+
+      <div class="projects__grid">
+
+        <a class="project" href="project-detail-melon.html">
+          <div class="project__panel">
+            <img src="assets/thumbs/melon.webp" alt="Melon Website Design — Facial-recognition API website and developer portal" width="1320" height="704" loading="lazy">
+          </div>
+          <div class="project__meta">
+            <h3>Melon Website Design</h3>
+            <p>Facial-recognition API website and developer portal</p>
+          </div>
+        </a>
+
+        <a class="project" href="project-detail-kyarisuru.html">
+          <div class="project__panel">
+            <img src="assets/thumbs/kyarisuru.webp" alt="Kyarisuru — Anonymous career-consultation chat app for Japan" width="1320" height="704" loading="lazy">
+          </div>
+          <div class="project__meta">
+            <h3>Kyarisuru</h3>
+            <p>Anonymous career-consultation chat app for Japan</p>
+          </div>
+        </a>
+
+        <a class="project" href="project-detail-krafton-india.html">
+          <div class="project__panel">
+            <img src="assets/thumbs/krafton-india.webp" alt="KRAFTON India — Corporate website for games, esports and careers" width="1320" height="704" loading="lazy">
+          </div>
+          <div class="project__meta">
+            <h3>KRAFTON India</h3>
+            <p>Corporate website for games, esports and careers</p>
+          </div>
+        </a>
+
+        <a class="project" href="project-detail-naver-connect.html">
+          <div class="project__panel">
+            <img src="assets/thumbs/naver-connect.webp" alt="Naver Connect — AI &amp; data practice lessons for young learners" width="1320" height="704" loading="lazy">
+          </div>
+          <div class="project__meta">
+            <h3>Naver Connect</h3>
+            <p>AI &amp; data practice lessons for young learners</p>
+          </div>
+        </a>
+
+        <a class="project" href="project-detail-fanstyle.html">
+          <div class="project__panel">
+            <img src="assets/thumbs/fanstyle.webp" alt="FANSTYLE — Website for an Okinawa condominium developer" width="1320" height="704" loading="lazy">
+          </div>
+          <div class="project__meta">
+            <h3>FANSTYLE</h3>
+            <p>Website for an Okinawa condominium developer</p>
+          </div>
+        </a>
+
+        <a class="project" href="project-detail-gdcollection1.html">
+          <div class="project__panel">
+            <img src="assets/thumbs/gdcollection1.webp" alt="Graphic Design Collection 1 — Game, e-commerce and hardware campaign banners" width="1320" height="704" loading="lazy">
+          </div>
+          <div class="project__meta">
+            <h3>Graphic Design Collection 1</h3>
+            <p>Game, e-commerce and hardware campaign banners</p>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="projects__more">
+        <a class="btn-outline" href="project.html" data-cursor="button">
+          <span class="btn-outline__label">View more</span>
+          <!-- The diagonal arrow of the other sections (assets/icons/arrow-24.svg),
+               inline rather than an <img> so it picks up currentColor. -->
+          <svg class="btn-outline__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3.5 20.5L20.5 3.5M5.5 3.5H20.5V18.5"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== Services ===================== -->
+    <section class="services container" id="services">
+      <h2 class="services__head">EXPLORE WHAT I CAN DO FOR YOU</h2>
+
+      <div class="services__list">
+        <!-- Each row opens the project page filtered to its category -->
+        <a class="service" href="project.html?category=ux-ui">
+          <span class="service__media" aria-hidden="true">
+            <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          </span>
+          <span class="service__label">
+            <span class="service__num">01.</span>
+            <span class="service__name">Product Design</span>
+          </span>
+          <img class="service__go" src="assets/icons/arrow-56.svg" alt="" aria-hidden="true">
+        </a>
+
+        <a class="service" href="project.html?category=graphic-design">
+          <span class="service__media" aria-hidden="true">
+            <video src="assets/videos/service-graphic-design.mp4" muted loop playsinline preload="none"></video>
+          </span>
+          <span class="service__label">
+            <span class="service__num">02.</span>
+            <span class="service__name">Graphic Design</span>
+          </span>
+          <img class="service__go" src="assets/icons/arrow-56.svg" alt="" aria-hidden="true">
+        </a>
+
+        <a class="service" href="project.html?category=branding">
+          <span class="service__media" aria-hidden="true">
+            <video src="assets/videos/service-branding.mp4" muted loop playsinline preload="none"></video>
+          </span>
+          <span class="service__label">
+            <span class="service__num">03.</span>
+            <span class="service__name">Branding</span>
+          </span>
+          <img class="service__go" src="assets/icons/arrow-56.svg" alt="" aria-hidden="true">
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer__top">
+        <h2 class="footer__title">Let&rsquo;s Work Together</h2>
+        <div class="footer__contact">
+          <p>Available for work and always looking for exciting projects.</p>
+          <a class="footer__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#home" data-cursor="button">Home</a>
+        <a href="about.html" data-cursor="button">About</a>
+        <a href="project.html" data-cursor="button">Projects</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom">
+      <img src="assets/brand/logo-footer.svg" alt="" aria-hidden="true">
+      <p>&copy;2025 by Irisnguyen. all rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Profile CTA background: the Warp shader from Paper Shaders
+       (paper.design/shaders), exactly as the reference site runs it through
+       Framer's Paper Warp component. Read with textContent by the script. -->
+  <script type="x-shader/x-fragment" id="warp-shader">
+#version 300 es
+precision highp float;
+
+uniform float u_time;
+uniform float u_pixelRatio;
+uniform vec2 u_resolution;
+
+uniform float u_scale;
+uniform float u_rotation;
+uniform vec4 u_color1;
+uniform vec4 u_color2;
+uniform vec4 u_color3;
+uniform float u_proportion;
+uniform float u_softness;
+uniform float u_shape;
+uniform float u_shapeScale;
+uniform float u_distortion;
+uniform float u_swirl;
+uniform float u_swirlIterations;
+
+out vec4 fragColor;
+
+#define TWO_PI 6.28318530718
+#define PI 3.14159265358979323846
+
+vec2 rotate(vec2 uv, float th) {
+  return mat2(cos(th), sin(th), -sin(th), cos(th)) * uv;
+}
+
+float random(vec2 st) {
+  return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+}
+float noise(vec2 st) {
+  vec2 i = floor(st);
+  vec2 f = fract(st);
+  float a = random(i);
+  float b = random(i + vec2(1.0, 0.0));
+  float c = random(i + vec2(0.0, 1.0));
+  float d = random(i + vec2(1.0, 1.0));
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  float x1 = mix(a, b, u.x);
+  float x2 = mix(c, d, u.x);
+  return mix(x1, x2, u.y);
+}
+
+vec4 blend_colors(vec4 c1, vec4 c2, vec4 c3, float mixer, float edgesWidth, float edge_blur) {
+  vec3 color1 = c1.rgb * c1.a;
+  vec3 color2 = c2.rgb * c2.a;
+  vec3 color3 = c3.rgb * c3.a;
+
+  float r1 = smoothstep(.0 + .35 * edgesWidth, .7 - .35 * edgesWidth + .5 * edge_blur, mixer);
+  float r2 = smoothstep(.3 + .35 * edgesWidth, 1. - .35 * edgesWidth + edge_blur, mixer);
+
+  vec3 blended_color_2 = mix(color1, color2, r1);
+  float blended_opacity_2 = mix(c1.a, c2.a, r1);
+
+  vec3 c = mix(blended_color_2, color3, r2);
+  float o = mix(blended_opacity_2, c3.a, r2);
+  return vec4(c, o);
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+
+  float t = .5 * u_time;
+
+  float noise_scale = .0005 + .006 * u_scale;
+
+  uv -= .5;
+  uv *= (noise_scale * u_resolution);
+  uv = rotate(uv, u_rotation * .5 * PI);
+  uv /= u_pixelRatio;
+  uv += .5;
+
+  float n1 = noise(uv * 1. + t);
+  float n2 = noise(uv * 2. - t);
+  float angle = n1 * TWO_PI;
+  uv.x += 4. * u_distortion * n2 * cos(angle);
+  uv.y += 4. * u_distortion * n2 * sin(angle);
+
+  float iterations_number = ceil(clamp(u_swirlIterations, 1., 30.));
+  for (float i = 1.; i <= iterations_number; i++) {
+    uv.x += clamp(u_swirl, 0., 2.) / i * cos(t + i * 1.5 * uv.y);
+    uv.y += clamp(u_swirl, 0., 2.) / i * cos(t + i * 1. * uv.x);
+  }
+
+  float proportion = clamp(u_proportion, 0., 1.);
+
+  float shape = 0.;
+  float mixer = 0.;
+  if (u_shape < .5) {
+    vec2 checks_shape_uv = uv * (.5 + 3.5 * u_shapeScale);
+    shape = .5 + .5 * sin(checks_shape_uv.x) * cos(checks_shape_uv.y);
+    mixer = shape + .48 * sign(proportion - .5) * pow(abs(proportion - .5), .5);
+  } else if (u_shape < 1.5) {
+    vec2 stripes_shape_uv = uv * (.25 + 3. * u_shapeScale);
+    float f = fract(stripes_shape_uv.y);
+    shape = smoothstep(.0, .55, f) * smoothstep(1., .45, f);
+    mixer = shape + .48 * sign(proportion - .5) * pow(abs(proportion - .5), .5);
+  } else {
+    float sh = 1. - uv.y;
+    sh -= .5;
+    sh /= (noise_scale * u_resolution.y);
+    sh += .5;
+    float shape_scaling = .2 * (1. - u_shapeScale);
+    shape = smoothstep(.45 - shape_scaling, .55 + shape_scaling, sh + .3 * (proportion - .5));
+    mixer = shape;
+  }
+
+  vec4 color_mix = blend_colors(u_color1, u_color2, u_color3, mixer, 1. - clamp(u_softness, 0., 1.), .01 + .01 * u_scale);
+
+  fragColor = vec4(color_mix.rgb, color_mix.a);
+}
+  </script>
+
+  <script>
+    /* Intro: glyphs open one at a time, then the cut-out zooms until the page
+       fills the screen from inside a letter. */
+    (function () {
+      var intro = document.getElementById('intro');
+      if (!intro) return;
+
+      var root = document.documentElement;
+      var done = false;
+
+      /* Remembered only once it has played through, so a visitor who leaves
+         or reloads mid-way still gets it next time. Storage can be blocked
+         (private windows, cleared site data); the intro then just plays
+         again, which is the safe way to fail. */
+      function finish() {
+        if (done) return;
+        done = true;
+        intro.classList.add('is-done');
+        root.classList.remove('intro-lock');
+        try { localStorage.setItem('intro-seen', '1'); } catch (e) {}
+      }
+
+      if (root.classList.contains('intro-seen')) { finish(); return; }
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+
+      var LOGO_W = 59.0008;
+      var iris = intro.querySelector('.intro__iris');
+
+      /* Centred on the content, not on innerWidth: the scrollbar gutter is part
+         of the viewport but not of the page, so innerWidth/2 sits half a gutter
+         to the right of where the homepage actually reads as centred. */
+      function centreX() { return document.body.clientWidth / 2; }
+
+      function layout() {
+        var scale = Math.min(280, Math.max(150, innerWidth * 0.16)) / LOGO_W;
+        intro.style.setProperty('--tx', centreX() + 'px');
+        intro.style.setProperty('--ty', (innerHeight / 2) + 'px');
+        intro.style.setProperty('--s', scale);
+        iris.setAttribute('cx', centreX());
+        iris.setAttribute('cy', innerHeight / 2);
+      }
+
+      layout();
+      addEventListener('resize', layout);
+      root.classList.add('intro-lock');
+
+      // A frame of the closed state has to be painted or the wipes have
+      // nothing to run from.
+      setTimeout(function () { intro.classList.add('is-lit'); }, 60);
+
+      /* The circle is stepped here rather than handed to a CSS transition: it
+         lives inside <defs>, outside the render tree, where transitions are not
+         dependable. Writing the attribute invalidates the mask either way.
+
+         It has to reach the corners, not the edges — hence the diagonal. */
+      function openIris() {
+        // Distance from the circle's own centre to the farthest corner of the
+        // veil, which still spans the gutter the centre is offset from.
+        var cx = centreX(), cy = innerHeight / 2;
+        var end = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy)) * 1.02;
+        var start = performance.now();
+        var DURATION = 900;
+
+        (function step(now) {
+          /* Clamped at both ends: a rAF timestamp is the start of its frame,
+             which can predate the performance.now() taken mid-frame above, and
+             a negative t here means a negative radius the browser rejects. */
+          var t = Math.min(1, Math.max(0, (now - start) / DURATION));
+          var eased = 1 - Math.pow(1 - t, 3);   // fast away, easing into place
+          iris.setAttribute('r', end * eased);
+          if (t < 1) requestAnimationFrame(step);
+          else finish();
+        })(start);
+      }
+
+      var LIT = 60 + 3 * 220 + 750;   // last letter filled
+      var FADE = LIT + 500;           // the word holds a beat, then leaves
+      setTimeout(function () { intro.classList.add('is-fading'); }, FADE);
+      setTimeout(openIris, FADE + 400);   // circle starts before the fade ends
+      // Never leave the page behind the veil if a frame callback stops firing.
+      setTimeout(finish, FADE + 400 + 1800);
+    })();
+
+    /* Hero grid — a dot on every crossing, darkening as the pointer nears.
+       The falloff is the reference's: linear from 1.6 at the pointer (so the
+       nearest ~40% of the reach reads solid black) down to the grid's own 8%
+       at 3.45 cells out, which is 276px on the full-size 80px grid.
+
+       Positions are measured off the laid-out dots rather than worked out
+       again here, so they cannot drift from what the CSS draws. */
+    (function () {
+      if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      var grid = document.querySelector('.hero__grid');
+      if (!grid) return;
+
+      var BASE = 0.08;
+      var PEAK = 1.6;
+      var REACH = 3.45;   // in cells
+
+      var dots = [];      // { el, x, y, value } — x/y relative to the grid
+      var cols = 0, rows = 0;
+      var width = 0, height = 0, reach = 0;
+      var originX = 0, originY = 0;   // the grid's corner, in page coordinates
+      var px = null, py = null;       // the pointer, in viewport coordinates
+      var lit = false, ticking = false;
+
+      function build() {
+        var box = grid.getBoundingClientRect();
+        // Only sizes the dot count; a spare row and column are clipped away
+        var cell = Math.min(innerWidth * 0.041667, 80);
+        var nextCols = Math.ceil(box.width / cell) + 1;
+        var nextRows = Math.ceil(box.height / cell) + 1;
+
+        if (nextCols !== cols || nextRows !== rows) {
+          cols = nextCols;
+          rows = nextRows;
+          dots.forEach(function (dot) { dot.el.remove(); });
+          dots = [];
+
+          var fragment = document.createDocumentFragment();
+          // Rows count up from the logo strip. Row 0 would sit on the strip's
+          // border, where the paper's edge would cut the dots in half.
+          for (var j = 1; j <= rows; j++) {
+            for (var i = 0; i < cols; i++) {
+              var el = document.createElement('span');
+              el.className = 'hero__dot';
+              el.style.setProperty('--i', i);
+              el.style.setProperty('--j', j);
+              fragment.appendChild(el);
+              dots.push({ el: el, x: 0, y: 0, value: BASE });
+            }
+          }
+          grid.appendChild(fragment);
+        }
+
+        measure();
+      }
+
+      function measure() {
+        var box = grid.getBoundingClientRect();
+        width = box.width;
+        height = box.height;
+        originX = box.left + scrollX;
+        originY = box.top + scrollY;
+
+        dots.forEach(function (dot) {
+          var r = dot.el.getBoundingClientRect();
+          dot.x = r.left + r.width / 2 - box.left;
+          dot.y = r.top + r.height / 2 - box.top;
+        });
+        reach = cols > 1 ? REACH * (dots[1].x - dots[0].x) : 0;
+      }
+
+      function paint() {
+        ticking = false;
+
+        var mx = px === null ? null : px + scrollX - originX;
+        var my = py === null ? null : py + scrollY - originY;
+        var near = mx !== null &&
+          mx > -reach && mx < width + reach && my > -reach && my < height + reach;
+        if (!near && !lit) return;
+
+        lit = false;
+        dots.forEach(function (dot) {
+          var value = BASE;
+          if (near) {
+            var distance = Math.hypot(dot.x - mx, dot.y - my);
+            if (distance < reach) value = Math.min(1, BASE + (PEAK - BASE) * (1 - distance / reach));
+          }
+          value = Math.round(value * 1000) / 1000;
+          if (value !== BASE) lit = true;
+          if (value !== dot.value) {
+            dot.value = value;
+            dot.el.style.opacity = value;
+          }
+        });
+      }
+
+      function schedule() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(paint);
+      }
+
+      document.addEventListener('pointermove', function (event) {
+        if (event.pointerType === 'touch') return;
+        px = event.clientX;
+        py = event.clientY;
+        schedule();
+      }, { passive: true });
+
+      document.addEventListener('pointerout', function (event) {
+        if (event.relatedTarget) return;
+        px = py = null;
+        schedule();
+      });
+
+      addEventListener('scroll', function () { if (px !== null) schedule(); }, { passive: true });
+      addEventListener('resize', function () { build(); schedule(); });
+      addEventListener('load', function () { measure(); schedule(); });
+      build();
+    })();
+
+    /* Profile CTA background — Paper's Warp shader with the "Prism" preset,
+       set up the way Framer's component drives it on the reference. Every
+       value below was read off the live page:
+         colours #050505 / #66B3FF / #FFFFFF, rotation -50°, proportion 1%,
+         scale 0.01, softness 47%, swirl 50% × 16, distortion 0, "Checks" at 45%
+         speed prop 25 → cubic-bezier(.65, 0, .88, .77) × 5 = 0.2099
+         offset -299 → seed -2990 → the clock starts at -2990 × 8.33ms
+
+       The pattern is laid out in the reference card's own 340px, so the card
+       shows the same composition at whatever size the bento scales it to.
+       Like the original it only runs while at least 10% of the card is on
+       screen, and it holds still under reduced motion. */
+    (function () {
+      var canvas = document.querySelector('.cta__shader');
+      var source = document.getElementById('warp-shader');
+      if (!canvas || !source) return;
+
+      var gl = canvas.getContext('webgl2');
+      if (!gl) return;   // the card keeps its flat #222
+
+      var REF_WIDTH = 340;
+      var SPEED = 0.2099;
+      var MAX_DPR = 2;   // the pattern is soft; past 2x only the GPU notices
+
+      var UNIFORMS = {
+        u_color1: [5 / 255, 5 / 255, 5 / 255, 1],
+        u_color2: [102 / 255, 179 / 255, 1, 1],
+        u_color3: [1, 1, 1, 1],
+        u_rotation: -50 * Math.PI / 180,
+        u_proportion: 0.01,
+        u_scale: 0.01,
+        u_softness: 0.47,
+        u_distortion: 0,
+        u_swirl: 0.5,
+        u_swirlIterations: 16,
+        u_shape: 0,
+        u_shapeScale: 0.45
+      };
+
+      function compile(type, text) {
+        var shader = gl.createShader(type);
+        gl.shaderSource(shader, text);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.warn(gl.getShaderInfoLog(shader));
+          return null;
+        }
+        return shader;
+      }
+
+      var vertex = compile(gl.VERTEX_SHADER,
+        '#version 300 es\nlayout(location = 0) in vec4 a_position;\nvoid main() { gl_Position = a_position; }\n');
+      // #version has to be the very first line, so no leading newline
+      var fragment = compile(gl.FRAGMENT_SHADER, source.textContent.trim());
+      if (!vertex || !fragment) return;
+
+      var program = gl.createProgram();
+      gl.attachShader(program, vertex);
+      gl.attachShader(program, fragment);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+      gl.useProgram(program);
+
+      // Two triangles covering the canvas
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+      Object.keys(UNIFORMS).forEach(function (name) {
+        var value = UNIFORMS[name];
+        var location = gl.getUniformLocation(program, name);
+        if (value.length === 4) gl.uniform4fv(location, value);
+        else gl.uniform1f(location, value);
+      });
+
+      var uTime = gl.getUniformLocation(program, 'u_time');
+      var uResolution = gl.getUniformLocation(program, 'u_resolution');
+      var uPixelRatio = gl.getUniformLocation(program, 'u_pixelRatio');
+
+      var clock = -2990 * 8.333333333333334;   // ms of animation time
+      var still = matchMedia('(prefers-reduced-motion: reduce)');
+      var visible = false;
+      var rafId = null, last = 0;
+
+      function draw() {
+        gl.uniform1f(uTime, clock * 0.001);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+      }
+
+      function resize() {
+        var dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+        var width = Math.max(1, Math.round(canvas.clientWidth * dpr));
+        var height = Math.max(1, Math.round(canvas.clientHeight * dpr));
+        if (width === canvas.width && height === canvas.height) return;
+
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, width, height);
+        gl.uniform2f(uResolution, width, height);
+        // Device pixels per reference pixel: the shader divides by this, so
+        // its coordinates come out in the 340px card's units.
+        gl.uniform1f(uPixelRatio, width / REF_WIDTH);
+        draw();
+      }
+
+      function frame(now) {
+        // Capped so a tab left in the background does not jump on return
+        clock += Math.min(now - last, 100) * SPEED;
+        last = now;
+        draw();
+        rafId = requestAnimationFrame(frame);
+      }
+
+      function update() {
+        var run = visible && !still.matches;
+        if (run && rafId === null) {
+          last = performance.now();
+          rafId = requestAnimationFrame(frame);
+        } else if (!run && rafId !== null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      }
+
+      new ResizeObserver(resize).observe(canvas);
+      new IntersectionObserver(function (entries) {
+        visible = entries[entries.length - 1].isIntersecting;
+        update();
+      }, { threshold: 0.1 }).observe(canvas);
+      if (still.addEventListener) still.addEventListener('change', update);
+
+      resize();
+    })();
+
+    /* Profile photo — the before/after line follows the pointer across the
+       card. The reference's slider, minus the press-and-drag: a mouse only
+       has to pass over it. A finger still drags, sideways, since the card
+       leaves upright swipes to the page.
+
+       Like the reference it tracks 1:1 with no easing, and stays wherever
+       the pointer leaves it. */
+    (function () {
+      var photo = document.querySelector('.profile__photo');
+      if (!photo) return;
+
+      var split = null;
+      var frame = null;
+
+      function moveTo(clientX) {
+        var box = photo.getBoundingClientRect();
+        split = Math.min(1, Math.max(0, (clientX - box.left) / box.width));
+        if (frame !== null) return;
+        frame = requestAnimationFrame(function () {
+          frame = null;
+          photo.style.setProperty('--split', split.toFixed(4));
+        });
+      }
+
+      photo.addEventListener('pointermove', function (event) { moveTo(event.clientX); });
+      photo.addEventListener('pointerdown', function (event) { moveTo(event.clientX); });
+    })();
+
+    // Service rows play their video band while hovered
+    (function () {
+      // Touch devices never leave the hover state cleanly, and the videos are
+      // decoration, so skip them there and under reduced-motion.
+      if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      Array.prototype.forEach.call(document.querySelectorAll('.service'), function (row) {
+        var video = row.querySelector('video');
+        if (!video) return;
+
+        function start() {
+          var played = video.play();
+          if (played) played.catch(function () {});
+        }
+        function stop() {
+          video.pause();
+        }
+
+        row.addEventListener('pointerenter', start);
+        row.addEventListener('pointerleave', stop);
+        row.addEventListener('focus', start);
+        row.addEventListener('blur', stop);
+      });
+    })();
+  </script>
+  <script src="js/site.js"></script>
+</body>
+</html>

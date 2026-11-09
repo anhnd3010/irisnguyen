@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects — Irisnguyen</title>
+  <meta name="description" content="Featured projects by Iris — product design, graphic design and branding from Hanoi.">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects — Irisnguyen">
+  <meta property="og:description" content="A glimpse of the product, graphic and brand design work Iris is most proud of.">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Lexend:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Arms the scroll reveals before the body paints; without script they
+       never hide anything. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="index.html" aria-label="Irisnguyen — home">
+        <img src="assets/brand/logo.svg" alt="" width="59" height="34">
+      </a>
+
+      <!-- Stays above the open menu and turns into its close button: the two
+           icons share one cell and cross-fade. -->
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <img class="burger__open" src="assets/icons/hamburger.svg" alt="" width="30" height="24">
+        <svg class="burger__close" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M13.3926 34.6068L34.6058 13.3936M34.6074 34.6068L13.3942 13.3936"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== Menu ===================== -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="menu__links" aria-label="Main">
+      <a class="menu__link" href="index.html" style="--order: 0">Home</a>
+      <a class="menu__link" href="about.html" style="--order: 1">About</a>
+      <a class="menu__link" href="project.html" style="--order: 2">Projects</a>
+    </nav>
+
+    <div class="menu__info" data-cursor="kv">
+      <p><strong>Address:</strong> <span>Hanoi, Vietnamese</span></p>
+      <p><strong>Mobile:</strong> <a href="tel:+84387676414">+84 387 676 414</a></p>
+      <p><strong>Email:</strong> <a class="menu__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a></p>
+    </div>
+
+    <div class="menu__ticker" data-cursor="kv" aria-hidden="true">
+      <div class="menu__track">
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ===================== Intro ===================== -->
+    <section class="work-intro container">
+      <h1 data-reveal="rise">Featured Projects</h1>
+      <p data-reveal="rise" style="--reveal-delay: 0.1s">What you&rsquo;ve seen above is just a little glimpse of the work I&rsquo;m most proud of. I didn&rsquo;t want to overload this page, so if you&rsquo;d like to see more, I&rsquo;d be happy to share&mdash;just reach out anytime!</p>
+    </section>
+
+    <!-- ===================== Projects =====================
+         Give a card data-category="ux-ui", "graphic-design" or "branding"
+         (space-separated for several) and the pills will filter it. -->
+    <section class="work container" aria-label="Projects">
+      <div class="filters" role="group" aria-label="Filter projects" data-reveal="rise" style="--reveal-delay: 0.2s">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="ux-ui" aria-pressed="false">UX/UI</button>
+        <button type="button" data-filter="graphic-design" aria-pressed="false">Graphic Design</button>
+        <button type="button" data-filter="branding" aria-pressed="false">Branding</button>
+      </div>
+
+      <!-- --crop picks the slice of a tall page-shot, as on the home grid -->
+      <div class="work-grid work-grid--full">
+        <a class="work-card" href="project-detail-melon.html" data-reveal="rise" data-reveal-amount="0.15" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/melon.webp" alt="Melon Website Design — Facial-recognition API website and developer portal" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Melon Website Design</h3>
+          <p>Facial-recognition API website and developer portal</p>
+        </a>
+
+        <a class="work-card" href="project-detail-kyarisuru.html" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.1s" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/kyarisuru.webp" alt="Kyarisuru — Anonymous career-consultation chat app for Japan" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Kyarisuru</h3>
+          <p>Anonymous career-consultation chat app for Japan</p>
+        </a>
+
+        <a class="work-card" href="project-detail-krafton-india.html" data-reveal="rise" data-reveal-amount="0.15" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/krafton-india.webp" alt="KRAFTON India — Corporate website for games, esports and careers" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>KRAFTON India</h3>
+          <p>Corporate website for games, esports and careers</p>
+        </a>
+
+        <a class="work-card" href="project-detail-naver-connect.html" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.1s" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/naver-connect.webp" alt="Naver Connect — AI &amp; data practice lessons for young learners" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Naver Connect</h3>
+          <p>AI &amp; data practice lessons for young learners</p>
+        </a>
+
+        <a class="work-card" href="project-detail-fanstyle.html" data-reveal="rise" data-reveal-amount="0.15" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/fanstyle.webp" alt="FANSTYLE — Website for an Okinawa condominium developer" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>FANSTYLE</h3>
+          <p>Website for an Okinawa condominium developer</p>
+        </a>
+
+        <a class="work-card" href="project-detail-gdcollection1.html" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.1s" data-category="graphic-design">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/gdcollection1.webp" alt="Graphic Design Collection 1 — Game, e-commerce and hardware campaign banners" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Graphic Design Collection 1</h3>
+          <p>Game, e-commerce and hardware campaign banners</p>
+        </a>
+
+        <a class="work-card" href="project-detail-timeless-landingpage.html" data-reveal="rise" data-reveal-amount="0.15" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/timeless-landingpage.webp" alt="Timeless Landingpage — Landing page for a luxury appraisal service" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Timeless Landingpage</h3>
+          <p>Landing page for a luxury appraisal service</p>
+        </a>
+
+        <a class="work-card" href="project-detail-otaff.html" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.1s" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/otaff.webp" alt="OTAFF — Skills-test website for Japan’s food industry" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>OTAFF</h3>
+          <p>Skills-test website for Japan’s food industry</p>
+        </a>
+
+        <a class="work-card" href="project-detail-ksmc.html" data-reveal="rise" data-reveal-amount="0.15" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/ksmc.webp" alt="Keystone Marketing Company — Agency website for a Thai marketing studio" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Keystone Marketing Company</h3>
+          <p>Agency website for a Thai marketing studio</p>
+        </a>
+
+        <a class="work-card" href="project-detail-iskra.html" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.1s" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/iskra.webp" alt="ISKRA — Web3 gaming platform: NFTs, staking and DEX" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>ISKRA</h3>
+          <p>Web3 gaming platform: NFTs, staking and DEX</p>
+        </a>
+
+        <a class="work-card" href="project-detail-savills.html" data-reveal="rise" data-reveal-amount="0.15" data-category="ux-ui">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/savills.webp" alt="Savills Vietnam — Internal property-management platform" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Savills Vietnam</h3>
+          <p>Internal property-management platform</p>
+        </a>
+
+        <a class="work-card" href="project-detail-gdcollection2.html" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.1s" data-category="graphic-design">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/gdcollection2.webp" alt="Graphic Design Collection 2 — Key visuals, posters and greeting cards" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Graphic Design Collection 2</h3>
+          <p>Key visuals, posters and greeting cards</p>
+        </a>
+      </div>
+      <p class="work-empty" hidden>Projects in this category are coming soon.</p>
+    </section>
+
+  </main>
+
+  <!-- ===================== Footer =====================
+       The content rises once a tenth of the footer shows; the links and the
+       bottom bar follow when most of it is on screen. -->
+  <footer class="footer" id="contact">
+    <div class="container" data-reveal="up" data-reveal-by="#contact">
+      <div class="footer__top">
+        <h2 class="footer__title">Let&rsquo;s Work Together</h2>
+        <div class="footer__contact">
+          <p>Available for work and always looking for exciting projects.</p>
+          <a class="footer__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+        <a href="index.html" data-cursor="button">Home</a>
+        <a href="about.html" data-cursor="button">About</a>
+        <a href="project.html" data-cursor="button">Projects</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+      <img src="assets/brand/logo-footer.svg" alt="" aria-hidden="true">
+      <p>&copy;2025 by Irisnguyen. all rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Category pills — pressing one moves the black pill, as on the
+       reference. A card tagged with data-category shows only under its
+       pills; a card without one shows under all of them. */
+    (function () {
+      var group = document.querySelector('.filters');
+      if (!group) return;
+
+      var buttons = Array.prototype.slice.call(group.querySelectorAll('button'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.work-card'));
+      var empty = document.querySelector('.work-empty');
+
+      function apply(pressed) {
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button === pressed));
+        });
+
+        var filter = pressed.dataset.filter;
+        var shown = 0;
+        cards.forEach(function (card) {
+          var tags = card.dataset.category;
+          card.hidden = filter !== 'all' && !!tags && tags.split(' ').indexOf(filter) === -1;
+          if (!card.hidden) shown++;
+        });
+        if (empty) empty.hidden = shown > 0;
+
+        // the cards that stay play a short rise again, one after another
+        var k = 0;
+        cards.forEach(function (card) {
+          // cards still waiting for their scroll reveal keep that one instead
+          if (card.hidden || !card.classList.contains('is-revealed')) return;
+          card.classList.remove('is-refiltered');
+          void card.offsetWidth;
+          // capped, so cards further down don't wait on the ones above
+          card.style.setProperty('--refilter-delay', (Math.min(k++, 5) * 0.06) + 's');
+          card.classList.add('is-refiltered');
+        });
+      }
+
+      group.addEventListener('click', function (event) {
+        var pressed = event.target.closest('button');
+        if (!pressed) return;
+        apply(pressed);
+        // keep the category in the address, so it can be shared or reloaded
+        var url = new URL(location.href);
+        if (pressed.dataset.filter === 'all') url.searchParams.delete('category');
+        else url.searchParams.set('category', pressed.dataset.filter);
+        history.replaceState(null, '', url);
+      });
+
+      // project.html?category=ux-ui (the home page's service rows link here)
+      var wanted = new URLSearchParams(location.search).get('category');
+      var match = buttons.filter(function (button) { return button.dataset.filter === wanted; })[0];
+      if (match) apply(match);
+    })();
+  </script>
+  <script src="js/site.js"></script>
+</body>
+</html>

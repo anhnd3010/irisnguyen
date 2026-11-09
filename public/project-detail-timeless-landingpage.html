@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timeless Landingpage — Irisnguyen</title>
+  <meta name="description" content="UI project by Iris — a landing page for TIMELESS, a Korean luxury buy-back service: department-store-quality appraisal of watches, jewellery and bags, with four hero variants.">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Timeless Landingpage — Irisnguyen">
+  <meta property="og:description" content="Designing a quiet, premium landing page for a luxury appraisal and buy-back service.">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Lexend:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Arms the scroll reveals before the body paints; without script they
+       never hide anything. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-detail page-case page-timeless" style="--footer-gap: var(--space-lg)">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="index.html" aria-label="Irisnguyen — home">
+        <img src="assets/brand/logo.svg" alt="" width="59" height="34">
+      </a>
+
+      <!-- Stays above the open menu and turns into its close button: the two
+           icons share one cell and cross-fade. -->
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <img class="burger__open" src="assets/icons/hamburger.svg" alt="" width="30" height="24">
+        <svg class="burger__close" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M13.3926 34.6068L34.6058 13.3936M34.6074 34.6068L13.3942 13.3936"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== Menu ===================== -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="menu__links" aria-label="Main">
+      <a class="menu__link" href="index.html" style="--order: 0">Home</a>
+      <a class="menu__link" href="about.html" style="--order: 1">About</a>
+      <a class="menu__link" href="project.html" style="--order: 2" data-current>Projects</a>
+    </nav>
+
+    <div class="menu__info" data-cursor="kv">
+      <p><strong>Address:</strong> <span>Hanoi, Vietnamese</span></p>
+      <p><strong>Mobile:</strong> <a href="tel:+84387676414">+84 387 676 414</a></p>
+      <p><strong>Email:</strong> <a class="menu__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a></p>
+    </div>
+
+    <div class="menu__ticker" data-cursor="kv" aria-hidden="true">
+      <div class="menu__track">
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="detail">
+
+    <!-- ===================== Title ===================== -->
+    <div class="detail__head container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal="rise">
+        <ol>
+          <li><a href="project.html">Projects</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li><a href="project.html">UX/UI</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li aria-current="page">Timeless Landingpage</li>
+        </ol>
+      </nav>
+
+      <h1 class="detail__title" data-reveal="rise" style="--reveal-delay: 0.08s">TIMELESS LANDINGPAGE</h1>
+
+      <!-- The design's 1440 x 400 key visual: the TIMELESS wordmark beside a gold watch held in white gloves -->
+      <figure class="cs-cover" data-reveal="rise" data-reveal-amount="0.05" style="--reveal-delay: 0.16s">
+        <img src="assets/projects/timeless-landingpage/banner.webp" alt="The TIMELESS wordmark beside a gold watch held in white gloves" width="2160" height="600">
+      </figure>
+    </div>
+
+    <article class="cs container" aria-label="Timeless Landingpage project">
+
+      <!-- ===================== About ===================== -->
+      <section class="cs-about" aria-labelledby="cs-about-title">
+        <h2 class="cs-title" id="cs-about-title" data-reveal="rise">About the project</h2>
+        <div class="cs-about__body cs-text" data-reveal="rise">
+          <p>TIMELESS buys pre-owned luxury goods — watches, jewellery, bags, precious metals and more — with appraisal modelled on Japanese department stores. This landing page has one job: earn enough trust in a single scroll that visitors start a KakaoTalk consultation.</p>
+          <p>The page leads with the promise and a consultation button, then backs it up with key figures, the categories TIMELESS buys, reassurance for worn or broken items, three ways to sell (in store, at home or by mail), five promises, a short case for the service, an FAQ and contact details. Four hero variants — pocket watch, hourglass, wristwatch and chess king — explore the opening image.</p>
+          <p>Black, white and a single bright yellow keep the page quiet and premium, letting the photography carry the sense of craft while the yellow marks every call to action.</p>
+        </div>
+
+        <dl class="cs-facts" data-reveal="rise">
+          <div><dt>Project Type</dt><dd>UI Design</dd></div>
+          <div><dt>Year</dt><dd>2023</dd></div>
+          <div><dt>My Role</dt><dd>UI Designer</dd></div>
+          <div><dt>Client</dt><dd>Korean Client</dd></div>
+        </dl>
+
+        <div class="cs-media">
+          <figure class="cs-media__card" data-reveal="rise">
+            <img src="assets/projects/timeless-landingpage/intro-jewellery.webp" alt="An appraiser setting out gold jewellery on purple velvet" width="1062" height="607" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card" data-reveal="rise" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/timeless-landingpage/intro-mobile.webp" alt="The TIMELESS mobile page on a phone, held over a velvet armchair" width="1062" height="607" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card cs-media__card--wide" data-reveal="rise">
+            <img src="assets/projects/timeless-landingpage/intro-laptop.webp" alt="The TIMELESS landing page on a laptop in a wood-panelled boutique" width="2160" height="1215" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===================== Typography & Colour ===================== -->
+      <section class="cs-section" aria-labelledby="cs-type-title">
+        <h2 class="cs-title" id="cs-type-title" data-reveal="rise">Typography &amp; Colour</h2>
+        <div class="cs-type cs-type--cairo cs-type--poppins cs-section__body" data-reveal="rise">
+          <p class="cs-type__name" aria-label="Typeface: Pretendard, set in Poppins">PRETENDARD</p>
+          <ul class="cs-type__pills cs-type__pills--plain" aria-label="Weights">
+            <li style="font-weight: 300">Light</li>
+            <li style="font-weight: 400">Regular</li>
+            <li style="font-weight: 500">Medium</li>
+            <li style="font-weight: 600">Semibold</li>
+            <li style="font-weight: 700">Bold</li>
+          </ul>
+          <ol class="cs-type__scale" aria-label="Type scale in px">
+            <li>16</li><li>20</li><li>24</li><li>32</li><li>48</li><li>64</li>
+          </ol>
+          <ul class="cs-swatches cs-swatches--2" aria-label="Colour palette">
+            <li class="is-light" style="--swatch: #fde500">#FDE500</li>
+            <li style="--swatch: #000000">#000000</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== UI Design ===================== -->
+      <section class="cs-section" aria-labelledby="cs-ui-title">
+        <h2 class="cs-title" id="cs-ui-title" data-reveal="rise">UI Design</h2>
+        <!-- One column on light grey, as the design lays it out: the full page, then the hero variants -->
+        <div class="cs-screens cs-screens--light cs-screens--single cs-section__body" data-reveal="rise" data-reveal-amount="0.02">
+          <img src="assets/projects/timeless-landingpage/ui-landing.webp" alt="The full TIMELESS landing page: hero, key figures, categories, purchase methods, promises, FAQ and contact" width="916" height="4096" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          <img src="assets/projects/timeless-landingpage/ui-hero-pocketwatch.webp" alt="Hero variant with a gold pocket watch" width="1280" height="717" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+          <img src="assets/projects/timeless-landingpage/ui-hero-hourglass.webp" alt="Hero variant with an hourglass in the sand" width="1280" height="714" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          <img src="assets/projects/timeless-landingpage/ui-hero-wristwatch.webp" alt="Hero variant with a wristwatch on a white shirt cuff" width="1280" height="718" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+          <img src="assets/projects/timeless-landingpage/ui-hero-chess.webp" alt="Hero variant with a chess king on a dark board" width="1280" height="717" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+        </div>
+      </section>
+    </article>
+
+    <!-- ===================== Other projects ===================== -->
+    <section class="detail__more container" aria-labelledby="more-title">
+      <h2 class="detail__title" id="more-title" data-reveal="rise">Other Projects</h2>
+
+      <div class="work-grid work-grid--three">
+        <a class="work-card work-card--compact" href="project-detail-otaff.html" data-reveal="rise" data-reveal-amount="0.2">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/otaff.webp" alt="OTAFF — Skills-test website for Japan’s food industry" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>OTAFF</h3>
+          <p>Skills-test website for Japan’s food industry</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-ksmc.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.08s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/ksmc.webp" alt="Keystone Marketing Company — Agency website for a Thai marketing studio" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Keystone Marketing Company</h3>
+          <p>Agency website for a Thai marketing studio</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-iskra.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.16s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/iskra.webp" alt="ISKRA — Web3 gaming platform: NFTs, staking and DEX" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>ISKRA</h3>
+          <p>Web3 gaming platform: NFTs, staking and DEX</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container" data-reveal="up" data-reveal-by="#contact">
+      <div class="footer__top">
+        <h2 class="footer__title">Let&rsquo;s Work Together</h2>
+        <div class="footer__contact">
+          <p>Available for work and always looking for exciting projects.</p>
+          <a class="footer__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+        <a href="index.html" data-cursor="button">Home</a>
+        <a href="about.html" data-cursor="button">About</a>
+        <a href="project.html" data-cursor="button">Projects</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+      <img src="assets/brand/logo-footer.svg" alt="" aria-hidden="true">
+      <p>&copy;2025 by Irisnguyen. all rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

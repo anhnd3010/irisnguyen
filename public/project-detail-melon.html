@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Melon Website Design Project — Irisnguyen</title>
+  <meta name="description" content="UX/UI case study by Iris — redesigning the Melon Facial Recognition API website and developer portal: research, personas, journey map, sitemap, user flows, wireframes and UI.">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Melon Website Design Project — Irisnguyen">
+  <meta property="og:description" content="Turning a powerful but complex Facial Recognition API into a website developers and enterprises can understand, try and buy on their own.">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Lexend:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Arms the scroll reveals before the body paints; without script they
+       never hide anything. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-detail page-case" style="--footer-gap: var(--space-lg)">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="index.html" aria-label="Irisnguyen — home">
+        <img src="assets/brand/logo.svg" alt="" width="59" height="34">
+      </a>
+
+      <!-- Stays above the open menu and turns into its close button: the two
+           icons share one cell and cross-fade. -->
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <img class="burger__open" src="assets/icons/hamburger.svg" alt="" width="30" height="24">
+        <svg class="burger__close" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M13.3926 34.6068L34.6058 13.3936M34.6074 34.6068L13.3942 13.3936"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== Menu ===================== -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="menu__links" aria-label="Main">
+      <a class="menu__link" href="index.html" style="--order: 0">Home</a>
+      <a class="menu__link" href="about.html" style="--order: 1">About</a>
+      <a class="menu__link" href="project.html" style="--order: 2" data-current>Projects</a>
+    </nav>
+
+    <div class="menu__info" data-cursor="kv">
+      <p><strong>Address:</strong> <span>Hanoi, Vietnamese</span></p>
+      <p><strong>Mobile:</strong> <a href="tel:+84387676414">+84 387 676 414</a></p>
+      <p><strong>Email:</strong> <a class="menu__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a></p>
+    </div>
+
+    <div class="menu__ticker" data-cursor="kv" aria-hidden="true">
+      <div class="menu__track">
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="detail">
+
+    <!-- ===================== Title ===================== -->
+    <div class="detail__head container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal="rise">
+        <ol>
+          <li><a href="project.html">Projects</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li><a href="project.html">UX/UI</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li aria-current="page">Melon Website Design Project</li>
+        </ol>
+      </nav>
+
+      <h1 class="detail__title" data-reveal="rise" style="--reveal-delay: 0.08s">Melon Website Design Project</h1>
+
+      <!-- Three rows of the finished site's sections, parked where the design
+           has them: 319 x 179 shots on a 1440 x 400 board, cropped by its edges. -->
+      <div class="cs-banner" role="img" aria-label="Screens from the redesigned Melon website" data-reveal="rise" data-reveal-amount="0.05" style="--reveal-delay: 0.16s">
+        <div class="cs-banner__row" style="--top: -6.25cqw; --x: -20.56cqw">
+          <img src="assets/projects/melon/hero-01.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-02.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-03.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-04.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-05.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-13.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-08.webp" alt="" width="640" height="360">
+        </div>
+        <div class="cs-banner__row" style="--top: 7.708cqw; --x: -34.1cqw">
+          <img src="assets/projects/melon/hero-06.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-07.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-08.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-09.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-10.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-01.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-03.webp" alt="" width="640" height="360">
+        </div>
+        <div class="cs-banner__row" style="--top: 21.597cqw; --x: -8.75cqw">
+          <img src="assets/projects/melon/hero-11.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-12.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-13.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-14.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-02.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-05.webp" alt="" width="640" height="360">
+          <img src="assets/projects/melon/hero-09.webp" alt="" width="640" height="360">
+        </div>
+      </div>
+    </div>
+
+    <article class="cs container" aria-label="Melon case study">
+
+      <!-- ===================== About ===================== -->
+      <section class="cs-about" aria-labelledby="cs-about-title">
+        <h2 class="cs-title" id="cs-about-title" data-reveal="rise">About the project</h2>
+        <div class="cs-about__body cs-text" data-reveal="rise">
+          <p>Melon is a facial recognition API platform for developers and enterprises, with flexible deployment options across Cloud, On-premise and Edge devices.</p>
+          <p>The project redesigned Melon's product website together with its developer portal, turning a powerful but fairly complex technology into an experience that is easy to understand and easy to start with. Developers needed to grasp the product's value within moments, get an API key quickly and begin integrating, while IT teams and enterprise decision-makers needed to explore the architecture, deployment models and relevant use cases on their own, without depending on a sales consultation. The new site was positioned as a bridge between product marketing and technical documentation, guiding users seamlessly from discovering the product → choosing a deployment option → reading the API docs → getting an API key → starting the integration.</p>
+          <p>Melon is already trusted by Japanese enterprises including Keisei Electric Railway, Marubeni, Marubeni I-DIGIO, Sanwa Systems and Matsumura, so the new experience also had to balance enterprise-grade credibility with developer self-service.</p>
+        </div>
+
+        <dl class="cs-facts" data-reveal="rise">
+          <div><dt>Project Type</dt><dd>UX/UI Design</dd></div>
+          <div><dt>Year</dt><dd>2025</dd></div>
+          <div><dt>My Role</dt><dd>Lead Designer</dd></div>
+          <div><dt>Client</dt><dd>Melon</dd></div>
+        </dl>
+
+        <div class="cs-media">
+          <figure class="cs-media__card" data-reveal="rise">
+            <img src="assets/projects/melon/intro-phone.png" alt="Melon's Getting Your API Key documentation page on a phone" width="708" height="405" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card" data-reveal="rise" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/melon/cs-icons.png" alt="Melon's product icon set, with the Melon mark lit in the middle" width="708" height="405" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card cs-media__card--wide" data-reveal="rise">
+            <img src="assets/projects/melon/intro-laptop.webp" alt="The Melon homepage on a laptop, headlined Powerful Facial Recognition API for Modern Applications" width="2160" height="1215" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===================== Role & Scope ===================== -->
+      <section class="cs-section" aria-labelledby="cs-role-title">
+        <h2 class="cs-title" id="cs-role-title" data-reveal="rise">Role &amp; Scope</h2>
+        <div class="cs-duo cs-section__body">
+          <div class="cs-panel cs-panel--black" data-reveal="rise">
+            <h3 class="cs-pill">My role</h3>
+            <ul class="cs-list">
+              <li>Led the end-to-end UX process: research, problem framing, information architecture and user flows.</li>
+              <li>Designed wireframes and UI for desktop, mobile and ultrawide screens, including developer docs with a dark mode.</li>
+              <li>Created the logo, brand guidelines and style guide for the Melon identity.</li>
+              <li>Partnered with the PM, backend engineers and the Japanese sales team to balance developer needs with enterprise sales goals.</li>
+            </ul>
+          </div>
+          <div class="cs-panel cs-panel--grey" data-reveal="rise" style="--reveal-delay: 0.08s">
+            <h3 class="cs-pill">Deliverables</h3>
+            <ul class="cs-list">
+              <li>Logo &amp; brand guidelines</li>
+              <li>Research report, user personas and customer journey map</li>
+              <li>Sitemap, user flows and wireframes</li>
+              <li>UI design: Home, Products ×3, API, Local Server, Ecosystem, Pricing, Developers, Docs and Contact Sales</li>
+              <li>Style guide &amp; component library</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Problem Statement ===================== -->
+      <section class="cs-section" aria-labelledby="cs-problem-title">
+        <h2 class="cs-title" id="cs-problem-title" data-reveal="rise">Problem Statement</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead" data-reveal="rise">
+            <h3 class="cs-lead__title">Two audiences, one website, and neither could find what they needed</h3>
+            <p class="cs-text">Developers want to try it right away. Enterprises want to know where face data is stored. When those two journeys get tangled together, both audiences leave. The Discover phase surfaced three key friction points.</p>
+          </div>
+
+          <ol class="cs-cols cs-cols--3" data-reveal="rise">
+            <li>
+              <p class="cs-kicker">Awareness</p>
+              <h4 class="cs-cols__title">Unclear what Melon offers</h4>
+              <p class="cs-text">The four deployment models were described in internal jargon, so newcomers struggled to tell the API, Local Server and Hardware Terminal apart.</p>
+            </li>
+            <li>
+              <p class="cs-kicker">Activation</p>
+              <h4 class="cs-cols__title">The path to an API key was too long</h4>
+              <p class="cs-text">Technical docs lived apart from the marketing site, with no Quick Start or sample code, leaving developers to guess the next step.</p>
+            </li>
+            <li>
+              <p class="cs-kicker">Conversion</p>
+              <h4 class="cs-cols__title">Enterprises lacked trust signals</h4>
+              <p class="cs-text">Biometric data is sensitive. Without transparent pricing, clear privacy information and an on-premise option, IT teams won't leave their contact details.</p>
+            </li>
+          </ol>
+
+          <div class="cs-duo cs-goals">
+            <div class="cs-card" data-reveal="rise">
+              <h4 class="cs-card__title">User goals</h4>
+              <ul class="cs-list">
+                <li>Understand the product and choose the right deployment model</li>
+                <li>Try the API for free, with sample code that runs out of the box</li>
+                <li>Read the docs comfortably on desktop and mobile, even late at night</li>
+                <li>Know the cost before having to talk to sales</li>
+              </ul>
+            </div>
+            <div class="cs-card" data-reveal="rise" style="--reveal-delay: 0.08s">
+              <h4 class="cs-card__title">Business goals</h4>
+              <ul class="cs-list">
+                <li>Grow self-serve developer sign-ups on the free plan</li>
+                <li>Increase qualified enterprise leads through Contact Sales</li>
+                <li>Position Melon as the safe choice for biometric data</li>
+                <li>Lay the groundwork for the Melon Ecosystem</li>
+              </ul>
+            </div>
+          </div>
+
+          <blockquote class="cs-hmw" data-reveal="rise">
+            <p>How might we help developers go from “hearing about Melon” to “a successful API call” in a single visit, while giving enterprises enough confidence to leave their contact details?</p>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ===================== Design Phases ===================== -->
+      <section class="cs-section" aria-labelledby="cs-phases-title">
+        <h2 class="cs-title" id="cs-phases-title" data-reveal="rise">Design Phases</h2>
+        <ol class="cs-phases cs-section__body">
+          <li class="cs-phase" style="--tilt: 3deg" data-reveal="rise">
+            <h3 class="cs-phase__title">Discover</h3>
+            <p>Stakeholder interviews, desk research, competitor analysis and an audit of industry websites.</p>
+            <ul><li>Research report</li><li>Competitive matrix</li></ul>
+          </li>
+          <li class="cs-phase cs-phase--raised" style="--tilt: -3.5deg; --drop: 4.444cqw; --reveal-delay: 0.06s" data-reveal="rise">
+            <h3 class="cs-phase__title">Define</h3>
+            <p>Synthesised insights in an affinity map, then built personas and a journey map.</p>
+            <ul><li>3 proto-personas</li><li>Journey map</li></ul>
+          </li>
+          <li class="cs-phase" style="--tilt: 3deg" data-reveal="rise">
+            <h3 class="cs-phase__title">Ideate</h3>
+            <p>Storyboards, a sitemap, user flows for each persona and the content structure.</p>
+            <ul><li>Storyboard</li><li>Sitemap · User flows</li></ul>
+          </li>
+          <li class="cs-phase cs-phase--raised" style="--tilt: -2.5deg; --drop: 5.417cqw; --reveal-delay: 0.06s" data-reveal="rise">
+            <h3 class="cs-phase__title">Design</h3>
+            <p>Low-fi wireframes, brand &amp; style guide, and hi-fi UI for desktop, mobile and ultrawide.</p>
+            <ul><li>Wireframes</li><li>UI · Style guide</li></ul>
+          </li>
+          <li class="cs-phase" style="--tilt: 2deg" data-reveal="rise">
+            <h3 class="cs-phase__title">Validate</h3>
+            <p>Usability testing on the prototype, design iterations and developer handoff.</p>
+            <ul><li>Test report</li><li>Handoff spec</li></ul>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ===================== Research ===================== -->
+      <section class="cs-section" aria-labelledby="cs-research-title">
+        <h2 class="cs-title" id="cs-research-title" data-reveal="rise">Research</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead" data-reveal="rise">
+            <h3 class="cs-lead__title">Listening to both audiences before designing for either</h3>
+            <p class="cs-text">Four research methods covered the business, its users and the market, so that every design decision could be traced back to what developers and enterprise buyers actually said.</p>
+          </div>
+
+          <ul class="cs-cols cs-cols--4" data-reveal="rise">
+            <li>
+              <h4 class="cs-cols__title">Stakeholder interviews</h4>
+              <p class="cs-text">PM, CTO, the Japanese sales team and customer success, to clarify business goals and technical constraints.</p>
+            </li>
+            <li>
+              <h4 class="cs-cols__title">User interviews</h4>
+              <p class="cs-text">Backend and mobile developers, plus IT managers who had integrated eKYC or access-control systems.</p>
+            </li>
+            <li>
+              <h4 class="cs-cols__title">Competitor groups</h4>
+              <p class="cs-text">Analysed the websites, pricing, docs and onboarding of each group of face API providers.</p>
+            </li>
+            <li>
+              <h4 class="cs-cols__title">Heuristic review</h4>
+              <p class="cs-text">Scored industry developer docs against Nielsen's 10 usability heuristics.</p>
+            </li>
+          </ul>
+
+          <!-- Competitive analysis -->
+          <div class="cs-block">
+            <div class="cs-intro" data-reveal="rise">
+              <h3 class="cs-subhead">Competitive analysis</h3>
+              <p class="cs-text">Providers were compared by group rather than brand by brand, because interviewees thought in groups too: “use a big cloud”, “buy an SDK and run it ourselves” or “use a specialist face service”.</p>
+            </div>
+
+            <div class="cs-scroll" tabindex="0" role="region" aria-label="Competitive analysis table" data-reveal="rise">
+              <table class="cs-table">
+                <caption class="visually-hidden">Competitive analysis by provider group</caption>
+                <colgroup>
+                  <col style="width: 17.64%"><col style="width: 11.46%"><col style="width: 11.39%"><col style="width: 11.94%"><col style="width: 11.46%"><col style="width: 17.22%"><col>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">Provider group</th>
+                    <th scope="col">Cloud API</th>
+                    <th scope="col">On-premise</th>
+                    <th scope="col">Edge device</th>
+                    <th scope="col">Low-code</th>
+                    <th scope="col">Docs experience</th>
+                    <th scope="col">Gap / opportunity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"><b>Cloud hyperscaler</b>AI services from the major cloud platforms</th>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--no">Limited</span></td>
+                    <td><span class="cs-status cs-status--no">No</span></td>
+                    <td><span class="cs-status cs-status--no">No</span></td>
+                    <td>Comprehensive but sprawling; face features are hard to find</td>
+                    <td>High barrier to entry and dense cloud jargon</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><b>Specialist face API</b>Providers focused solely on facial recognition</th>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--part">Partial</span></td>
+                    <td><span class="cs-status cs-status--no">No</span></td>
+                    <td><span class="cs-status cs-status--no">No</span></td>
+                    <td>Clean, with a playground, but no Japanese</td>
+                    <td>No clear data-compliance story</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><b>On-device SDK</b>Sells an SDK that customers integrate and run themselves</th>
+                    <td><span class="cs-status cs-status--no">No</span></td>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--part">Partial</span></td>
+                    <td><span class="cs-status cs-status--no">No</span></td>
+                    <td>PDF documentation, slow to update</td>
+                    <td>No free trial; buyers must contact sales</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><b>System integrator</b>Turnkey access-control solutions</th>
+                    <td><span class="cs-status cs-status--no">No</span></td>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--part">Partial</span></td>
+                    <td>Almost no public documentation</td>
+                    <td>Closed, expensive and not built for developers</td>
+                  </tr>
+                  <tr class="cs-table__melon">
+                    <th scope="row"><b>Melon</b>Target positioning</th>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td><span class="cs-status cs-status--yes">Yes</span></td>
+                    <td>Docs built into the site, Quick Start, dark mode</td>
+                    <td>One API across every deployment model</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Affinity map -->
+          <div class="cs-block">
+            <div class="cs-intro" data-reveal="rise">
+              <h3 class="cs-subhead">Affinity map</h3>
+              <p class="cs-text">Interview notes were clustered into four themes. These quotes capture each one.</p>
+            </div>
+
+            <div class="cs-affinity">
+              <div class="cs-affinity__group" style="--note: #fdf2d5" data-reveal="rise">
+                <h4 class="cs-cols__title">Try before you buy</h4>
+                <ul>
+                  <li>“No free tier? I close the tab.”</li>
+                  <li>“I need to see a sample request and response on the very first page.”</li>
+                  <li>“A sandbox matters more than a pitch deck.”</li>
+                </ul>
+              </div>
+              <div class="cs-affinity__group" style="--note: #dcedf2; --reveal-delay: 0.06s" data-reveal="rise">
+                <h4 class="cs-cols__title">Where does the data live?</h4>
+                <ul>
+                  <li>“Employee face images can't leave our internal servers.”</li>
+                  <li>“Legal will ask this question first.”</li>
+                  <li>“Can it run offline if the network goes down?”</li>
+                </ul>
+              </div>
+              <div class="cs-affinity__group" style="--note: #f4e3ec; --reveal-delay: 0.12s" data-reveal="rise">
+                <h4 class="cs-cols__title">The docs are the product</h4>
+                <ul>
+                  <li>“I read docs at 11pm, and a white background is blinding.”</li>
+                  <li>“Finding one endpoint takes far too many clicks.”</li>
+                  <li>“A tiny copy-code button can save my whole afternoon.”</li>
+                </ul>
+              </div>
+              <div class="cs-affinity__group" style="--note: #e3eedb; --reveal-delay: 0.18s" data-reveal="rise">
+                <h4 class="cs-cols__title">Pricing must be clear and comparable</h4>
+                <ul>
+                  <li>“Just tell me what 10,000 calls will cost.”</li>
+                  <li>“I need to compare plans to pitch them to my boss.”</li>
+                  <li>“If the contact form is too long, I give up.”</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Insights & HMW -->
+          <div class="cs-block">
+            <h3 class="cs-subhead" data-reveal="rise">Key insights &amp; How Might We</h3>
+            <div class="cs-insights">
+              <article class="cs-insight" data-reveal="rise">
+                <p class="cs-insight__label">Insight 1</p>
+                <h4 class="cs-card__title">Developers judge a product by its code, not its copy</h4>
+                <p class="cs-text">They skim past the marketing and look straight for a code sample or a “try for free” button. If neither is on the first screen, they leave.</p>
+                <p class="cs-insight__hmw"><strong>HMW</strong> put code and a “Start Building Free” CTA right in the hero, then lead straight into Quick Start?</p>
+              </article>
+              <article class="cs-insight" data-reveal="rise" style="--reveal-delay: 0.06s">
+                <p class="cs-insight__label">Insight 2</p>
+                <h4 class="cs-card__title">For enterprises, privacy is a prerequisite</h4>
+                <p class="cs-text">The first question is always where face data is stored. On-premise isn't a side feature; it's the reason to buy.</p>
+                <p class="cs-insight__hmw"><strong>HMW</strong> present Local Server as an equal alternative to Cloud, on the same API?</p>
+              </article>
+              <article class="cs-insight" data-reveal="rise">
+                <p class="cs-insight__label">Insight 3</p>
+                <h4 class="cs-card__title">Docs are read in many different contexts</h4>
+                <p class="cs-text">On an ultrawide monitor while coding, on a phone during a meeting, and late at night during an incident. One fixed layout can't serve all three.</p>
+                <p class="cs-insight__hmw"><strong>HMW</strong> design docs that adapt to any screen, with dark mode, search and Quick Access on mobile?</p>
+              </article>
+              <article class="cs-insight" data-reveal="rise" style="--reveal-delay: 0.06s">
+                <p class="cs-insight__label">Insight 4</p>
+                <h4 class="cs-card__title">Buyers need material to convince others</h4>
+                <p class="cs-text">IT managers rarely decide alone. They need plan comparisons, FAQs and clear information to take to leadership.</p>
+                <p class="cs-insight__hmw"><strong>HMW</strong> turn the Pricing page into a decision-making tool, with plans, a comparison table, an FAQ and a contact CTA?</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== User Persona ===================== -->
+      <section class="cs-section" aria-labelledby="cs-persona-title">
+        <h2 class="cs-title" id="cs-persona-title" data-reveal="rise">User Personas</h2>
+        <div class="cs-personas cs-section__body">
+          <article class="cs-persona" data-reveal="rise">
+            <header>
+              <h3 class="cs-persona__name">Kenta Sato, 28</h3>
+              <p class="cs-persona__role">Backend Developer · Fintech startup, Tokyo</p>
+            </header>
+            <img class="cs-persona__photo" src="assets/projects/melon/persona-kenta.webp" alt="Portrait of Kenta Sato" width="920" height="918" loading="lazy">
+            <div class="cs-persona__card">
+              <h4>Goals</h4>
+              <ul class="cs-list">
+                <li>Integrate eKYC into the app within two sprints</li>
+                <li>Try it for free before recommending a purchase</li>
+              </ul>
+            </div>
+            <div class="cs-persona__card">
+              <h4>Pain Points</h4>
+              <ul class="cs-list">
+                <li>Fragmented docs with no sample code for his language</li>
+                <li>Can't see the rate limits before integrating</li>
+              </ul>
+            </div>
+          </article>
+          <article class="cs-persona" data-reveal="rise" style="--reveal-delay: 0.06s">
+            <header>
+              <h3 class="cs-persona__name">Yuki Tanaka, 44</h3>
+              <p class="cs-persona__role">IT Manager · Railway operator</p>
+            </header>
+            <img class="cs-persona__photo" src="assets/projects/melon/persona-yuki.webp" alt="Portrait of Yuki Tanaka" width="920" height="918" loading="lazy">
+            <div class="cs-persona__card">
+              <h4>Goals</h4>
+              <ul class="cs-list">
+                <li>Roll out face authentication at ticket gates</li>
+                <li>Stay compliant with data-protection regulations</li>
+              </ul>
+            </div>
+            <div class="cs-persona__card">
+              <h4>Pain Points</h4>
+              <ul class="cs-list">
+                <li>Hard to compare the cost of cloud and on-premise</li>
+                <li>Needs material to present to the board</li>
+              </ul>
+            </div>
+          </article>
+          <article class="cs-persona" data-reveal="rise" style="--reveal-delay: 0.12s">
+            <header>
+              <h3 class="cs-persona__name">Mika Hayashi, 36</h3>
+              <p class="cs-persona__role">Gym chain owner · Non-technical</p>
+            </header>
+            <img class="cs-persona__photo" src="assets/projects/melon/persona-mika.webp" alt="Portrait of Mika Hayashi" width="920" height="918" loading="lazy">
+            <div class="cs-persona__card">
+              <h4>Goals</h4>
+              <ul class="cs-list">
+                <li>A ready-made solution she can set up in a day</li>
+                <li>Predictable monthly costs</li>
+              </ul>
+            </div>
+            <div class="cs-persona__card">
+              <h4>Pain Points</h4>
+              <ul class="cs-list">
+                <li>Technical jargon makes her give up</li>
+                <li>Doesn't know which hardware to buy</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================== Customer Journey Map ===================== -->
+      <section class="cs-section" aria-labelledby="cs-journey-title">
+        <h2 class="cs-title" id="cs-journey-title" data-reveal="rise">Customer Journey Map</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead cs-lead--journey" data-reveal="rise">
+            <h3 class="cs-lead__title">The low point: getting an API key</h3>
+            <p class="cs-text">The as-is journey map shows developers starting out excited, then losing patience as they hunt for docs and sign up. Every pain point became a design opportunity.</p>
+          </div>
+
+          <div class="cs-scroll cs-scroll--journey" tabindex="0" role="region" aria-label="Customer journey map" data-reveal="rise">
+            <table class="cs-journey">
+              <caption class="visually-hidden">The as-is developer journey across five stages</caption>
+              <colgroup><col class="cs-journey__label-col"><col><col><col><col><col></colgroup>
+              <thead>
+                <tr>
+                  <th scope="col" class="cs-journey__label">Stage</th>
+                  <th scope="col">Discover</th>
+                  <th scope="col">Evaluate</th>
+                  <th scope="col">Sign up</th>
+                  <th scope="col">Integrate</th>
+                  <th scope="col">Expand</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="cs-journey__label">Actions</th>
+                  <td>Googles “face recognition API” and opens the homepage</td>
+                  <td>Reads the features, looks for sample code, compares competitors</td>
+                  <td>Creates an account and looks for where to get an API key</td>
+                  <td>Reads the docs, copies code, sends the first request</td>
+                  <td>Checks pricing, pitches to the boss, upgrades to a paid plan</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="cs-journey__label">Thoughts</th>
+                  <td>“Can Melon handle eKYC?”</td>
+                  <td>“Is there a Node SDK?”</td>
+                  <td>“Where is the API key?”</td>
+                  <td>“What does this 401 error mean?”</td>
+                  <td>“How much for 10k requests a month?”</td>
+                </tr>
+                <tr class="cs-journey__feel">
+                  <th scope="row">Emotion</th>
+                  <td colspan="5">
+                    <svg class="cs-journey__curve" viewBox="0 0 1162 241" role="img" aria-label="Emotion starts fairly high at Discover, dips through Evaluate, hits its lowest point at Sign up, recovers during Integrate and peaks at Expand">
+                      <path d="M80 88 C118.67 95.33 234.5 113 312 132 C389.5 151 467.5 197.67 545 202 C622.5 206.33 699.5 174.67 777 158 C854.5 141.33 971.17 111.33 1010 102"/>
+                      <circle cx="80" cy="88" r="8"/>
+                      <circle cx="312" cy="132" r="8"/>
+                      <circle class="is-low" cx="545" cy="202" r="10"/>
+                      <circle cx="777" cy="158" r="8"/>
+                      <circle cx="1010" cy="102" r="8"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr class="cs-journey__pain">
+                  <th scope="row" class="cs-journey__label">Pain points</th>
+                  <td>The hero doesn't say what the product is</td>
+                  <td>No sample code on the overview page</td>
+                  <td>The path to an API key is buried</td>
+                  <td>Glaring docs; endpoints hard to find on mobile</td>
+                  <td>No plan comparison table</td>
+                </tr>
+                <tr class="cs-journey__chance">
+                  <th scope="row" class="cs-journey__label">Opportunities</th>
+                  <td>One-line headline + “Start Building Free” CTA</td>
+                  <td>A “Built for Developers” block with real code</td>
+                  <td>Developer Hub where step 1 is “Get your API key”</td>
+                  <td>Dark mode, search, Quick Access and copy buttons</td>
+                  <td>Pricing with Compare Plans + FAQ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Storyboard ===================== -->
+      <section class="cs-section" aria-labelledby="cs-story-title">
+        <h2 class="cs-title" id="cs-story-title" data-reveal="rise">Storyboard</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead" data-reveal="rise">
+            <h3 class="cs-lead__title">One afternoon, from a new request to a successful API call</h3>
+            <p class="cs-text">The storyboard follows Kenta's ideal experience with the new design. Each frame maps to a specific screen in Figma, so the whole team could share the same story before any wireframes were drawn.</p>
+          </div>
+
+          <ol class="cs-story">
+            <li class="cs-frame" data-reveal="rise">
+              <img src="assets/projects/melon/story-1.webp" alt="Kenta reads a note saying eKYC in 2 sprints and searches for a face recognition API" width="918" height="640" loading="lazy">
+              <div class="cs-frame__body">
+                <p class="cs-frame__step">1 · Context</p>
+                <h3 class="cs-card__title">A new request</h3>
+                <p class="cs-text">His PM assigns a face verification feature, due in two sprints. Kenta searches for “face recognition API”.</p>
+              </div>
+            </li>
+            <li class="cs-frame" data-reveal="rise" style="--reveal-delay: 0.06s">
+              <img src="assets/projects/melon/story-2.webp" alt="Kenta views the Melon homepage with its Start Building Free button" width="918" height="640" loading="lazy">
+              <div class="cs-frame__body">
+                <p class="cs-frame__step">2 · Homepage</p>
+                <h3 class="cs-card__title">Clear in 10 seconds</h3>
+                <p class="cs-text">The hero states “Facial Recognition API for Modern Applications”, right next to a Start Building Free button.</p>
+              </div>
+            </li>
+            <li class="cs-frame" data-reveal="rise" style="--reveal-delay: 0.12s">
+              <img src="assets/projects/melon/story-3.png" alt="The Built for Developers block with sample code in Python, JavaScript and Java" width="459" height="320" loading="lazy">
+              <div class="cs-frame__body">
+                <p class="cs-frame__step">3 · Built for Developers</p>
+                <h3 class="cs-card__title">Real code, up front</h3>
+                <p class="cs-text">Sample code and SDKs for Python, JavaScript and Java convince him to click “Learn more”.</p>
+              </div>
+            </li>
+            <li class="cs-frame" data-reveal="rise">
+              <img src="assets/projects/melon/story-4.webp" alt="The Developer Hub, with step 1: Get your API key" width="918" height="640" loading="lazy">
+              <div class="cs-frame__body">
+                <p class="cs-frame__step">4 · Developer Hub</p>
+                <h3 class="cs-card__title">Step 1: get an API key</h3>
+                <p class="cs-text">The Developer Hub breaks onboarding into clear steps. Kenta has a key within minutes.</p>
+              </div>
+            </li>
+            <li class="cs-frame" data-reveal="rise" style="--reveal-delay: 0.06s">
+              <img src="assets/projects/melon/story-5.webp" alt="Kenta reads the docs in dark mode late at night" width="918" height="640" loading="lazy">
+              <div class="cs-frame__body">
+                <p class="cs-frame__step">5 · Docs dark mode</p>
+                <h3 class="cs-card__title">Coding at 11pm</h3>
+                <p class="cs-text">Docs in dark mode, a copy button on every code block, and a table of contents that follows his place on the page.</p>
+              </div>
+            </li>
+            <li class="cs-frame" data-reveal="rise" style="--reveal-delay: 0.12s">
+              <img src="assets/projects/melon/story-6.webp" alt="The first request returns 200 OK and Kenta shares the Pricing link" width="918" height="640" loading="lazy">
+              <div class="cs-frame__body">
+                <p class="cs-frame__step">6 · Outcome</p>
+                <h3 class="cs-card__title">The first request succeeds</h3>
+                <p class="cs-text">He sends the Pricing link to his boss to compare plans, and the journey hands over to Yuki.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===================== Sitemap ===================== -->
+      <section class="cs-section" aria-labelledby="cs-sitemap-title">
+        <h2 class="cs-title" id="cs-sitemap-title" data-reveal="rise">Sitemap</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead cs-lead--sitemap" data-reveal="rise">
+            <h3 class="cs-lead__title">Separating “the product”<br> from “for developers”</h3>
+            <p class="cs-text">Card sorting with developers and the sales team showed that people navigate by deployment model, not by feature name. The main navigation was therefore cut to four items (Products, Developers, Pricing and Contact), with a Contact Sales button always visible in the top-right corner.</p>
+          </div>
+
+          <div class="cs-sitemap" data-reveal="rise">
+            <p class="cs-sitemap__root">Homepage</p>
+            <ul class="cs-sitemap__cols">
+              <li>
+                <p class="cs-sitemap__head">Products</p>
+                <ul class="cs-sitemap__kids">
+                  <li>Facial Recognition API</li>
+                  <li>Local Server</li>
+                  <li>Hardware Terminal</li>
+                  <li>Low-code / No-code Apps</li>
+                  <li>Ecosystem · Coming soon</li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-sitemap__head">Developers</p>
+                <ul class="cs-sitemap__kids">
+                  <li>Developer Hub</li>
+                  <li>Getting started</li>
+                  <li>SDK &amp; Examples</li>
+                  <li>Support</li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-sitemap__head">Documentation</p>
+                <ul class="cs-sitemap__kids">
+                  <li>Introduction</li>
+                  <li>API Reference</li>
+                  <li>Quick Access (MO)</li>
+                  <li>Dark mode · Settings</li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-sitemap__head">Pricing</p>
+                <ul class="cs-sitemap__kids">
+                  <li>Plans</li>
+                  <li>Compare plans</li>
+                  <li>FAQ</li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-sitemap__head">Contact Sales</p>
+                <ul class="cs-sitemap__kids">
+                  <li>Form</li>
+                  <li>Validation states</li>
+                  <li>Success</li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-sitemap__head">Utility</p>
+                <ul class="cs-sitemap__kids">
+                  <li>Sign in</li>
+                  <li>Language: EN / <span lang="ja">日本語</span></li>
+                  <li>Footer: Company, Legal</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== User flow ===================== -->
+      <section class="cs-section" aria-labelledby="cs-flow-title">
+        <h2 class="cs-title" id="cs-flow-title" data-reveal="rise">User Flows</h2>
+        <div class="cs-section__body">
+
+          <!-- Flow 1. Coordinates are the design's own, on its 1440 board. -->
+          <div class="cs-flow">
+            <div class="cs-intro" data-reveal="rise">
+              <h3 class="cs-subhead">Trying the API</h3>
+              <p class="cs-text"><strong>Goal:</strong> get an API key and make a first test call to evaluate Melon before integrating.</p>
+            </div>
+            <div class="cs-scroll cs-scroll--flow" tabindex="0" role="region" aria-label="User flow diagram: trying the API" data-reveal="rise" data-reveal-amount="0.05">
+              <svg class="cs-flow__svg" viewBox="236 -2 940 1536" style="--w: 940" role="img" aria-labelledby="fl1-title fl1-desc">
+                <title id="fl1-title">User flow: trying the API</title>
+                <desc id="fl1-desc">From the homepage, a developer reaches Docs: Getting Your API Key through the Developer Hub or Explore API docs, or goes straight to the dashboard through Start Building Free. Without an API key, they sign up and create one on the dashboard, then return to Docs: Quick Example, copy the sample code and call the API. A 200 response means the call succeeded; otherwise they check Docs: Error Handling, fix the request and try again.</desc>
+                <defs>
+                  <marker id="fl1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1.5 9 5 0 8.5z"/></marker>
+                </defs>
+
+                <g class="fl-lines" marker-end="url(#fl1-arrow)">
+                  <path d="M713 57V107"/>
+                  <path d="M381 268V313"/>
+                  <path d="M713 359V466H446V492"/>
+                  <path d="M1074 500V801"/>
+                  <path d="M381 449V492"/>
+                  <path d="M381 578V602H713V626"/>
+                  <path d="M818 688.5H967V801"/>
+                  <path d="M713 751V1005"/>
+                  <path d="M713 1091V1139"/>
+                  <path d="M662 1193V1228H381V1273"/>
+                  <path d="M381 1398V1448"/>
+                  <path d="M485 1335.5H659V1446"/>
+                  <path class="fl-dash" d="M930 948H764V1005"/>
+                  <path class="fl-dash" d="M764 1319V1193"/>
+                </g>
+                <g class="fl-lines">
+                  <path d="M670 168V201H381V238"/>
+                  <path d="M713 168V324"/>
+                  <path d="M761 168V201H1074V466"/>
+                  <path d="M381 374V420"/>
+                  <path class="fl-dash" d="M1017 887V933"/>
+                  <path class="fl-dash" d="M764 1446V1359"/>
+                </g>
+
+                <g class="fl-label">
+                  <text x="380.5" y="253">Learn more · DEVELOPERS</text>
+                  <text x="713" y="342">Explore API docs</text>
+                  <text x="1073.5" y="483">Start Building Free</text>
+                  <text x="380.5" y="432">View API Documentation</text>
+                  <text x="1017" y="948">Key ready, go back</text>
+                  <text x="763.5" y="1338">Fix and retry</text>
+                </g>
+
+                <g class="fl-start">
+                  <rect x="563" y="0" width="302" height="57" rx="28.5"/>
+                  <text x="714" y="28.5">Wants to test the API</text>
+                </g>
+                <g class="fl-node">
+                  <rect x="633" y="107" width="160" height="61" rx="4"/>
+                  <text x="713" y="137.5">Homepage</text>
+                  <rect x="282" y="313" width="197" height="61" rx="4"/>
+                  <text x="380.5" y="343.5">Developer Hub</text>
+                  <rect x="251" y="492" width="259" height="86" rx="4"/>
+                  <text x="380.5" y="535"><tspan x="380.5" dy="-0.6em">Docs</tspan><tspan x="380.5" dy="1.25em">Getting Your API Key</tspan></text>
+                  <rect x="886" y="801" width="263" height="86" rx="4"/>
+                  <text x="1017.5" y="844"><tspan x="1017.5" dy="-0.6em">Dashboard</tspan><tspan x="1017.5" dy="1.25em">sign up · create API key</tspan></text>
+                  <rect x="615" y="1005" width="198" height="86" rx="4"/>
+                  <text x="714" y="1048"><tspan x="714" dy="-0.6em">Docs</tspan><tspan x="714" dy="1.25em">Quick Example</tspan></text>
+                  <rect x="621" y="1446" width="180" height="86" rx="4"/>
+                  <text x="711" y="1489"><tspan x="711" dy="-0.6em">Docs</tspan><tspan x="711" dy="1.25em">Error Handling</tspan></text>
+                </g>
+                <g class="fl-decision">
+                  <polygon points="713.5,626 818,688.5 713.5,751 609,688.5"/>
+                  <text x="713.5" y="688.5"><tspan x="713.5" dy="-0.6em">Has an</tspan><tspan x="713.5" dy="1.25em">API key?</tspan></text>
+                  <polygon points="380.5,1273 485,1335.5 380.5,1398 276,1335.5"/>
+                  <text x="380.5" y="1335.5"><tspan x="380.5" dy="-0.6em">Response</tspan><tspan x="380.5" dy="1.25em">200?</tspan></text>
+                </g>
+                <g class="fl-action">
+                  <rect x="596" y="1139" width="235" height="54" rx="27"/>
+                  <text x="713.5" y="1166">Copy sample code, call API</text>
+                </g>
+                <g class="fl-end">
+                  <rect x="261" y="1448" width="240" height="82" rx="41"/>
+                  <text x="381" y="1489"><tspan x="381" dy="-0.6em">API call</tspan><tspan x="381" dy="1.25em">succeeded</tspan></text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Flow 2 -->
+          <div class="cs-flow">
+            <div class="cs-intro" data-reveal="rise">
+              <h3 class="cs-subhead">Requesting an enterprise quote</h3>
+              <p class="cs-text"><strong>Goal:</strong> get a quote and advice from Sales on rolling out face authentication.</p>
+            </div>
+            <div class="cs-scroll cs-scroll--flow" tabindex="0" role="region" aria-label="User flow diagram: requesting an enterprise quote" data-reveal="rise" data-reveal-amount="0.05">
+              <svg class="cs-flow__svg" viewBox="373 -2 776 1384" style="--w: 776" role="img" aria-labelledby="fl2-title fl2-desc">
+                <title id="fl2-title">User flow: requesting an enterprise quote</title>
+                <desc id="fl2-desc">From the homepage, the buyer opens Pricing to compare plans and read the FAQ, or goes straight to Contact Sales. If they need the Enterprise plan, they open Contact Sales, fill in the form and submit it; if not, Get Started takes them to sign up for the Basic plan on the dashboard. When every required field is filled in and the email is valid, Sales follows up; otherwise errors appear under each field so the form can be fixed and resubmitted.</desc>
+                <defs>
+                  <marker id="fl2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1.5 9 5 0 8.5z"/></marker>
+                </defs>
+
+                <g class="fl-lines" marker-end="url(#fl2-arrow)">
+                  <path d="M706 57V107"/>
+                  <path d="M706 277V324"/>
+                  <path d="M706 385V449"/>
+                  <path d="M706 523V587"/>
+                  <path d="M463 439V649.5H602"/>
+                  <path d="M1026 804V854"/>
+                  <path d="M706 803V866"/>
+                  <path d="M706 927V991"/>
+                  <path d="M706 1045V1081"/>
+                  <path d="M706 1254V1298"/>
+                  <path d="M851 1167.5H939V1309"/>
+                  <path class="fl-dash" d="M1026 1153V1077H773V1045"/>
+                </g>
+                <g class="fl-lines">
+                  <path d="M706 168V230"/>
+                  <path d="M668 168V201H463V392"/>
+                  <path d="M811 649.5H1026V759"/>
+                  <path d="M706 712V759"/>
+                  <path class="fl-dash" d="M1026 1309V1200"/>
+                </g>
+
+                <g class="fl-label">
+                  <text x="706" y="253">View pricing · PRICING</text>
+                  <text x="458.5" y="417">CONTACT SALES</text>
+                  <text x="1026.5" y="783">Get Started</text>
+                  <text x="706" y="783">Contact Sales</text>
+                  <text x="1026.5" y="1172">Fix and resubmit</text>
+                </g>
+                <g class="fl-branch">
+                  <text x="872" y="670">No</text>
+                  <text x="743.5" y="728">Yes</text>
+                  <text x="883" y="1188">No</text>
+                  <text x="740.5" y="1261">Yes</text>
+                </g>
+
+                <g class="fl-start">
+                  <rect x="530" y="0" width="353" height="57" rx="28.5"/>
+                  <text x="706.5" y="28.5">Needs an enterprise quote</text>
+                </g>
+                <g class="fl-node">
+                  <rect x="626" y="107" width="160" height="61" rx="4"/>
+                  <text x="706" y="137.5">Homepage</text>
+                  <rect x="646" y="324" width="121" height="61" rx="4"/>
+                  <text x="706.5" y="354.5">Pricing</text>
+                  <rect x="614" y="866" width="185" height="61" rx="4"/>
+                  <text x="706.5" y="896.5">Contact Sales</text>
+                  <rect x="913" y="854" width="226" height="86" rx="4"/>
+                  <text x="1026" y="897"><tspan x="1026" dy="-0.6em">Dashboard</tspan><tspan x="1026" dy="1.25em">Basic plan sign-up</tspan></text>
+                </g>
+                <g class="fl-decision">
+                  <polygon points="706.5,587 811,649.5 706.5,712 602,649.5"/>
+                  <text x="706.5" y="649.5"><tspan x="706.5" dy="-0.6em">Needs the</tspan><tspan x="706.5" dy="1.25em">Enterprise?</tspan></text>
+                  <polygon points="706,1081 851,1167.5 706,1254 561,1167.5"/>
+                  <text x="706" y="1167.5"><tspan x="706" dy="-0.6em">Required fields</tspan><tspan x="706" dy="1.25em">&amp; valid email?</tspan></text>
+                </g>
+                <g class="fl-action">
+                  <rect x="596" y="449" width="221" height="74" rx="37"/>
+                  <text x="706.5" y="486"><tspan x="706.5" dy="-0.6em">Compare plans, FAQ,</tspan><tspan x="706.5" dy="1.25em">switch billing period</tspan></text>
+                  <rect x="592" y="991" width="228" height="54" rx="27"/>
+                  <text x="706" y="1018">Fill in form, submit</text>
+                </g>
+                <g class="fl-error">
+                  <rect x="870" y="1309" width="236" height="61" rx="4"/>
+                  <text x="988" y="1339.5">Inline field errors</text>
+                </g>
+                <g class="fl-end">
+                  <rect x="594" y="1298" width="224" height="82" rx="41"/>
+                  <text x="706" y="1339"><tspan x="706" dy="-0.6em">Sales</tspan><tspan x="706" dy="1.25em">follows up</tspan></text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Wireframe ===================== -->
+      <section class="cs-section" aria-labelledby="cs-wire-title">
+        <h2 class="cs-title" id="cs-wire-title" data-reveal="rise">Wireframes</h2>
+        <!-- Three columns cut off at the design's 2083px and faded out -->
+        <div class="cs-wire cs-section__body" data-reveal="rise" data-reveal-amount="0.05">
+          <div class="cs-wire__col">
+            <img src="assets/projects/melon/wf-homepage.webp" alt="Homepage wireframe" width="641" height="2172" loading="lazy">
+            <img src="assets/projects/melon/wf-developer-hub.webp" alt="Developer Hub wireframe" width="1046" height="1504" loading="lazy">
+          </div>
+          <div class="cs-wire__col">
+            <img src="assets/projects/melon/wf-docs.webp" alt="Documentation page wireframe" width="1024" height="1536" loading="lazy">
+            <img src="assets/projects/melon/wf-pricing.webp" alt="Pricing page wireframe" width="928" height="1668" loading="lazy">
+            <img src="assets/projects/melon/wf-local-server.webp" alt="Local Server page wireframe" width="694" height="2053" loading="lazy">
+          </div>
+          <div class="cs-wire__col">
+            <img src="assets/projects/melon/wf-api.webp" alt="API page wireframe" width="805" height="1954" loading="lazy">
+            <img src="assets/projects/melon/wf-contact.webp" alt="Contact Sales page wireframe" width="1205" height="1305" loading="lazy">
+            <img src="assets/projects/melon/wf-ecosystem.webp" alt="Ecosystem page wireframe" width="836" height="1520" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Typography & Colour ===================== -->
+      <section class="cs-section" aria-labelledby="cs-type-title">
+        <h2 class="cs-title" id="cs-type-title" data-reveal="rise">Typography &amp; Colour</h2>
+        <div class="cs-type cs-section__body" data-reveal="rise">
+          <div class="cs-type__specimen">
+            <p class="cs-type__name" aria-label="Typeface: Poppins">POPPINS</p>
+            <ul class="cs-type__weights" aria-label="Weights">
+              <li style="font-weight: 300">Light</li>
+              <li style="font-weight: 400">Regular</li>
+              <li style="font-weight: 500">Medium</li>
+              <li style="font-weight: 600">Semibold</li>
+              <li style="font-weight: 700">Bold</li>
+            </ul>
+          </div>
+          <ol class="cs-type__scale" aria-label="Type scale in px">
+            <li>16</li><li>20</li><li>24</li><li>32</li><li>48</li><li>64</li>
+          </ol>
+          <ul class="cs-swatches" aria-label="Colour palette">
+            <li style="--swatch: #61b6cd">#61B6CD</li>
+            <li style="--swatch: #000000">#000000</li>
+            <li style="--swatch: #444444">#444444</li>
+            <li class="is-light" style="--swatch: #d7d7d7">#D7D7D7</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== UI Design ===================== -->
+      <section class="cs-section" aria-labelledby="cs-ui-title">
+        <h2 class="cs-title" id="cs-ui-title" data-reveal="rise">UI Design</h2>
+        <div class="cs-screens cs-section__body" data-reveal="rise" data-reveal-amount="0.02">
+          <div class="cs-screens__col">
+            <img src="assets/projects/melon/ui-api.webp" alt="API page: Build fast. Run bigger" width="1158" height="1625" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/melon/ui-developers.webp" alt="Developer Hub page" width="1256" height="1556" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/melon/ui-local-api.webp" alt="Local API Server: Private, Secure &amp; Offline-Ready" width="1256" height="706" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/melon/ui-why.webp" alt="Why Choose Melon? section" width="1256" height="738" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/melon/ui-docs.webp" alt="Documentation: Introduction page" width="1256" height="1574" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/melon/ui-home.webp" alt="The full Melon homepage" width="710" height="4096" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+          </div>
+          <div class="cs-screens__col">
+            <img src="assets/projects/melon/ui-contact.webp" alt="Contact Sales page: Start Your Growth Journey" width="1256" height="1188" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/melon/ui-inference.webp" alt="Local Inference Server and Melon Ecosystem sections" width="710" height="658" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/melon/ui-pricing.webp" alt="Pricing page: Simple, Transparent Pricing" width="1256" height="2458" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/melon/ui-plug.webp" alt="Low-code: Plug-and-Play, Customizable &amp; Launch-Ready" width="1256" height="706" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/melon/ui-hardware.webp" alt="Hardware Terminal" width="1256" height="706" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/melon/ui-ecosystem.webp" alt="Ecosystem page" width="1256" height="3030" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/melon/ui-local-server.webp" alt="Local Server page" width="1256" height="3736" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- ===================== Other projects ===================== -->
+    <section class="detail__more container" aria-labelledby="more-title">
+      <h2 class="detail__title" id="more-title" data-reveal="rise">Other Projects</h2>
+
+      <div class="work-grid work-grid--three">
+        <a class="work-card work-card--compact" href="project-detail-kyarisuru.html" data-reveal="rise" data-reveal-amount="0.2">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/kyarisuru.webp" alt="Kyarisuru — Anonymous career-consultation chat app for Japan" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Kyarisuru</h3>
+          <p>Anonymous career-consultation chat app for Japan</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-krafton-india.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.08s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/krafton-india.webp" alt="KRAFTON India — Corporate website for games, esports and careers" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>KRAFTON India</h3>
+          <p>Corporate website for games, esports and careers</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-naver-connect.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.16s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/naver-connect.webp" alt="Naver Connect — AI &amp; data practice lessons for young learners" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Naver Connect</h3>
+          <p>AI &amp; data practice lessons for young learners</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container" data-reveal="up" data-reveal-by="#contact">
+      <div class="footer__top">
+        <h2 class="footer__title">Let&rsquo;s Work Together</h2>
+        <div class="footer__contact">
+          <p>Available for work and always looking for exciting projects.</p>
+          <a class="footer__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+        <a href="index.html" data-cursor="button">Home</a>
+        <a href="about.html" data-cursor="button">About</a>
+        <a href="project.html" data-cursor="button">Projects</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+      <img src="assets/brand/logo-footer.svg" alt="" aria-hidden="true">
+      <p>&copy;2025 by Irisnguyen. all rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script>
+    /* A flow chart wider than the screen opens on its spine rather than its
+       left edge; the charts are drawn around the middle of their board. */
+    (function () {
+      var boxes = document.querySelectorAll('.cs-scroll--flow');
+      function centre() {
+        Array.prototype.forEach.call(boxes, function (box) {
+          box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
+        });
+      }
+      centre();
+      addEventListener('load', centre);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,3090 @@
+/* ==========================================================================
+   Irisnguyen — Portfolio homepage
+   Built from Figma "Homepage" (node 1:13), canvas 1920 x 5826.
+   Design values are expressed proportionally to the 1920px canvas so the
+   layout scales down as one piece, then re-flows at the mobile breakpoints.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  --ink: #222222;
+  --ink-soft: #464646;
+  --bg: #f6f6f6;
+  --surface: #ffffff;
+  --purple: #783efe;
+  --lime: #c3ff3d;
+  --line: #cecece;
+  --grid-line: rgba(0, 0, 0, 0.08);   /* the hero's graph paper, and the marquee's top edge */
+  --dark-2: #323232;
+  --dark-3: #484848;
+
+  --font-display: "Lexend", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+
+  --radius-card: 16px;
+  --radius-panel: 12px;
+  --radius-pill: 40px;
+
+  --gap: min(1.667vw, 24px);          /* 24px on the 1440 content grid */
+  --space-lg: min(12.5vw, 240px);     /* 240px between major sections  */
+  --space-md: min(6.25vw, 120px);     /* 120px                         */
+  --space-sm: min(4.167vw, 80px);     /* 80px                          */
+
+  /* Framer's default spring (0.4s, bounce 0.2 — damping ratio 0.8 at
+     22.49 rad/s), sampled over 0.5s. Overshoots by 1.5% and settles; use
+     it with a 0.5s duration. */
+  --spring: linear(0, 0.0511, 0.169, 0.3138, 0.4605, 0.5946, 0.7089, 0.8013, 0.8725, 0.925, 0.9619, 0.9865, 1.0018, 1.0104, 1.0143, 1.0152, 1.0142, 1.0124, 1.0102, 1.008, 1.006, 1.0043, 1.0029, 1.0018, 1.0011, 1.0005, 1.0002, 1, 0.9998, 0.9998, 0.9998, 0.9998, 1);
+  /* The same 0.4s with no bounce — critically damped at 23.08 rad/s. 0.5s. */
+  --spring-flat: linear(0, 0.0845, 0.2502, 0.4228, 0.5729, 0.6925, 0.7831, 0.8493, 0.8966, 0.9297, 0.9526, 0.9683, 0.9789, 0.986, 0.9908, 0.994, 0.996, 0.9974, 0.9983, 0.9989, 0.9993, 0.9995, 0.9997, 0.9998, 1);
+  /* Framer's 0.6s with 0.3 bounce — damping ratio 0.7 at 16.4 rad/s, a 4.6%
+     overshoot. 0.8s. */
+  --spring-bouncy: linear(0, 0.0691, 0.2254, 0.4112, 0.5901, 0.7425, 0.8609, 0.9451, 0.9995, 1.0301, 1.0436, 1.0457, 1.0411, 1.0334, 1.0248, 1.0168, 1.0102, 1.0052, 1.0017, 0.9995, 0.9984, 0.9979, 0.9979, 0.9982, 0.9986, 0.999, 0.9993, 0.9996, 0.9998, 1, 1, 1.0001, 1);
+  /* Framer's 0.7s with 0.3 bounce (≈ stiffness 200 / damping 20): slower,
+     with a 4.3% overshoot. 0.9s. */
+  --spring-soft: linear(0, 0.0527, 0.1769, 0.3324, 0.4917, 0.6378, 0.7616, 0.86, 0.9333, 0.9842, 1.0166, 1.0347, 1.0423, 1.0427, 1.0389, 1.0327, 1.0258, 1.0191, 1.0132, 1.0083, 1.0045, 1.0018, 1, 0.9989, 0.9983, 0.9981, 0.9982, 0.9984, 0.9987, 0.999, 0.9993, 0.9995, 0.9997, 0.9999, 1, 1, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+/* No scroll-behavior: smooth here — the inertia scroller at the end of
+   index.html drives scrolling frame by frame, and the CSS smoothing would
+   animate every one of those steps on top of it. scroll-padding still earns
+   its place: it applies to the plain jump a reduced-motion visitor gets. */
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: 120px;
+  /* The intro locks scrolling, which would otherwise take the scrollbar away
+     and hand those pixels back to the layout — the whole page then jumps
+     sideways the moment the lock lifts. Reserving the gutter permanently keeps
+     the viewport one width throughout. */
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  /* clip, not hidden: overflow-x:hidden computes overflow-y to auto, which
+     turns body into a scroll container the frame-by-frame scroller fights. */
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, figure, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+img, svg { display: block; max-width: 100%; }
+/* width/height attributes are presentational hints that pin the used height.
+   Keep the attributes for CLS, but let a CSS width scale the height with it. */
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 200;
+  padding: 10px 20px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  transition: top 0.2s ease;
+}
+.skip-link:focus-visible { top: 16px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout helpers
+   -------------------------------------------------------------------------- */
+.container {
+  width: min(1440px, 100% - 2 * clamp(20px, 4.17vw, 80px));
+  margin-inline: auto;
+}
+
+.u-purple { color: var(--purple); }
+
+
+/* --------------------------------------------------------------------------
+   3b. Intro
+   -------------------------------------------------------------------------- */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;   /* nothing to click; the lock below holds the page */
+}
+.intro.is-done,
+.intro-seen .intro { display: none; }
+
+.intro__cut { display: block; width: 100%; height: 100%; }
+/* Black inside the mask means "hide", so the circle is a hole in this veil.
+   That #fff/#000 pair inside <mask> is mask luminance, not colour — only the
+   two fills below are what anyone sees. */
+.intro__veil { fill: var(--ink); }
+
+/* Each letter wipes in from one end. inset() resolves against the glyph's own
+   fill-box, so "100%" is that letter's height and every one of them fills over
+   its own extent rather than a shared box. */
+.intro__paint {
+  fill: #fff;
+  clip-path: inset(0 0 100% 0);   /* top down */
+  transition: clip-path 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: calc(var(--i) * 0.22s);
+}
+.intro__paint--up { clip-path: inset(100% 0 0 0); }   /* bottom up */
+.intro.is-lit .intro__paint { clip-path: inset(0 0 0 0); }
+
+/* Then the whole word leaves together, before the circle opens. */
+.intro__letters { opacity: 1; transition: opacity 0.5s ease; }
+.intro.is-fading .intro__letters { opacity: 0; }
+
+/* --tx/--ty centre the word; they come from script because SVG transforms take
+   no percentages. */
+.intro__logo {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  transform: translate(var(--tx, 50vw), var(--ty, 50vh)) scale(var(--s, 4)) translate(-29.5004px, -17.0001px);
+}
+
+/* Held only while the intro runs, then dropped again. */
+.intro-lock, .intro-lock body { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   3c. Cursor
+   -------------------------------------------------------------------------- */
+/* A dot replaces the system pointer on mouse devices. The script adds
+   .has-cursor, so touch and no-JS keep the ordinary one; !important because
+   links and buttons each set their own. */
+.has-cursor,
+.has-cursor * { cursor: none !important; }
+
+/* Three looks, picked by the nearest [data-cursor] under the pointer:
+     normal — 32px, #1c1c1c with a 2px white inner ring, all at 40%
+     kv     — 288px white disc in difference mode, over the hero title
+     button — 32px white disc in difference mode, on links that ask for it
+   The look swaps at once; only the size springs, written by the script.
+   Above the intro veil, so there is a pointer while it plays. */
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.cursor.is-visible { opacity: 1; }
+
+/* An image rather than a border so the ring grows and shrinks with the dot,
+   the same share of it at every size. */
+.cursor[data-variant="normal"] {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg opacity='.4'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='14' fill='%231c1c1c'/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+/* White in difference mode inverts whatever it covers: the page goes
+   near-black, the ink white, the lime sticker violet. */
+.cursor[data-variant="kv"],
+.cursor[data-variant="button"] {
+  background: #fff;
+  mix-blend-mode: difference;
+}
+
+/* --------------------------------------------------------------------------
+   4. Header — logo / burger  (Figma 1:87)
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  padding: 40px 40px 0 64px;
+  pointer-events: none;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  pointer-events: auto;
+}
+
+.header__logo { flex: none; }
+.header__logo img { width: 59px; height: 34px; }
+
+.burger {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-left: 35px;
+}
+.burger > * { grid-area: 1 / 1; transition: opacity 0.5s var(--spring); }
+.burger__open { width: 30px; height: 24px; }
+/* The reference's close icon, drawn 1:1 in the 48px button */
+.burger__close {
+  width: 48px;
+  height: 48px;
+  max-width: none;   /* the reset's 100% resolves against the grid track and squeezed it to 36px */
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.menu-open .burger__open { opacity: 0; }
+.menu-open .burger__close { opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   4b. Menu — the reference's full-screen sheet
+   -------------------------------------------------------------------------- */
+/* Every size is the reference's 1920px value in --u, a px that shrinks with
+   the viewport below 1920 like the rest of the page. The side padding follows
+   the header's, so the links line up under the close button.
+
+   Links, then the contact row and the ticker pushed to the bottom. A flex
+   column rather than the reference's fixed offsets, so a short screen
+   scrolls the sheet instead of stacking things on top of each other.
+
+   Opening: the sheet fades in on the reference's spring, the links slide in
+   150px from the right a tenth of a second apart, the contact row rises at
+   0.2s and the ticker at 0.4s. Closing: the contents drop out fast and the
+   sheet fades after them; the offsets are put back only once it is gone, so
+   the next opening plays from the start. */
+.menu {
+  --u: min(0.052083vw, 1px);
+  --side: 40px;
+  position: fixed;
+  inset: 0;
+  z-index: 99;   /* under the header, whose burger is this sheet's close button */
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--side) calc(16 * var(--u));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--surface);
+  color: var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s var(--spring), visibility 0s linear 0.5s;
+}
+.menu-open .menu {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s var(--spring), visibility 0s;
+}
+.menu-open,
+.menu-open body { overflow: hidden; }
+
+.menu__link,
+.menu__info,
+.menu__ticker {
+  opacity: 0;
+  transition: opacity 0.15s ease-out, translate 0s linear 0.5s;
+}
+.menu-open .menu__link,
+.menu-open .menu__info,
+.menu-open .menu__ticker {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.5s var(--spring) var(--delay),
+    translate 0.5s var(--spring) var(--delay);
+}
+
+/* The floors keep the phone sizes usable, where --u runs very small, and
+   the links clear of the header. */
+.menu__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: calc(4 * var(--u));
+  margin-top: max(128px, calc(252 * var(--u)));
+}
+.menu__link {
+  --delay: calc(var(--order) * 0.1s);
+  translate: 150px 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: max(36px, calc(64 * var(--u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.menu__link:hover,
+.menu__link[aria-current] { text-decoration: underline; }
+
+.menu__info {
+  --delay: 0.2s;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 16px max(48px, calc(400 * var(--u)));
+  margin-top: auto;
+  padding-top: 48px;   /* keeps clear of the links on a short screen */
+  font-size: max(15px, calc(24 * var(--u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: right;
+  translate: 0 150px;
+}
+.menu__info strong,
+.menu__info strong + * { display: block; }
+.menu__info strong { font-weight: 700; }
+.menu__mail { text-decoration: underline; }
+
+/* Ticker sizes are all in em of its 320px type, so they scale as one: the
+   264px band, 24px above it, 16px below the sheet's padding. The type sits
+   0.0225em high in its line so the baseline lands where the reference's
+   outlined lettering has it. 48.7s moves it 100px a second at 1920 — the
+   reference's pace — and proportionally slower as it scales down. */
+.menu__ticker {
+  --delay: 0.4s;
+  flex: none;
+  height: 0.825em;
+  margin: 0.075em calc(-1 * var(--side)) 0;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: max(96px, calc(320 * var(--u)));
+  line-height: 0.825;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  translate: 0 150px;
+}
+.menu__track {
+  display: flex;
+  width: max-content;
+  translate: 0 -0.0225em;
+  animation: menu-ticker 48.7s linear infinite paused;
+}
+.menu-open .menu__track { animation-play-state: running; }
+
+/* Video inside the letters. The type is black on a white box, screened over
+   what lies beneath: white stays white, black shows through. Beneath is the
+   reel while hovered, and otherwise the word's own #222 — which is also what
+   the letters show while the reel is still loading. The group is isolated so
+   the screen mixes only these layers, not the sheet behind.
+
+   Both underlays stop 1px short of the white box on every side. Flush, the
+   box's edge lands on a fractional pixel as the ticker moves, the white only
+   part-covers it, and the #222 shows as a hairline around the word. The
+   letters sit several pixels inside the box, so the inset never reaches them. */
+.menu__word {
+  position: relative;
+  isolation: isolate;
+  margin-right: 0.5em;   /* the reference's 160px gap */
+}
+.menu__word::before,
+.menu__word video {
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+}
+.menu__word::before {
+  content: "";
+  background: var(--ink);
+}
+.menu__word video {
+  object-fit: cover;
+  visibility: hidden;
+}
+.menu__word.is-playing video { visibility: visible; }
+.menu__word-text {
+  position: relative;
+  display: block;
+  background: var(--surface);
+  color: #000;
+  mix-blend-mode: screen;
+}
+
+@keyframes menu-ticker {
+  to { transform: translateX(-50%); }
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero / KV  (Figma 1:14 + 1:56)
+   -------------------------------------------------------------------------- */
+/* Full-viewport hero in two rows: the headline's area, then the logo strip
+   along the bottom. The grid paper and the headline share the first row, so
+   the paper ends exactly where the strip begins — layout decides that, not a
+   measured height. min-height (not height) lets short viewports grow. */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  isolation: isolate;
+}
+
+/* 80px graph-paper grid, black at 8% — 1:15 / 1:40
+
+   The rows are counted up from the strip rather than down from the top: each
+   line sits one cell above the next, and the strip's own top border is the
+   last of them. Counted from the top, the final line landed wherever the
+   viewport's height left it — at 1920x1080 a couple of pixels above that
+   border, reading as a doubled line. Now the spacing holds at any size, and
+   the loose end falls at the top edge, where there is nothing to meet.
+
+   no-repeat because the columns' layer is shifted right by --offset: repeated,
+   its wrapped copy could leave a stray line in that first gap. */
+.hero__grid {
+  --cell: min(4.1667vw, 80px);
+  --offset: min(2.083vw, 40px);
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+  background-image:
+    repeating-linear-gradient(to right, var(--grid-line) 0 1px, transparent 1px var(--cell)),
+    repeating-linear-gradient(to top, transparent 0 calc(var(--cell) - 1px), var(--grid-line) 0 var(--cell));
+  background-position: var(--offset) 0, 0 0;
+  background-repeat: no-repeat;
+}
+
+/* A pixel dot on every crossing. They sit at the grid's 8% until the pointer
+   comes near, then darken with distance — the script writes the opacity and
+   the transition softens each step, as on the reference. 5px on the 80px
+   grid, scaled with it; the clip cuts the half-pixel notches off the corners. */
+.hero__dot {
+  position: absolute;
+  left: calc(var(--offset) + var(--i) * var(--cell) + 0.5px);
+  top: calc(100% - var(--j) * var(--cell) + 0.5px);   /* --j counts rows up from the strip */
+  width: calc(var(--cell) / 16);
+  aspect-ratio: 1;
+  background: #000;
+  clip-path: polygon(10% 0, 90% 0, 90% 10%, 100% 10%, 100% 90%, 90% 90%, 90% 100%, 10% 100%, 10% 90%, 0 90%, 0 10%, 10% 10%);
+  opacity: 0.08;
+  translate: -50% -50%;
+  transition: opacity 0.2s ease-out;
+}
+
+/* The uneven padding parks the optical centre ~40px below the true centre,
+   which leaves room for the fixed header without pushing the headline
+   off-centre. */
+.hero__inner {
+  grid-area: 1 / 1;
+  width: min(72.34vw, 1389px);
+  padding-top: 120px;
+  padding-bottom: 64px;
+  margin-inline: auto;
+  /* Auto block margins soak up the free space either side, so the headline
+     centres in whatever is left above the strip. On a short viewport they
+     collapse to nothing and the two simply stack. */
+  margin-block: auto;
+}
+
+.hero__title {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(7.344vw, 141px);
+  line-height: 1.0135;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.hero__line { display: block; white-space: nowrap; }
+
+.hero__sparkle { position: absolute; }
+.hero__sparkle--lg { right: -0.11em;  top: -0.082em; width: 0.525em; }
+.hero__sparkle--sm { right: 0.452em;  top: -0.060em; width: 0.179em; }
+
+/* line 3 — "Creative" sticker + "Magic" wordmark */
+.hero__line--art {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.14%;
+  margin-top: -0.09em;
+  transform: translateX(-5.54%);
+}
+
+.creative {
+  position: relative;
+  flex: none;
+  width: 49.02%;
+  aspect-ratio: 680.947 / 293.067;
+}
+.creative > * { position: absolute; }
+
+.creative__box,
+.creative__handle {
+  border: min(0.208vw, 3.99px) solid var(--ink);
+}
+.creative__box {
+  left: 51.39%;
+  top: 41.37%;
+  width: 94.66%;
+  aspect-ratio: 644.575 / 181.235;
+  background: var(--lime);
+  transform: translate(-50%, -50%) rotate(3deg);
+}
+.creative__word {
+  left: 51.06%;
+  top: 38.90%;
+  width: 83.86%;
+  transform: translate(-50%, -50%) rotate(3deg);
+}
+.creative__handle {
+  width: 3.88%;
+  aspect-ratio: 1;
+  background: var(--surface);
+  transform: translate(-50%, -50%) rotate(3deg);
+}
+.creative__handle--tl { left: 4.63%;  top: 5.74%;  }
+.creative__handle--tr { left: 99.16%; top: 16.25%; }
+.creative__handle--bl { left: 3.24%;  top: 66.50%; }
+.creative__handle--br { left: 97.77%; top: 78.01%; }
+.creative__cursor {
+  left: 83.45%;
+  top: 85.13%;
+  width: 15.04%;
+  transform: translate(-50%, -50%) rotate(8deg);
+}
+
+.magic {
+  position: relative;
+  flex: none;
+  width: 29.30%;
+  margin-top: 4.85%;
+}
+.magic__word { width: 100%; }
+.magic__sparkle {
+  position: absolute;
+  left: 70.2%;
+  top: -27.2%;
+  width: 13.33%;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Tool marquee  (Figma 1:112)
+   -------------------------------------------------------------------------- */
+.marquee {
+  grid-row: 2;
+  position: relative;
+  padding: 32px 0;
+  overflow: hidden;
+  background: var(--bg);
+  /* Doubles as the hero grid's last row line — the paper above is counted
+     up from here, so this stays one cell below the line before it. */
+  border-top: 1px solid var(--grid-line);
+}
+
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: min(16.67vw, 320px);
+  pointer-events: none;
+}
+.marquee::before { left: 0;  background: linear-gradient(to right, var(--bg), rgba(246, 246, 246, 0)); }
+.marquee::after  { right: 0; background: linear-gradient(to left,  var(--bg), rgba(246, 246, 246, 0)); }
+
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: max-content;
+  opacity: 0.16;
+  animation: marquee-scroll 45s linear infinite;
+}
+
+.marquee__item {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: clamp(140px, 11.46vw, 220px);
+  height: clamp(62px, 5vw, 96px);
+}
+.marquee__item img { object-fit: contain; }
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - 20px)); }
+}
+
+/* --------------------------------------------------------------------------
+   7. About — bento grid  (Figma 1:140 … 1:231)
+   -------------------------------------------------------------------------- */
+.about { margin-top: var(--space-md); }
+
+.about__grid {
+  display: flex;
+  align-items: stretch;
+  gap: var(--gap);
+}
+/* the left card's aspect ratio sets the row height; the right column stretches to it */
+.about__left  { flex: 0 0 32.222%; align-self: flex-start; aspect-ratio: 464 / 600; }
+.about__right { flex: 1 1 0; align-self: stretch; min-width: 0; display: flex; flex-direction: column; gap: var(--gap); }
+/* container-type here so a card can size its OWN padding against the row
+   (cqw inside an element never resolves against that same element) */
+.about__row   { display: flex; gap: var(--gap); min-width: 0; min-height: 0; container-type: inline-size; }
+.about__row--top    { flex: 376 1 0; }
+.about__row--bottom { flex: 200 1 0; }
+
+.card {
+  position: relative;
+  container-type: inline-size;
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+/* --- 7a. Profile card ---------------------------------------------------- */
+/* white card behind, dark photo block laid over its top 338px */
+.card--profile {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Before/after split. --split is where the line stands, as a share of the
+   card's width; the script moves it with the pointer, and 0.4533 is the
+   design's resting place. The pixelated copy, the line and the handle all
+   read the one value, so they cannot drift apart. */
+.profile__photo {
+  --split: 0.4533;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 464 / 338;
+  background: var(--ink);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  z-index: 1;
+  touch-action: pan-y;   /* a sideways drag scrubs the split, an upright one still scrolls */
+}
+.profile__photo > * { position: absolute; }
+
+.profile__img,
+.profile__clip img {
+  left: 6.62%;
+  top: 3.49%;
+  width: 73.55%;
+  height: 101.24%;
+  object-fit: cover;
+}
+/* Spans the whole card, so the clip's percentages are the card's and the
+   picture inside sits exactly over the colour one at any split. */
+.profile__clip {
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--split) * 100%) 0 0);
+}
+.profile__clip img {
+  position: absolute;
+  max-width: none;
+}
+.profile__divider {
+  left: calc(var(--split) * 100% - 0.2155%);
+  top: 0;
+  width: 0.431%;
+  height: 100%;
+  background: var(--surface);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.profile__handle {
+  left: calc(var(--split) * 100% - 2.586%);
+  top: 46.45%;
+  width: 5.172%;
+  aspect-ratio: 1;
+}
+.profile__handle img {
+  position: absolute;
+  left: -36.32%;
+  top: -12.11%;
+  width: 172.64%;
+  max-width: none;
+}
+.profile__fx {
+  display: grid;
+  place-items: center;
+  left: 5.172%;
+  top: 76.33%;
+  width: 12.07%;
+  aspect-ratio: 1;
+  background: var(--surface);
+  border-radius: 2.23cqw;
+}
+.profile__fx img { width: 65%; }
+
+.profile__star--1 { left: 83.38%; top: 13.81%; width: 6.94%;  }
+.profile__star--2 { left: 85.44%; top: 63.05%; width: 5.45%;  }
+.profile__star--3 { left: 70.54%; top: 34.00%; width: 13.40%; }
+
+.profile__name {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 8.62cqw;
+}
+.profile__name p {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20.69cqw;
+  line-height: 0.948;
+  letter-spacing: -0.02em;
+}
+
+/* --- 7b. Discipline cards (PRODUCT / GRAPHIC DESIGN) --------------------- */
+.card--discipline { flex: 1 1 0; min-width: 0; }
+
+.discipline__label {
+  position: relative;
+  z-index: 2;
+  padding: 8.62cqw;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13.79cqw;
+  line-height: 0.71;
+  letter-spacing: -0.02em;
+}
+.discipline__label p + p { margin-top: 3.45cqw; }
+
+.discipline__art { position: absolute; inset: 0; }
+.discipline__art > * { position: absolute; }
+
+/* PRODUCT DESIGN artwork — 1:144 */
+.pd-line img { position: absolute; max-width: none; }
+.pd-line--1 { left: 49.80%; top: 52.47%; width: 21.32%; height: 18.79%; }
+.pd-line--1 img { left: -5.39%; top: -8.17%; width: 105.39%; height: 115.72%; }
+.pd-line--2 { left: 38.05%; top: 86.99%; width: 34.42%; height: 7.71%; }
+.pd-line--2 img { left: -3.62%; top: 0;    width: 106.96%; height: 118.40%; }
+
+/* Drawn with an inset shadow rather than a border: Chrome floors border-width
+   to whole pixels, so these outlines painted at 1px next to connector SVGs
+   holding their full 1.94px and read as a lighter weight. A shadow keeps the
+   sub-pixel value, so both scale as one.
+   0.431cqw is the 2px stroke inside pd-line-1.svg expressed against the card:
+   the file is 104.271 units wide and renders at 22.469% of the card, so
+   2 / 104.271 * 22.469% = 0.431%. */
+.pd-box  { box-shadow: inset 0 0 0 0.431cqw var(--ink); aspect-ratio: 1; }
+.pd-node { background: var(--surface); box-shadow: inset 0 0 0 0.431cqw var(--ink); aspect-ratio: 1; }
+
+.pd-box--1 { left: 24.28%; top: 55.79%; width: 25.71%; }
+.pd-box--2 { left: 72.36%; top: 77.25%; width: 25.71%; }
+.pd-box--3 { left: 71.19%; top: 40.66%; width: 19.79%; }
+
+.pd-node--a { width: 3.855%; }
+.pd-node--b { width: 2.968%; }
+
+.pd-node--1 { left: 22.35%; top: 53.41%;  }
+.pd-node--2 { left: 48.06%; top: 53.41%;  }
+.pd-node--3 { left: 22.35%; top: 85.14%;  }
+.pd-node--4 { left: 48.06%; top: 85.14%;  }
+.pd-node--5 { left: 70.44%; top: 74.87%;  }
+.pd-node--6 { left: 96.15%; top: 74.87%;  }
+.pd-node--7 { left: 70.44%; top: 106.60%; }
+.pd-node--8 { left: 96.15%; top: 106.60%; }
+.pd-node--9  { left: 69.71%; top: 38.83%; }
+.pd-node--10 { left: 89.50%; top: 38.83%; }
+.pd-node--11 { left: 69.71%; top: 63.26%; }
+.pd-node--12 { left: 89.50%; top: 63.26%; }
+
+.pd-glyph { overflow: hidden; }
+.pd-glyph img { position: absolute; max-width: none; }
+.pd-glyph--figma { left: 31.01%; top: 60.41%; width: 12.24%; height: 22.48%; }
+.pd-glyph--figma img { left: -7.41%; top: -57.34%; width: 557.68%; height: 210.66%; }
+.pd-glyph--blue  { left: 77.41%; top: 83.48%; width: 15.55%; height: 19.19%; }
+.pd-glyph--blue img { left: -15.19%; top: -6.77%; width: 137.20%; height: 121.96%; }
+.pd-glyph--framer { left: 74.37%; top: 44.63%; width: 13.51%; aspect-ratio: 1; }
+.pd-glyph--framer img { left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* GRAPHIC DESIGN artwork — 1:175 */
+.gd-art { left: 19.89%; top: 53.48%; width: 76.63%; height: 60.88%; }
+.gd-art img { width: 100%; height: 100%; }
+
+/* --- 7c. Bio card -------------------------------------------------------- */
+.card--bio {
+  flex: 0 0 61.7647%;   /* 588 of the 952px row */
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: 4.2017cqw;   /* 40px of the 952px row */
+}
+.card--bio p {
+  font-size: 3.937cqw;   /* 20px of the bio card content box */
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  opacity: 0.8;
+}
+
+/* --- 7d. Profile CTA card ------------------------------------------------ */
+.card--cta {
+  flex: 0 0 35.7143%;   /* 340 of the 952px row */
+  min-width: 0;
+  background: var(--ink);   /* shows until the shader's first frame, or instead of it without WebGL2 */
+  color: #fff;
+}
+/* Animated prism light, drawn by the script. Under the pills and the copy by
+   source order; the card's radius and overflow clip it. */
+.cta__shader {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.cta__pill { position: absolute; border-radius: 999px; }
+.cta__pill--back { left: 23.06%; top: 76.00%; width: 53.87%; height: 19%; background: var(--dark-2); }
+.cta__pill--mid  { left: 17.39%; top: 66.75%; width: 65.21%; height: 23%; background: var(--dark-3); }
+
+.cta__body {
+  position: absolute;
+  left: 14.56%;
+  bottom: 16.75%;   /* anchored to the button, so text wrapping never shifts it */
+  width: 70.88%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5.88cqw;
+}
+.cta__body p {
+  width: 89.6%;
+  font-size: 5.88cqw;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 48px;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-pill:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18); }
+.btn-pill img { width: 20px; height: 20px; }
+
+.cta__body .btn-pill {
+  gap: 2.35cqw;
+  padding: 2.94cqw 14.12cqw;
+  font-size: 7.06cqw;
+}
+.cta__body .btn-pill img { width: 4.88cqw; height: 4.88cqw; }
+
+/* --------------------------------------------------------------------------
+   8. Projects  (Figma 1:234 … 1:283)
+   -------------------------------------------------------------------------- */
+.projects { margin-top: var(--space-lg); }
+
+.section-head {
+  width: min(533px, 100%);
+  margin-inline: auto;
+  text-align: center;
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(3.333vw, 64px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.section-head p {
+  font-size: min(1.25vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  opacity: 0.4;
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: 40px;
+  container-type: inline-size;
+}
+
+.project {
+  display: block;
+  padding: 1.6667cqw;   /* 24px of the 1440px grid */
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  container-type: inline-size;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.project:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08); }
+
+.project__panel {
+  position: relative;
+  aspect-ratio: 660 / 352;
+  background: var(--bg);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+}
+/* The thumbnail fills the frame and holds still (no scroll pan) */
+.project__panel img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  scale: 1;
+  transition: scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project:hover .project__panel img,
+.project:focus-visible .project__panel img { scale: 1.06; }
+/* Tall page-screenshots keep an explicit crop window. The design's numbers were
+   set against the old 426x240 box; widening to 660x352 scales them by
+   660/426 / (352/240) = 1.0563, which holds the same region of the image.
+   Their `top` is never shallower than -20%, so the pan cannot pull the top
+   edge into the frame. */
+/* transform-origin has to be moved for these: the default 50% is the middle of
+   a picture thousands of pixels tall, so a hover zoom about it would swing the
+   visible slice sideways instead of growing it. The figure below puts the
+   origin on the frame's own centre — (|top| + 50) / height. */
+.project__panel--tall-a img { height: 1306.1%; top: -20%;     object-fit: fill; transform-origin: 50% 5.359%;  }
+.project__panel--tall-b img { height: 1658.8%; top: -20%;     object-fit: fill; transform-origin: 50% 4.220%;  }
+.project__panel--tall-c img { height: 1658.8%; top: -185.87%; object-fit: fill; transform-origin: 50% 14.219%; }
+
+.project__meta { margin-top: 3.6364cqw; }
+.project__meta h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 4.2cqw;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.project__meta p {
+  font-size: 3.0303cqw;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  opacity: 0.4;
+}
+
+.projects__more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+/* Hover: black sweeps in from the left edge until it fills the pill, and the
+   label and arrow turn white as it crosses them. On the way out it carries
+   on to the right rather than backing up, so the motion reads one way.
+
+   The fill is a flat gradient layer, so the pill's radius clips it for free.
+   Only its size is transitioned; its anchor snaps between the two edges,
+   which is invisible — at the start it has no width, at the end it covers
+   everything. The colour change is timed to the stretch where the fill is
+   passing over the label, the middle half of the button. */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 80px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(var(--ink), var(--ink)) no-repeat right center / 0 100%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: min(1.25vw, 24px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  transition:
+    background-size 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+    border-color 0.15s ease 0.35s,
+    color 0.2s ease 0.15s;
+}
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  border-color: var(--ink);
+  color: #fff;
+  background-position: left center;
+  background-size: 100% 100%;
+  transition:
+    background-size 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+    border-color 0.1s ease,
+    color 0.2s ease 0.15s;
+}
+.btn-outline__label { padding-bottom: 2px; }
+/* arrow-24.svg's geometry centred in a 24-unit box. At 1em it is 24px beside
+   the 24px label, as in the design, and its 3-unit stroke scales with it, so
+   the arrow keeps the same weight against the label at any size. */
+.btn-outline__arrow {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --------------------------------------------------------------------------
+   9. Services  (Figma 1:287)
+   -------------------------------------------------------------------------- */
+.services { margin-top: var(--space-lg); }
+
+.services__head {
+  width: min(800px, 100%);
+  margin-inline: auto;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(3.333vw, 64px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.services__list { margin-top: var(--space-sm); }
+
+.service {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: min(4.167vw, 80px) 0;
+}
+.service + .service { border-top: 1px solid var(--line); }
+
+/* Hover reveals a video band filling the whole row, with the type inverted to
+   sit on top of it. Absolute inset:0 covers the padding box, so the row's own
+   vertical padding defines the band height. */
+.service__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.service__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Scrim: several of the clips have bright frames that white type disappears
+   into, so the row title needs a floor to sit on. */
+.service__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+.service:hover .service__media,
+.service:focus-visible .service__media { opacity: 1; }
+
+.service__label,
+.service__go { position: relative; z-index: 1; }
+
+.service:hover .service__num,
+.service:hover .service__name,
+.service:focus-visible .service__num,
+.service:focus-visible .service__name { color: #fff; }
+.service:hover .service__go,
+.service:focus-visible .service__go { opacity: 0; }
+
+.service__label {
+  display: flex;
+  align-items: flex-start;
+  gap: min(1.25vw, 24px);
+  min-width: 0;
+  /* Padding, not transform — it is what the source does, and it keeps the
+     number and title moving as one block without blurring the type. */
+  transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.service:hover .service__label,
+.service:focus-visible .service__label { padding-left: min(2.083vw, 40px); }
+.service__num {
+  flex: none;
+  width: min(3.44vw, 66px);
+  padding-top: 2px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: min(2.5vw, 48px);
+  line-height: 0.708;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+  opacity: 0.4;
+  transition: color 0.3s ease;
+}
+.service__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(5.729vw, 110px);
+  line-height: 0.7;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+.service__go {
+  flex: none;
+  width: min(2.917vw, 56px);
+  transition: opacity 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer  (Figma 1:325)
+   -------------------------------------------------------------------------- */
+.footer { margin-top: var(--space-lg); }
+
+.footer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: min(9.48vw, 182px);
+}
+.footer__title {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(3.333vw, 64px);
+  line-height: 0.703;
+  letter-spacing: -0.02em;
+}
+.footer__contact {
+  flex: none;
+  width: min(628px, 46%);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.footer__contact p {
+  font-weight: 600;
+  font-size: min(1.667vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.footer__mail {
+  width: fit-content;
+  font-size: min(1.25vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+.footer__mail:hover { color: var(--purple); }
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: min(4.167vw, 80px);
+  margin-top: var(--space-sm);
+  font-weight: 500;
+  font-size: min(1.042vw, 20px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+}
+/* The fade sits on each link, not the row, so a hovered link can turn fully black */
+.footer__nav a { opacity: 0.4; transition: opacity 0.25s ease, color 0.25s ease; }
+.footer__nav a:hover,
+.footer__nav a:focus-visible { opacity: 1; color: #000; }
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+  padding: 32px 20px;
+  border-top: 1px solid var(--line);
+}
+.footer__bottom img { width: 35px; height: 20px; }
+.footer__bottom p {
+  padding-top: 4px;
+  font-weight: 500;
+  font-size: min(1.042vw, 20px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   10b. Scroll reveals
+   -------------------------------------------------------------------------- */
+/* [data-reveal] rises ("up") or just fades in ("fade") on the reference's
+   spring once enough of it is on screen; site.js adds .is-revealed, once.
+   Only armed under .js — set in the page head — so without script nothing
+   is left hidden. --reveal-delay staggers siblings. */
+.js [data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.5s var(--spring) var(--reveal-delay, 0s),
+    translate 0.5s var(--spring) var(--reveal-delay, 0s);
+}
+.js [data-reveal="up"] { translate: 0 150px; }
+.js [data-reveal].is-revealed { opacity: 1; translate: 0 0; }
+
+/* --------------------------------------------------------------------------
+   10c. About page  (reference: /about on the 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* On load the portrait drops in 150px on the no-bounce spring; the header
+   follows 0.3s later on the softer one, overshooting a touch. */
+@keyframes drop-in {
+  from { opacity: 0; translate: 0 -150px; }
+}
+.page-about .header { animation: drop-in 0.9s var(--spring-soft) 0.3s both; }
+
+.about-hero {
+  height: max(240px, min(30vw, 576px));
+  overflow: hidden;
+  animation: drop-in 0.5s var(--spring-flat) both;
+}
+.about-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-intro { padding-block: min(8.333vw, 160px); }
+
+.about-intro h1,
+.experience h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(3.333vw, 64px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Every run of body copy on the page: 24px on 36px, #222 at 80% */
+.about-intro__body,
+.experience__year,
+.experience__role,
+.experience__desc {
+  font-size: min(1.25vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.about-intro__body {
+  margin-top: min(3.333vw, 64px);
+  opacity: 0.8;
+}
+.about-intro__body p + p { margin-top: 1.5em; }   /* the reference's empty line */
+
+.experience { padding-bottom: min(10.417vw, 200px); }
+
+/* Year | role, company and summary — 160 + 40 + 947 of the 1440 column */
+.experience__list {
+  display: flex;
+  flex-direction: column;
+  gap: min(3.75vw, 72px);
+  max-width: 1147px;
+  margin: min(3.333vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.experience__item {
+  display: grid;
+  grid-template-columns: min(8.333vw, 160px) minmax(0, 1fr);
+  column-gap: min(2.083vw, 40px);
+}
+.experience__year { opacity: 0.4; }
+.experience__role { font-weight: 700; opacity: 0.8; }
+.experience__company {
+  margin-top: min(0.417vw, 8px);
+  font-size: min(1.042vw, 20px);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  opacity: 0.4;
+}
+.experience__desc {
+  margin-top: min(1.667vw, 32px);
+  opacity: 0.8;
+}
+
+/* Three lists side by side, each as wide as its own heading. The first
+   heading is 36px against the others' 32px, and its list sits 64px below
+   rather than 67px — both as on the reference. */
+/* flex-start keeps each column its own height, which is what its
+   half-on-screen reveal is measured against */
+.skills__grid {
+  display: flex;
+  align-items: flex-start;
+  gap: min(12.5vw, 240px);
+}
+.skills__col { flex: none; }
+.skills__col h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(1.667vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.skills__col:first-child h2 { font-size: min(1.875vw, 36px); }
+.skills__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: min(1.667vw, 32px);
+  margin-top: min(3.49vw, 67px);
+}
+.skills__col:first-child ul { margin-top: min(3.333vw, 64px); }
+.skills__col li {
+  font-weight: 300;
+  font-size: min(2.083vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  opacity: 0.8;
+}
+
+.page-about .footer { margin-top: min(10.417vw, 200px); }
+
+/* Where the footer's parts rise into view, it clips them, so their start
+   offset never lengthens the page */
+.page-about .footer,
+.page-project .footer,
+.page-detail .footer { overflow: clip; }
+
+/* --------------------------------------------------------------------------
+   10d. Project page  (reference: /project on the 1920 canvas)
+   -------------------------------------------------------------------------- */
+.page-project .header { animation: drop-in 0.8s var(--spring-bouncy) both; }
+
+.work-intro {
+  padding-top: min(11.198vw, 215px);
+  padding-bottom: min(6.25vw, 120px);
+}
+.work-intro h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(3.333vw, 64px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.work-intro p {
+  margin-top: min(3.333vw, 64px);
+  font-size: min(1.25vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  opacity: 0.8;
+}
+
+/* Category pills. The chosen one's black fades in over 0.2s while its
+   label turns white at once — the reference's variant switch. */
+.filters { display: flex; flex-wrap: wrap; }
+.filters button {
+  min-width: min(5.208vw, 100px);   /* "All" is a fixed 100px on the reference */
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  color: #000;
+  font-weight: 500;
+  font-size: min(1.042vw, 20px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  transition: background-color 0.2s ease;
+}
+.filters button[aria-pressed="true"] {
+  background-color: var(--ink);
+  color: #fff;
+}
+
+/* Two columns of 708 x 494 cards that keep their proportions as the column
+   narrows. The padding is in % of the card's width (708), since cqw never
+   resolves against the element that declares the container; everything
+   inside is in cqw of the card's content box (660 = 100cqw). */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: min(2.083vw, 40px);
+}
+.work-card {
+  container-type: inline-size;
+  padding: 3.39% 3.39% 3.672%;   /* 24px sides, 26px under the copy */
+  background: var(--surface);
+  border-radius: var(--radius-card);
+}
+.work-card[hidden] { display: none; }
+
+/* Project page cards: lift on hover as on the home grid. The reveal's own
+   transition is listed again so the two don't override each other. */
+.work-grid--full .work-card { display: block; transition: transform 0.35s ease, box-shadow 0.35s ease; }
+.work-grid--full .work-card[hidden] { display: none; }   /* the filter pills hide cards with [hidden] */
+.js .work-grid--full .work-card[data-reveal] {
+  transition:
+    opacity 0.5s var(--spring) var(--reveal-delay, 0s),
+    translate 0.5s var(--spring) var(--reveal-delay, 0s),
+    transform 0.35s ease, box-shadow 0.35s ease;
+}
+.work-grid--full .work-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08); }
+/* Switching a filter pill: the cards that stay rise in again, one after another */
+.work-card.is-refiltered { animation: work-refilter 0.5s var(--spring) var(--refilter-delay, 0s) backwards; }
+@keyframes work-refilter { from { opacity: 0; translate: 0 24px; } }
+@media (prefers-reduced-motion: reduce) {
+  .work-card.is-refiltered { animation: none; }
+  .work-grid--full .work-card:hover { transform: none; }
+}
+/* Shown by the filter script when a category has no cards yet */
+.work-empty {
+  margin-top: min(2.083vw, 40px);
+  padding: min(6.25vw, 120px) 24px;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  text-align: center;
+  font-size: min(1.25vw, 24px);
+  opacity: 0.6;
+}
+.work-empty[hidden] { display: none; }
+@media (max-width: 640px) { .work-empty { font-size: 16px; padding: 64px 20px; } }
+
+/* The shot floats in the middle of a grey panel — 426 x 240 of 660 x 352 —
+   on a soft drop shadow, and grows by the 460/426 the reference hovers to,
+   on the same spring. */
+.work-card__panel {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 660 / 352;
+  background: var(--bg);
+  border-radius: var(--radius-panel);
+}
+.work-card__panel img {
+  width: 64.545%;
+  aspect-ratio: 426 / 240;
+  object-fit: cover;
+  object-position: 50% var(--crop, 50%);
+  border-radius: 8px;
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.1);
+  transition: scale 0.5s var(--spring);
+}
+.work-card:hover .work-card__panel img { scale: 1.0798; }
+
+/* Project page: the thumbnail fills the whole panel, as on the home grid */
+.work-grid--full .work-card__panel { display: block; overflow: hidden; }
+.work-grid--full .work-card__panel img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  transition: scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-grid--full .work-card:hover .work-card__panel img { scale: 1.06; }
+
+.work-card h3 {
+  margin-top: 3.636cqw;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 4.2cqw;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.work-card p {
+  font-size: 3.03cqw;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  opacity: 0.4;
+}
+
+/* --------------------------------------------------------------------------
+   10e. Project detail page  (Figma 1:1979, 1920 canvas)
+   -------------------------------------------------------------------------- */
+.page-detail .header { animation: drop-in 0.8s var(--spring-bouncy) both; }
+
+.detail { padding-top: min(11.25vw, 216px); }
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 500;
+  font-size: min(1.042vw, 20px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  opacity: 0.4;
+}
+.breadcrumb li { display: flex; align-items: center; gap: 8px; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb svg {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Both big headings. Figma trims these boxes to the cap height, so the
+   margins here are its gaps less the line box's own 17.6px above the caps
+   and 14.4px below the baseline (64px Lexend on a 1.2 line). */
+.detail__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: min(3.333vw, 64px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.detail__head .detail__title { margin-top: min(4.292vw, 82.4px); }
+
+/* The showcase: a dark board holding a title bar and, on a faint grid, the
+   work itself. Its insides are laid out on the 1440 board — 1360 of content
+   between 40px sides — and sized in cqw of that 1360, so the whole piece
+   scales as one. */
+.showcase {
+  container-type: inline-size;
+  margin-top: min(1.344vw, 25.8px);
+  padding: 2.778% 2.778% 4.167%;   /* 40px sides and top, 60px bottom */
+  background: #212124;
+  border-radius: var(--radius-card);
+  color: #fff;
+}
+
+.showcase__bar {
+  display: flex;
+  align-items: center;
+  height: 8.235cqw;
+  padding-left: 4.706cqw;
+  background: #212124;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.showcase__logo {
+  flex: none;
+  width: 6.103cqw;
+  margin-right: 4.706cqw;
+  filter: brightness(0) invert(1);   /* the site logo, turned white */
+}
+.showcase__tag {
+  flex: none;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding: 0 2.941cqw;
+  background: #fff;
+  color: #000;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.353cqw;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+/* The first banner again, as a ghost behind the bar: its top, at 9%, with
+   the colour taken out */
+.showcase__ghost {
+  flex: 1 1 0;
+  align-self: stretch;
+  min-width: 0;
+  overflow: hidden;
+  opacity: 0.09;
+  mix-blend-mode: luminosity;
+}
+.showcase__ghost img { width: 100%; }
+.showcase__meta {
+  flex: none;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.324cqw;
+  /* no set width: like the design it hugs its widest label — 271px for
+     "BANNER DESIGN", 214px for "WORK COLLECTION" under a shorter title */
+  border-left: 2px solid rgba(255, 255, 255, 0.4);
+}
+.showcase__meta p {
+  padding: 0 2.353cqw;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.showcase__meta p:first-child {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.765cqw;
+}
+.showcase__meta p:last-child {
+  padding-top: 1.324cqw;
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  font-size: 1.176cqw;
+  opacity: 0.6;
+}
+
+/* The grid paper is the design's own texture at the size it drew it, at 20%
+   with its hairline frame, on a layer of its own so the work stays opaque.
+   (The design also sets it to lighten; over this board that changes a
+   #1f1f1f cell by two levels, so it is left out.) */
+.showcase__stage {
+  position: relative;
+  isolation: isolate;
+  margin-top: 2.941cqw;
+  padding: 4.412cqw 4.228cqw;   /* 60px, and 57.5px either side of the 1245 of work */
+}
+.showcase__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  background: url("../assets/projects/gdcollection1/texture.jpg") 0 -1.324cqw / 42.868cqw 24.485cqw;
+  opacity: 0.2;
+}
+
+/* Two banners a row. Each keeps its row's proportion — --ar — and the pair
+   top-aligns, as in the design. */
+.showcase__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1.765cqw;
+  margin: 0;
+}
+/* Hover zooms the picture inside its frame, so the grid never shifts or
+   overlaps — the same 1.06 and ease as the home page's project shots.
+   isolation keeps Safari clipping the zoom to the rounded corners. */
+.showcase__shot {
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 8px;
+}
+.showcase__shot img {
+  width: 100%;
+  aspect-ratio: var(--ar, 804 / 460);
+  object-fit: cover;
+  transition: scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.showcase__shot:hover img { scale: 1.06; }
+
+/* Other projects: the project page's card, at the design's 464px — a 416 x 352
+   panel with a 306.8 x 180 shot. % and cqw work as on the big card. */
+.detail__more .detail__title { margin-top: min(11.583vw, 222.4px); }
+.work-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: min(3.427vw, 65.8px);
+}
+.work-card--compact { padding: 5.172%; }
+/* The thumbnail fills the whole panel, as on the home grid */
+.work-card--compact .work-card__panel { display: block; aspect-ratio: 416 / 352; overflow: hidden; }
+.work-card--compact .work-card__panel img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  transition: scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-card--compact:hover .work-card__panel img { scale: 1.06; }
+.work-card--compact h3 {
+  margin-top: 5.769cqw;
+  font-size: 6.663cqw;   /* 27.7px at 1920, the same as the big cards (4.2cqw of 660) */
+  line-height: 1.25;
+}
+.work-card--compact p { font-size: 4.808cqw; }
+
+/* 260 in collection 1's frame; a page can set its own (collection 2: 240) */
+.page-detail .footer { margin-top: var(--footer-gap, min(13.542vw, 260px)); }
+
+/* --------------------------------------------------------------------------
+   10f. Case study detail — Melon  (Figma 725:6335, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* Every size is the design's 1440-column value, as min(vw, px) like the rest
+   of the site, with a floor so the long-form copy never drops under reading
+   size on a laptop. */
+.page-case {
+  --cs-teal: #61b6cd;
+  --cs-teal-ink: #237a92;          /* the teal, dark enough for text on white */
+  --cs-mist: #e3e9ec;              /* phase cards, Melon's row in the matrix */
+  --cs-rule: #d7d7d7;
+  --cs-line: #bdbdbd;              /* diagram connectors */
+  --cs-muted: #7a7a7a;
+  --cs-text: rgba(34, 34, 34, 0.8);
+
+  --cs-gap: clamp(16px, 1.25vw, 24px);
+  --cs-pad: clamp(24px, 2.083vw, 40px);
+  --cs-section: clamp(80px, 8.333vw, 160px);   /* between sections        */
+  --cs-head: clamp(32px, 3.333vw, 64px);       /* title to its content    */
+  --cs-step: clamp(32px, 2.917vw, 56px);       /* between blocks within   */
+
+  --cs-fs-title: clamp(30px, 2.5vw, 48px);
+  --cs-fs-lead: clamp(23px, 1.875vw, 36px);
+  --cs-fs-sub: clamp(22px, 1.667vw, 32px);
+  --cs-fs-card: clamp(19px, 1.25vw, 24px);
+  --cs-fs-body: clamp(16px, 1.042vw, 20px);
+  --cs-fs-small: clamp(15px, 0.9375vw, 18px);
+  --cs-fs-xs: clamp(14px, 0.833vw, 16px);
+}
+
+/* A softer rise than the home page's 150px: this page is mostly reading */
+.js [data-reveal="rise"] { translate: 0 40px; }
+
+.cs { margin-top: clamp(56px, 5.208vw, 100px); }
+/* The reset only covers ul; this page orders its steps with ol */
+:where(.cs) ol { margin: 0; padding: 0; list-style: none; }
+.cs-section { margin-top: var(--cs-section); }
+.cs-section__body { margin-top: var(--cs-head); }
+
+.cs-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--cs-fs-title);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.cs-subhead {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-sub);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.cs-card__title,
+.cs-cols__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-card);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.cs-text {
+  font-size: var(--cs-fs-body);
+  line-height: 1.5;
+  color: var(--cs-text);
+}
+.cs-text strong { color: var(--ink); font-weight: 600; }
+
+.cs-list {
+  padding-left: 1.4em;
+  list-style: disc;
+  font-size: var(--cs-fs-body);
+  line-height: 1.5;
+}
+
+/* --- Banner: three rows of the finished site --------------------------- */
+/* Laid out on its own 1440 x 400 board in cqw: 319 x 179 shots, 22px apart,
+   rows at -90 / 111 / 311, each shifted left by its design offset (--x). */
+.cs-banner {
+  --tile: 22.153cqw;
+  --tile-gap: 1.528cqw;
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 1440 / 400;
+  margin-top: min(1.344vw, 25.8px);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-card);
+  background: #0d0d0d;
+}
+.cs-banner__row {
+  position: absolute;
+  top: var(--top);
+  left: 0;
+  display: flex;
+  gap: var(--tile-gap);
+  width: max-content;
+  transform: translateX(var(--x));
+}
+.cs-banner__row img {
+  flex: none;
+  width: var(--tile);
+  aspect-ratio: 319 / 179;
+  object-fit: cover;
+  border-radius: 0.556cqw;
+  background: #1a1a1a;
+}
+
+/* --- About ---------------------------------------------------------------- */
+.cs-about__body { margin-top: clamp(16px, 1.25vw, 24px); }
+.cs-about__body p + p { margin-top: 1.5em; }
+
+.cs-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px var(--cs-gap);
+  margin: clamp(48px, 5.208vw, 100px) 0 0;
+}
+.cs-facts dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-card);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.cs-facts dd {
+  margin: clamp(8px, 0.833vw, 16px) 0 0;
+  font-size: var(--cs-fs-body);
+  line-height: 1.5;
+  color: var(--cs-text);
+}
+
+.cs-media {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cs-gap);
+  margin-top: clamp(48px, 5.208vw, 100px);
+}
+.cs-media__card {
+  position: relative;
+  aspect-ratio: 708 / 405;
+  margin: 0;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-card);   /* the two PNG cards bring their own rounded, transparent corners */
+}
+.cs-media__card--wide { grid-column: 1 / -1; aspect-ratio: 1440 / 810; }
+.cs-media__card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs-media__card:hover > img { scale: 1.04; }
+
+/* --- Shared two-up, panels and cards ------------------------------------ */
+.cs-duo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cs-gap);
+}
+.cs-panel {
+  min-height: min(22.135vw, 425px);
+  padding: var(--cs-pad);
+  border-radius: var(--radius-card);
+  color: #fff;
+}
+.cs-panel--black { background: #000; }
+.cs-panel--grey { background: #444; }
+.cs-pill {
+  display: inline-block;
+  padding: 0.85em 1em;
+  border-radius: 999px;
+  background: #555;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-card);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.cs-panel--grey .cs-pill { background: #fff; color: #000; }
+.cs-panel .cs-list { margin-top: var(--cs-pad); color: rgba(255, 255, 255, 0.92); }
+
+.cs-card {
+  padding: var(--cs-pad);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+.cs-card .cs-list { margin-top: clamp(16px, 1.25vw, 24px); color: var(--cs-text); }
+
+/* --- Lead: a heading line beside its paragraph -------------------------- */
+.cs-lead {
+  display: grid;
+  grid-template-columns: var(--cols, repeat(2, minmax(0, 1fr)));
+  column-gap: var(--lead-gap, clamp(24px, 2.083vw, 40px));
+  row-gap: 16px;
+  align-items: start;
+}
+.cs-lead--journey { --cols: 340fr 720fr 220fr; --lead-gap: clamp(32px, 4.167vw, 80px); }
+/* 460 rather than the design's 398, so the title holds to two lines in English */
+.cs-lead--sitemap { --cols: 460fr 760fr 60fr; --lead-gap: clamp(32px, 4.167vw, 80px); }
+.cs-lead__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--cs-fs-lead);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+/* --- Ruled columns ------------------------------------------------------ */
+.cs-cols {
+  display: grid;
+  margin-top: var(--cs-step);
+  border-top: 1px solid var(--cs-rule);
+}
+.cs-cols--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cs-cols--4 { grid-template-columns: 340fr 380fr 380fr 340fr; }
+.cs-cols > li { padding: var(--cs-step) clamp(16px, 2.083vw, 40px) 0 0; }
+.cs-cols > li + li {
+  padding-left: clamp(16px, 2.083vw, 40px);
+  border-left: 1px solid var(--cs-rule);
+}
+.cs-cols > li:last-child { padding-right: 0; }
+.cs-kicker {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+.cs-cols__title + .cs-text { margin-top: clamp(12px, 2.083vw, 40px); }
+
+.cs-goals { margin-top: var(--cs-step); }
+
+.cs-hmw {
+  margin: var(--cs-step) 0 0;
+  padding-left: clamp(20px, 2.083vw, 40px);
+  border-left: 5px solid var(--cs-teal);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--cs-fs-lead);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+/* --- Design phases: five cards dealt onto the table --------------------- */
+.cs-phases {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(8px, 1.042vw, 20px);
+  align-items: start;
+  padding-bottom: 6cqw;
+}
+.cs-phase {
+  min-height: 21.6cqw;
+  padding: clamp(16px, 1.667cqw, 24px);
+  border-radius: var(--radius-card);
+  background: var(--cs-mist);
+  transform: translateY(var(--drop, 0px)) rotate(var(--tilt, 0deg));
+  transition: transform 0.6s var(--spring), box-shadow 0.4s ease;
+}
+.cs-phase--raised { background: var(--surface); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07); }
+.cs-phase:hover {
+  transform: translateY(calc(var(--drop, 0px) - 8px)) rotate(0deg);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.1);
+}
+.cs-phase__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 2.08cqw, 30px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.cs-phase p {
+  margin-top: 16px;
+  font-size: var(--cs-fs-body);
+  line-height: 1.6;
+  color: var(--cs-text);
+}
+.cs-phase ul {
+  margin-top: 16px;
+  font-size: var(--cs-fs-xs);
+  line-height: 2;
+  color: var(--cs-text);
+}
+.cs-phase ul li::before { content: "\2192\00a0"; }
+
+/* --- Research ------------------------------------------------------------ */
+.cs-block { margin-top: clamp(56px, 3.854vw, 74px); }
+.cs-intro { max-width: 720px; }
+.cs-intro .cs-text { margin-top: clamp(12px, 0.938vw, 18px); }
+.cs-intro + * { margin-top: clamp(24px, 2.083vw, 40px); }
+
+/* Wide grids scroll inside their own box on small screens */
+.cs-scroll { overflow-x: auto; border-radius: var(--radius-card); }
+.cs-lead + .cs-scroll { margin-top: var(--cs-head); }
+.cs-scroll:focus-visible { outline-offset: 4px; }
+
+.cs-table {
+  width: 100%;
+  min-width: 1040px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--surface);
+  font-size: var(--cs-fs-small);
+  line-height: 1.5;
+}
+/* Columns start where the design's text does — 24 in, then 18 past each
+   column's edge — with nothing on the right but the last */
+.cs-table th,
+.cs-table td {
+  padding: 24px 0 24px 18px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ececec;
+}
+.cs-table th:first-child { padding-left: 24px; }
+.cs-table th:last-child,
+.cs-table td:last-child { padding-right: 24px; }
+.cs-table thead th {
+  padding-block: 32px;
+  border: 0;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.cs-table tbody th { font-weight: 400; color: var(--cs-text); }
+.cs-table tbody th b {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+.cs-table td { color: var(--cs-text); }
+.cs-table__melon th,
+.cs-table__melon td { border-bottom: 0; background: var(--cs-mist); }
+
+.cs-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+.cs-status::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cs-teal);
+}
+.cs-status--no { color: #8a8a8a; }
+.cs-status--no::before { background: #d6d6d6; }
+.cs-status--part::before { background: none; box-shadow: inset 0 0 0 2px var(--cs-teal); }
+
+.cs-affinity {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--cs-gap);
+}
+.cs-affinity__group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: clamp(16px, 1.25vw, 24px);
+}
+.cs-affinity__group li {
+  padding: 16px 21px;
+  border-radius: 8px;
+  background: var(--note);
+  font-size: var(--cs-fs-small);
+  line-height: 1.5;
+  transition: transform 0.4s var(--spring);
+}
+.cs-affinity__group li:hover { transform: translateY(-3px) rotate(-1deg); }
+
+.cs-insights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: clamp(16px, 1.25vw, 24px);
+}
+.cs-insight {
+  display: flex;
+  flex-direction: column;
+  padding: var(--cs-pad);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+.cs-insight__label { font-size: var(--cs-fs-xs); line-height: 1.25; color: var(--cs-muted); }
+.cs-insight .cs-card__title { margin-top: clamp(12px, 1.25vw, 24px); }
+.cs-insight .cs-text { margin: clamp(12px, 1.25vw, 24px) 0 24px; }
+.cs-insight__hmw {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px dashed #cfcfcf;
+  font-size: var(--cs-fs-body);
+  line-height: 1.5;
+  color: var(--cs-text);
+}
+.cs-insight__hmw strong { color: var(--ink); font-weight: 700; }
+
+/* --- Personas -------------------------------------------------------------- */
+/* Subgrid rows keep the three Goals and Pain Points cards level, as the
+   design's fixed-height cards are, whatever each one holds */
+.cs-personas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(4, auto);
+  column-gap: clamp(16px, 1.667vw, 32px);
+}
+.cs-persona {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+}
+.cs-persona__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 1.875vw, 36px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.cs-persona__role {
+  margin-top: 2px;
+  font-size: var(--cs-fs-small);
+  line-height: 1.4;
+  color: var(--cs-muted);
+}
+.cs-persona__photo {
+  width: 100%;
+  aspect-ratio: 459 / 458;
+  margin-top: clamp(20px, 1.667vw, 32px);
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  background: #dcdcdc;
+}
+.cs-persona__card {
+  margin-top: 16px;
+  padding: clamp(20px, 1.25vw, 24px);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+.cs-persona__photo + .cs-persona__card { margin-top: clamp(20px, 1.667vw, 32px); }
+.cs-persona__card h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-card);
+  line-height: 1.25;
+}
+.cs-persona__card .cs-list { margin-top: 16px; color: var(--cs-text); }
+
+/* --- Journey map -------------------------------------------------------- */
+/* The stage columns start 278px in, 232px apart; the emotion curve spans
+   all five and shares that grid. */
+.cs-journey {
+  width: 100%;
+  min-width: 1080px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--surface);
+  font-size: var(--cs-fs-small);
+  line-height: 1.5;
+}
+.cs-journey__label-col { width: 19.306%; }
+.cs-journey th,
+.cs-journey td {
+  padding: clamp(24px, 1.719vw, 33px) 24px clamp(24px, 1.719vw, 33px) 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #efefef;
+  color: var(--cs-text);
+}
+.cs-journey th:first-child { padding-left: 24px; }
+.cs-journey tr:last-child > * { border-bottom: 0; }
+.cs-journey thead th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+.cs-journey .cs-journey__label { font-family: var(--font-body); font-weight: 400; color: var(--cs-muted); }
+.cs-journey__feel th { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
+.cs-journey__feel td { padding: 0; }
+.cs-journey__curve { display: block; width: 100%; height: auto; overflow: visible; }
+.cs-journey__curve path { fill: none; stroke: #222; stroke-width: 2; }
+.cs-journey__curve circle { fill: #fff; stroke: #222; stroke-width: 2; }
+.cs-journey__curve .is-low { fill: #dff1f6; stroke: var(--cs-teal); stroke-width: 3; }
+.cs-journey__pain td { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
+.cs-journey__chance td { color: var(--cs-teal-ink); }
+
+/* --- Storyboard ------------------------------------------------------------ */
+.cs-story {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.667vw, 32px);
+  margin-top: var(--cs-head);
+}
+.cs-frame {
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  transition: transform 0.5s var(--spring), box-shadow 0.4s ease;
+}
+.cs-frame:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08); }
+.cs-frame img { width: 100%; aspect-ratio: 459 / 320; object-fit: cover; }
+.cs-frame__body { padding: clamp(20px, 1.25vw, 24px); }
+.cs-frame__step {
+  font-weight: 500;
+  font-size: var(--cs-fs-xs);
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+.cs-frame .cs-card__title { margin-top: 16px; }
+.cs-frame .cs-text { margin-top: 16px; }
+
+/* --- Sitemap: a tree drawn with borders ------------------------------------ */
+.cs-sitemap { margin-top: var(--cs-head); }
+.cs-sitemap__root {
+  position: relative;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 16px 24px;
+  border-radius: 8px;
+  background: var(--cs-teal);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-body);
+  line-height: 1.25;
+}
+.cs-sitemap__root::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  height: 24px;
+  border-left: 1px solid var(--cs-line);
+}
+.cs-sitemap__cols {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--cs-line);
+}
+.cs-sitemap__cols > li { position: relative; }
+.cs-sitemap__cols > li::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: 16px;
+  height: 24px;
+  border-left: 1px solid var(--cs-line);
+}
+.cs-sitemap__head,
+.cs-sitemap__kids li {
+  position: relative;
+  padding: 16px 17px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  background: var(--surface);
+  line-height: 1.25;
+}
+.cs-sitemap__head {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-body);
+}
+.cs-sitemap__kids {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0 0 32px;
+  font-size: var(--cs-fs-xs);
+}
+/* Each child draws its elbow from the gap above to its own middle; all but
+   the last carry the trunk on down to the next one. */
+.cs-sitemap__kids li::before,
+.cs-sitemap__kids li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: -17px;
+  width: 16px;
+  border-left: 1px solid var(--cs-line);
+}
+.cs-sitemap__kids li::before { top: -17px; height: calc(50% + 17px); border-bottom: 1px solid var(--cs-line); }
+.cs-sitemap__kids li:not(:last-child)::after { top: 50%; bottom: -17px; }
+
+/* --- User flows ----------------------------------------------------------- */
+.cs-flow + .cs-flow { margin-top: var(--cs-section); }
+.cs-flow .cs-scroll { margin-top: var(--cs-head); }
+/* 1:1 with the design at full width, shrinking below it, and scrolling
+   sideways once the labels would get too small to read */
+.cs-flow__svg {
+  display: block;
+  width: 100%;
+  min-width: 680px;
+  max-width: calc(var(--w) * 1px);
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+.cs-flow__svg text {
+  font-family: var(--font-display);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.cs-flow__svg .fl-lines path { fill: none; stroke: #9a9a9a; stroke-width: 1.5; }
+.cs-flow__svg .fl-dash { stroke-dasharray: 6 5; }
+.cs-flow__svg marker path { fill: #9a9a9a; }
+.cs-flow__svg .fl-label text { font-size: 15px; font-weight: 600; fill: #222; }
+.cs-flow__svg .fl-branch text { font-size: 15px; font-weight: 600; fill: #b86e1b; }
+.cs-flow__svg .fl-start rect { fill: #111; }
+.cs-flow__svg .fl-start text { font-size: 17px; font-weight: 600; fill: #fff; }
+.cs-flow__svg .fl-node rect { fill: #fff; stroke: #222; stroke-width: 1.5; }
+.cs-flow__svg .fl-node text { font-size: 17px; font-weight: 600; fill: #222; }
+.cs-flow__svg .fl-decision polygon { fill: #fff4d9; stroke: #e6b85c; stroke-width: 1.5; }
+.cs-flow__svg .fl-decision text { font-size: 15px; font-weight: 600; fill: #222; }
+.cs-flow__svg .fl-action rect { fill: #fff; stroke: #cfcfcf; stroke-width: 1.5; }
+.cs-flow__svg .fl-action text { font-family: var(--font-body); font-size: 14px; fill: #555; }
+.cs-flow__svg .fl-error rect { fill: #fdecec; stroke: #e26464; stroke-width: 1.5; }
+.cs-flow__svg .fl-error text { font-size: 16px; font-weight: 600; fill: #c23b3b; }
+.cs-flow__svg .fl-end rect { fill: var(--cs-teal); }
+.cs-flow__svg .fl-end text { font-size: 17px; font-weight: 600; fill: #fff; }
+
+/* --- Wireframes: three columns cut at 2083 of 1440 and faded out ---------- */
+.cs-wire {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--cs-gap);
+  align-items: start;
+  aspect-ratio: 1440 / 2083;
+  overflow: hidden;
+}
+.cs-wire::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 24.7%;
+  background: linear-gradient(rgba(246, 246, 246, 0), var(--bg) 85%);
+  pointer-events: none;
+}
+.cs-wire__col { display: flex; flex-direction: column; gap: var(--cs-gap); }
+.cs-wire img {
+  width: 100%;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* --- Typography & colour, on its own 1440 board in cqw -------------------- */
+.cs-type { container-type: inline-size; font-family: "Poppins", var(--font-body); }
+.cs-type__specimen {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4cqw;
+}
+.cs-type__name {
+  font-weight: 700;
+  font-size: 18.5cqw;   /* 1124 of the 1440 board */
+  line-height: 0.74;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.cs-type__weights {
+  flex: none;
+  font-size: max(16px, 2.778cqw);
+  line-height: 1.5;
+  margin-top: -0.25em;
+}
+.cs-type__scale {
+  position: relative;
+  height: calc(32px + 1.2em);
+  margin-top: 8.6cqw;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--cs-muted);
+}
+.cs-type__scale::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 16px;
+  border-top: 2px solid var(--cs-rule);
+  background: repeating-linear-gradient(to right, var(--cs-rule) 0 2px, transparent 2px 5.556cqw);
+}
+.cs-type__scale li {
+  position: absolute;
+  bottom: 0;
+  translate: -50% 0;
+}
+.cs-type__scale li:nth-child(1) { left: 5.556%; }
+.cs-type__scale li:nth-child(2) { left: 22.222%; }
+.cs-type__scale li:nth-child(3) { left: 38.889%; }
+.cs-type__scale li:nth-child(4) { left: 55.556%; }
+.cs-type__scale li:nth-child(5) { left: 72.222%; }
+.cs-type__scale li:nth-child(6) { left: 88.889%; }
+.cs-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.667cqw;
+  margin-top: 3.333cqw;
+}
+.cs-swatches li {
+  aspect-ratio: 342 / 180;
+  padding: 2.778cqw;
+  border-radius: var(--radius-card);
+  background: var(--swatch);
+  color: #fff;
+  font-weight: 500;
+  font-size: max(15px, 2cqw);
+  line-height: 1;
+  transition: transform 0.5s var(--spring);
+}
+.cs-swatches li:hover { transform: translateY(-6px); }
+.cs-swatches .is-light { color: #222; }
+
+/* --- UI design board ------------------------------------------------------ */
+.cs-screens {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.25vw, 24px);
+  align-items: start;
+  padding: 5.556%;
+  border-radius: var(--radius-card);
+  background: #212124;
+}
+.cs-screens__col { display: flex; flex-direction: column; gap: clamp(12px, 1.25vw, 24px); }
+.cs-screens img { width: 100%; border-radius: 8px; background: #2c2c30; }
+
+/* --- Case study, smaller screens ------------------------------------------ */
+@media (max-width: 1100px) {
+  .cs-cols--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-cols--4 > li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .cs-cols--4 > li:nth-child(n + 3) { margin-top: var(--cs-step); border-top: 1px solid var(--cs-rule); }
+  .cs-cols--4 > li:nth-child(2) { padding-right: 0; }
+  .cs-affinity { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+  .cs-phases { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; padding-bottom: 0; }
+  .cs-phase { --drop: 0px !important; min-height: 0; }   /* beats the inline offsets */
+  .cs-phase__title { font-size: 24px; }
+  .cs-story { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-sitemap__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .cs-lead,
+  .cs-lead--journey,
+  .cs-lead--sitemap { --cols: minmax(0, 1fr); }
+  .cs-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-media { grid-template-columns: minmax(0, 1fr); }
+  .cs-media__card--wide { grid-column: auto; }
+  .cs-duo { grid-template-columns: minmax(0, 1fr); }
+  .cs-panel { min-height: 0; }
+  .cs-cols--3 { grid-template-columns: minmax(0, 1fr); }
+  .cs-cols--3 > li { padding-right: 0; }
+  .cs-cols--3 > li + li {
+    margin-top: var(--cs-step);
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--cs-rule);
+  }
+  .cs-phases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-insights { grid-template-columns: minmax(0, 1fr); }
+  .cs-personas { grid-template-columns: minmax(0, 1fr); max-width: 520px; }
+  .cs-sitemap__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-screens { padding: 12px; }   /* still two up: one column would run ~6500px */
+  .cs-type__specimen { flex-direction: column; gap: 24px; }
+  .cs-type__name { font-size: 24cqw; }
+  .cs-type__weights { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 0; font-size: 18px; }
+  .cs-type__scale { margin-top: 32px; font-size: 12px; }
+  .cs-swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+  .cs-swatches li { padding: 16px; font-size: 16px; }
+}
+
+@media (max-width: 640px) {
+  /* The 1440 x 400 strip would be a sliver on a phone: taller board,
+     bigger shots, same three rows */
+  .cs-banner { --tile: 52cqw; --tile-gap: 3cqw; aspect-ratio: 4 / 3; }
+  .cs-banner__row:nth-child(1) { top: -9cqw; }
+  .cs-banner__row:nth-child(2) { top: 23cqw; }
+  .cs-banner__row:nth-child(3) { top: 55cqw; }
+  .cs-cols--4 { grid-template-columns: minmax(0, 1fr); }
+  .cs-cols--4 > li { padding-right: 0; }
+  .cs-cols--4 > li + li {
+    margin-top: var(--cs-step);
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--cs-rule);
+  }
+  .cs-affinity { grid-template-columns: minmax(0, 1fr); }
+  .cs-phases { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .cs-phase { --tilt: 0deg !important; }
+  .cs-story { grid-template-columns: minmax(0, 1fr); }
+  .cs-sitemap__root::after { display: none; }
+  .cs-sitemap__cols { grid-template-columns: minmax(0, 1fr); padding-top: 0; border-top: 0; }
+  .cs-sitemap__cols > li::before { display: none; }
+  .cs-wire { grid-template-columns: repeat(2, minmax(0, 1fr)); aspect-ratio: 3 / 5; }
+  .cs-wire__col:nth-child(3) { display: none; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cs-media__card:hover > img { scale: 1; }
+  .cs-phase:hover { transform: translateY(var(--drop, 0px)) rotate(var(--tilt, 0deg)); box-shadow: none; }
+  .cs-phase--raised:hover { box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07); }
+  .cs-frame:hover { transform: none; box-shadow: none; }
+}
+
+/* --------------------------------------------------------------------------
+   10g. Case study detail — Kyarisuru  (Figma 1:1610, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* The Melon page's .cs-* system in Kyarisuru's colours: the app's blue and
+   cyan on the panels, and the diagrams' orange, cyan and navy. */
+.page-kyarisuru {
+  --cs-teal: #00aeef;
+  --cs-teal-ink: #0a6f9c;
+  --ky-blue: #3768cf;
+  --ky-cyan: #00aeef;
+  --ky-navy: #4468b1;
+  --ky-orange: #f7901e;
+  --ky-gold: #c9922e;               /* decision diamonds and their branches */
+}
+.page-kyarisuru :lang(ja) { font-family: "Noto Sans JP", var(--font-body); }
+
+/* The key visual is one composed picture, so it keeps its 1440 x 400 shape
+   at every width instead of re-tiling like Melon's strip */
+.cs-cover {
+  aspect-ratio: 1440 / 400;
+  margin-top: min(1.344vw, 25.8px);
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: #1b2633;
+}
+.cs-cover img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Role & Scope: blue with a cyan pill, cyan with a white one */
+.cs-panel--blue { background: var(--ky-blue); }
+.cs-panel--cyan { background: var(--ky-cyan); }
+.cs-panel--blue .cs-pill { background: var(--ky-cyan); }
+.cs-panel--cyan .cs-pill { background: #fff; color: var(--ky-cyan); }
+
+/* The design goal hangs off the brand gradient instead of a flat rule */
+.cs-hmw--goal {
+  border-image: linear-gradient(var(--ky-orange), var(--ky-cyan), var(--ky-navy)) 1;
+  font-weight: 600;
+}
+
+/* Research methods: a 4px colour bar over each column in place of the rules */
+.cs-cols--bars { border-top: 0; }
+.cs-cols--bars > li,
+.cs-cols--bars > li + li {
+  border-top: 4px solid var(--bar);
+  border-left: 0;
+}
+
+/* --- Keep / optimise / build matrix --------------------------------------- */
+.cs-table--matrix { min-width: 960px; }
+.cs-table--matrix thead th {
+  background: #eee;
+  color: var(--ink);
+  font-size: var(--cs-fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cs-table--matrix tbody th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+.cs-decision {
+  display: block;
+  max-width: 148px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+}
+/* The design's #4468b1 and #f7901e, darkened just enough to read on their tints */
+.cs-decision--keep { background: #dae6ff; color: #3b5ea8; }
+.cs-decision--tune { background: #fff0df; color: #b35c00; }
+.cs-decision--new { background: var(--ky-navy); color: #fff; }
+
+/* --- Sitemap: five tabs and onboarding, nested two deep -------------------- */
+.cs-lead--tabs { --cols: 604fr 756fr; --lead-gap: clamp(32px, 4.167vw, 80px); }
+
+.cs-tree { margin-top: var(--cs-head); }
+.cs-tree__root {
+  position: relative;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 16px 24px;
+  border-radius: 8px;
+  background: var(--ky-orange);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-body);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+.cs-tree__root::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  height: 24px;
+  border-left: 1px solid var(--cs-line);
+}
+.cs-tree__cols {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--cs-line);
+}
+.cs-tree__cols > li { position: relative; }
+.cs-tree__cols > li::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: 16px;
+  height: 24px;
+  border-left: 1px solid var(--cs-line);
+}
+.cs-tree__head,
+.cs-tree__node {
+  position: relative;
+  display: block;
+  padding: 16px 17px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  background: var(--surface);
+  line-height: 1.25;
+}
+.cs-tree__head {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cs-fs-body);
+}
+.cs-tree__kids {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0 0 32px;
+  font-size: var(--cs-fs-xs);
+}
+.cs-tree__kids .cs-tree__kids { margin-left: 24px; }
+.cs-tree__kids > li { position: relative; }
+/* Each node draws its elbow from the gap above to its own middle; every li
+   but the last carries the trunk on past its own children to the next one. */
+.cs-tree__node::before,
+.cs-tree__kids > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  border-left: 1px solid var(--cs-line);
+}
+.cs-tree__node::before {
+  top: -18px;
+  left: -18px;
+  width: 17px;
+  height: calc(50% + 18px);
+  border-bottom: 1px solid var(--cs-line);
+}
+.cs-tree__kids > li:not(:last-child)::after { top: 0; bottom: -16px; left: -17px; }
+
+/* --- User flows: Melon's diagram styles in Kyarisuru's colours -------------- */
+.page-kyarisuru .cs-flow__svg .fl-start rect { fill: var(--ky-navy); }
+.page-kyarisuru .cs-flow__svg .fl-end rect { fill: var(--ky-orange); }
+.page-kyarisuru .cs-flow__svg .fl-node rect { stroke: #000; }
+.page-kyarisuru .cs-flow__svg .fl-decision polygon { fill: #fff6d9; stroke: var(--ky-gold); }
+.page-kyarisuru .cs-flow__svg .fl-branch text { fill: var(--ky-gold); }
+.page-kyarisuru .cs-flow__svg .fl-error rect { fill: #fff1f1; stroke: #cd5757; }
+.page-kyarisuru .cs-flow__svg .fl-error text { fill: #cd5757; }
+.cs-flow__svg .fl-label text { fill: #000; }
+/* A box's second line: what happens on that screen */
+.cs-flow__svg .fl-sub { font-family: var(--font-body); font-size: 15px; font-weight: 400; fill: #474747; }
+.cs-flow__svg .fl-error .fl-sub { fill: #c25050; }
+.cs-flow__svg .fl-end .fl-sub { fill: #fff; opacity: 0.85; }
+
+/* --- Wireframes: four columns; the shots bring their own frame ------------- */
+.cs-wire--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cs-wire--4 img { border: 0; border-radius: 0; background: none; }
+
+/* --- Typography: Noto Sans JP, with the kana and kanji it was chosen for --- */
+/* (KRAFTON India's Noto Sans KR board, 10h, shares the specimen and ruler) */
+.cs-type--jp { font-family: "Noto Sans JP", var(--font-body); }
+.cs-type--jp .cs-type__name,
+.cs-type--kr .cs-type__name,
+.cs-type--cairo .cs-type__name {
+  font-weight: 800;
+  font-size: 12.2cqw;   /* the specimen fills ~1120 of the 1440 board */
+  line-height: 0.82;
+}
+.cs-type__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.667cqw;
+  margin-top: 5.6cqw;
+}
+.cs-type__pills li {
+  padding: 0.6em 2.33em;
+  border-radius: 999px;
+  background: #ededed;
+  font-size: max(15px, 1.667cqw);
+  line-height: 1.4;
+}
+.cs-type__samples {
+  max-width: 67.6cqw;
+  margin: 2.778cqw 0 0;
+}
+.cs-type__samples > div + div { margin-top: 2.778cqw; }
+.cs-type__samples dt {
+  font-weight: 700;
+  font-size: max(20px, 2.222cqw);
+  line-height: 1.4;
+}
+.cs-type__samples dd {
+  margin: 1.111cqw 0 0;
+  font-size: max(15px, 1.389cqw);
+  line-height: 1.7;
+  letter-spacing: 0.2em;
+  color: #666;
+}
+.cs-type--jp .cs-type__scale,
+.cs-type--kr .cs-type__scale,
+.cs-type--cairo .cs-type__scale { margin-top: max(24px, 3.5cqw); }
+.cs-swatches--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.cs-swatches--5 li { aspect-ratio: 268.8 / 160; font-size: max(14px, 1.389cqw); }
+.cs-swatches .is-white { box-shadow: inset 0 0 0 1px #e2e2e2; }
+
+/* --- UI board: four phone columns on the design's blue-grey ---------------- */
+.cs-screens--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: #d7dee3;
+}
+.cs-screens--4 img { border-radius: 0; background: none; }
+
+@media (max-width: 1100px) {
+  .cs-tree__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .cs-lead--tabs { --cols: minmax(0, 1fr); }
+  .cs-tree__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-type__samples { max-width: none; }
+  .cs-type__pills { gap: 8px; margin-top: 24px; }
+  .cs-type__samples,
+  .cs-type__samples > div + div { margin-top: 24px; }
+  .cs-swatches--5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Four columns wrap to two rows of two */
+  .cs-screens--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .cs-tree__root::after { display: none; }
+  .cs-tree__cols { grid-template-columns: minmax(0, 1fr); padding-top: 0; border-top: 0; }
+  .cs-tree__cols > li::before { display: none; }
+  .cs-wire--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-wire--4 .cs-wire__col:nth-child(4) { display: none; }
+  .cs-swatches--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* --------------------------------------------------------------------------
+   10h. Case study detail — KRAFTON India  (Figma 48:2, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* The shorter detail layout: cover, about and media from 10f, the one-picture
+   cover and type board from 10g. Only the palette and the UI board are new. */
+.cs-type--kr { font-family: "Noto Sans KR", var(--font-body); }
+
+.cs-swatches--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cs-swatches--2 li { aspect-ratio: 712 / 160; font-size: max(14px, 1.389cqw); }
+
+/* UI board: the site's seven full-screen sections, two a row in reading
+   order on light grey — 628 wide inside the design's 80px padding */
+.cs-screens--grid { background: #e3e3e3; }
+.cs-screens--grid img { border-radius: 4px; background: #d6d6d6; }
+
+@media (max-width: 640px) {
+  .cs-screens--grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --------------------------------------------------------------------------
+   10i. Case study detail — Keystone Marketing Company  (Figma 79:604, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* Same short layout as 10h. New here: the Cairo board, a three-swatch row and
+   Melon's two-column UI board on light grey instead of dark. */
+.cs-cover--light { background: #eceef0; }
+
+.cs-type--cairo { font-family: "Cairo", var(--font-body); }
+.cs-type--cairo .cs-type__name { font-weight: 900; }
+
+.cs-swatches--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cs-swatches--3 li { aspect-ratio: 464 / 160; font-size: max(14px, 1.389cqw); }
+
+.cs-screens--light { background: #e3e3e3; }
+.cs-screens--light img { background: #d6d6d6; }
+
+@media (max-width: 640px) {
+  .cs-swatches--3 { grid-template-columns: minmax(0, 1fr); }
+  .cs-swatches--3 li { aspect-ratio: 335 / 72; }
+}
+
+/* --------------------------------------------------------------------------
+   10j. Case study detail — ISKRA  (Figma 82:160, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* Same short layout as 10i. Sofia Pro is not on Google Fonts: the specimen is
+   an SVG of its outlines (809 of the 1440 board, as in the design), and the
+   weight pills fall back to Lexend. */
+.cs-type--sofia { font-family: "Sofia Pro", var(--font-display); }
+.cs-type__name--outline img { width: 56.2cqw; }
+
+@media (max-width: 900px) {
+  .cs-type__name--outline img { width: 72cqw; }
+}
+
+/* --------------------------------------------------------------------------
+   10k. Case study detail — Savills Vietnam  (Figma 98:152, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* Same short layout as 10i–10j; Inter is the site's own body face. */
+.cs-type--inter { font-family: var(--font-body); }
+.cs-type--inter .cs-type__name { font-weight: 800; letter-spacing: -0.03em; }
+
+/* --------------------------------------------------------------------------
+   10l. Case study detail — Naver Connect  (Figma 231:2, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* Same short layout as 10i–10k. NanumSquare Neo isn't on Google Fonts either:
+   the specimen is an SVG of its outlines (1306 of the 1440 board) and the
+   weight pills use Inter. Five swatches on the four-column grid, three a row. */
+.cs-type__name--nanum img { width: 90.7cqw; }
+.cs-swatches--nanum li { aspect-ratio: 342 / 158; font-size: max(14px, 1.389cqw); }
+.cs-swatches--nanum li:nth-child(4) { grid-column: 1; }
+
+@media (max-width: 900px) {
+  .cs-swatches--nanum li:nth-child(4) { grid-column: auto; }
+}
+
+/* --------------------------------------------------------------------------
+   10m. Case study detail — Timeless Landingpage  (Figma, next to 231:2, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* Same short layout as 10i–10l. The board labels the face Pretendard but sets it
+   in Poppins, so the page does too; weights are plain text, not pills. The UI
+   board is one column: the full landing page, then the hero variants. */
+.cs-type--poppins { font-family: "Poppins", var(--font-body); }
+.cs-type--poppins .cs-type__name { font-weight: 700; font-size: 11.1cqw; letter-spacing: 0; }   /* 1042 of the 1440 board */
+.cs-type__pills--plain { gap: 1em 5.6cqw; }
+.cs-type__pills--plain li { padding: 0; background: none; font-size: max(16px, 2.222cqw); }
+
+.cs-screens--single { grid-template-columns: minmax(0, 1fr); }
+.cs-screens--single img { border-radius: 12px; }
+
+/* --------------------------------------------------------------------------
+   10n. Case study detail — FANSTYLE  (Figma, right of OTAFF, 1920 canvas)
+   -------------------------------------------------------------------------- */
+/* Same layout as 10m (one-column board); Montserrat is a Google font. */
+.cs-type--montserrat { font-family: "Montserrat", var(--font-body); }
+.cs-type--montserrat .cs-type__name { font-weight: 800; font-size: 11.3cqw; line-height: 0.82; letter-spacing: -0.01em; }
+
+/* --------------------------------------------------------------------------
+   11. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1280px) {
+  .header { padding: 24px 24px 0; }
+  .burger { margin-left: 16px; }
+  .menu { --side: 24px; }
+}
+
+/* Below this the 3-across bento would squeeze the body copy under ~13px,
+   so it unwinds into a single centred column. */
+@media (max-width: 1100px) {
+  :root { --gap: 16px; }
+
+  .about__grid { flex-direction: column; align-items: center; }
+  .about__grid > * { width: 100%; max-width: 700px; }
+  .about__left  { flex: none; align-self: center; aspect-ratio: auto; }
+  .about__right { flex: none; align-self: center; }
+  .about__row { flex-direction: column; }
+  .about__row--top,
+  .about__row--bottom { flex: none; }
+  .card--discipline { flex: none; aspect-ratio: 464 / 376; }
+  .card--bio { flex: none; padding: clamp(24px, 4vw, 40px); }
+  .card--cta { flex: none; aspect-ratio: 340 / 200; }
+
+  /* card-relative type would balloon at 700px wide, so pin it to the viewport */
+  .discipline__label { padding: clamp(24px, 4vw, 40px); font-size: clamp(30px, 5.2vw, 64px); }
+  .discipline__label p + p { margin-top: clamp(10px, 1.6vw, 16px); }
+  .profile__name { padding: clamp(24px, 4vw, 40px); }
+  .profile__name p { font-size: clamp(44px, 8.4vw, 96px); }
+  .card--bio p { font-size: clamp(15px, 1.9vw, 20px); }
+  .cta__body p { font-size: clamp(14px, 1.8vw, 20px); }
+  .cta__body .btn-pill { gap: 8px; padding: 10px clamp(24px, 4.4vw, 48px); font-size: clamp(16px, 2.2vw, 24px); }
+  .cta__body .btn-pill img { width: clamp(16px, 1.8vw, 20px); height: clamp(16px, 1.8vw, 20px); }
+}
+
+@media (max-width: 900px) {
+  .projects__grid { grid-template-columns: minmax(0, 1fr); }
+  .project { padding: 20px; }
+  .project__meta h3 { font-size: 24px; }
+  .project__meta p  { font-size: 15px; }
+
+  .section-head h2,
+  .services__head,
+  .footer__title { font-size: clamp(30px, 5.4vw, 56px); }
+  .section-head p { font-size: 16px; }
+
+  .service { padding: 36px 0; }
+  .service__num  { width: auto; font-size: clamp(16px, 3.4vw, 30px); }
+  .service__name { font-size: clamp(28px, 7.4vw, 66px); line-height: 1.05; }  /* the cap-trim leading only works on one line */
+  .service__go   { width: clamp(28px, 5vw, 44px); }
+
+  .footer__top { flex-direction: column; gap: 32px; }
+  .footer__contact { width: 100%; }
+  .footer__contact p { font-size: clamp(19px, 3vw, 28px); }
+  .footer__mail,
+  .footer__nav,
+  .footer__bottom p { font-size: 16px; }
+  .footer__nav { gap: 28px; }
+}
+
+@media (max-width: 640px) {
+  html { scroll-padding-top: 96px; }
+
+  .hero__inner { width: 100%; padding: 104px 20px 64px; }
+  .menu__info { flex-direction: column; align-items: flex-end; }
+  .hero__title { font-size: clamp(34px, 10.4vw, 64px); line-height: 1.06; }
+  .hero__line { white-space: normal; }
+  .hero__sparkle--lg { right: 0;      top: -0.30em; width: 0.46em; }
+  .hero__sparkle--sm { right: 0.42em; top: -0.28em; width: 0.16em; }
+  .hero__line--art {
+    flex-wrap: wrap;
+    gap: 3%;
+    margin-top: 0.15em;
+    transform: none;
+  }
+  .creative { width: 78%; }
+  .magic    { width: 46%; margin-top: 6%; }
+
+  .marquee__item { width: 120px; height: 54px; }
+
+  .projects__more .btn-outline { padding: 14px 44px; font-size: 18px; }
+  .footer__bottom { flex-wrap: wrap; text-align: center; }
+}
+
+/* About page: vw-scaled copy would drop under reading size here, so it
+   switches to fixed steps like the rest of the page does at this width. */
+@media (max-width: 900px) {
+  .about-intro { padding-block: 64px; }
+  .about-intro h1,
+  .experience h2 { font-size: clamp(30px, 5.4vw, 56px); }
+  .about-intro__body,
+  .experience__year,
+  .experience__role,
+  .experience__desc { font-size: 17px; }
+  .about-intro__body { margin-top: 24px; }
+
+  .experience { padding-bottom: 80px; }
+  .experience__list { gap: 40px; margin-top: 32px; }
+  .experience__item { grid-template-columns: 104px minmax(0, 1fr); column-gap: 24px; }
+  .experience__company { margin-top: 2px; font-size: 15px; }
+  .experience__desc { margin-top: 12px; }
+
+  .skills__grid { flex-wrap: wrap; gap: 48px 72px; }
+  .skills__col h2,
+  .skills__col:first-child h2 { font-size: 22px; }
+  .skills__col ul,
+  .skills__col:first-child ul { gap: 16px; margin-top: 24px; }
+  .skills__col li { font-size: 26px; }
+
+  .page-about .footer { margin-top: 80px; }
+
+  /* Project page: one card per row, copy on fixed steps as on the home grid */
+  .work-intro { padding-top: 120px; padding-bottom: 56px; }
+  .work-intro h1 { font-size: clamp(30px, 5.4vw, 56px); }
+  .work-intro p { margin-top: 24px; font-size: 17px; }
+  .filters button { padding: 8px 20px; font-size: 16px; }
+  .work-grid { grid-template-columns: minmax(0, 1fr); margin-top: 24px; }
+  .work-card { padding: 20px; }
+  .work-card h3 { margin-top: 20px; font-size: 24px; }
+  .work-card p { font-size: 15px; }
+
+  /* Project detail: the board's cqw type would shrink past reading size, so
+     its bar switches to fixed steps and drops the ghost banner */
+  .detail { padding-top: 120px; }
+  .breadcrumb ol { font-size: 14px; }
+  .detail__title { font-size: clamp(30px, 5.4vw, 56px); }
+  .detail__head .detail__title { margin-top: 24px; }
+  .showcase { margin-top: 24px; padding: 16px 16px 24px; }
+  .showcase__bar { height: auto; min-height: 72px; padding-left: 20px; }
+  .showcase__logo { width: 48px; margin-right: 20px; }
+  .showcase__tag { padding: 12px 18px; font-size: 18px; }
+  .showcase__ghost { display: none; }
+  .showcase__meta { width: auto; margin-left: auto; gap: 10px; }
+  .showcase__meta p { padding: 0 16px; }
+  .showcase__meta p:first-child { font-size: 15px; }
+  .showcase__meta p:last-child { padding-top: 10px; font-size: 11px; }
+  .showcase__stage { margin-top: 16px; padding: 16px; }
+  .showcase__gallery { gap: 12px; }
+  .detail__more .detail__title { margin-top: 80px; }
+  .work-grid--three { margin-top: 24px; }
+  .page-detail .footer { margin-top: 80px; }
+}
+
+/* Phones: the year moves above its role, and the lists stack */
+@media (max-width: 640px) {
+  .experience__item { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
+  .skills__grid { flex-direction: column; }
+
+  /* Project detail: one banner a row, and the bar's labels on a line of
+     their own under the logo and tag */
+  .showcase__bar { flex-wrap: wrap; padding-left: 0; }
+  .showcase__logo { margin-left: 20px; }
+  .showcase__meta {
+    flex: 1 0 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 0;
+    padding: 12px 0;
+    border-left: 0;
+    border-top: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  .showcase__meta p:last-child { padding-top: 0; border-top: 0; }
+  .showcase__gallery { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* The script never starts the clips on touch or under reduced-motion, so the
+   band would reveal an empty black video element. Hide it in both cases. */
+@media (hover: none), (pointer: coarse) {
+  .service__media { display: none; }
+  /* sticky :hover after a tap would leave the row nudged with no video, or a
+     card stranded mid-zoom */
+  .service:hover .service__label { padding-left: 0; }
+  .service:hover .service__go { opacity: 1; }
+  .project:hover .project__panel img,
+  .work-card:hover .work-card__panel img,
+  .showcase__shot:hover img { scale: 1; }
+  .btn-outline:hover { border-color: var(--line); color: inherit; background-size: 0 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track,
+  .menu__track { animation: none; }   /* the 0.01ms rule below would spin an infinite loop into a flicker */
+  .service__media { display: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

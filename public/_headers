@@ -1,0 +1,16 @@
+# Cloudflare Pages response headers
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+
+# Images and videos: cache for a day (some get replaced in place when a page is updated)
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Styles and scripts change with every edit: always revalidate
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate

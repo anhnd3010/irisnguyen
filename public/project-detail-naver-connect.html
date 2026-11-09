@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Naver Connect — Irisnguyen</title>
+  <meta name="description" content="UI project by Iris — AI &amp; data practice lessons for 소프트웨어야 놀자, NAVER Connect Foundation’s coding programme for children: programme pages, smart-farm practice screens and illustrations.">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Naver Connect — Irisnguyen">
+  <meta property="og:description" content="Designing AI &amp; data lessons where children train a robot to run a smart farm.">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Lexend:wght@400;500;600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Arms the scroll reveals before the body paints; without script they
+       never hide anything. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-detail page-case page-naver-connect" style="--footer-gap: var(--space-lg)">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="index.html" aria-label="Irisnguyen — home">
+        <img src="assets/brand/logo.svg" alt="" width="59" height="34">
+      </a>
+
+      <!-- Stays above the open menu and turns into its close button: the two
+           icons share one cell and cross-fade. -->
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <img class="burger__open" src="assets/icons/hamburger.svg" alt="" width="30" height="24">
+        <svg class="burger__close" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M13.3926 34.6068L34.6058 13.3936M34.6074 34.6068L13.3942 13.3936"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== Menu ===================== -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="menu__links" aria-label="Main">
+      <a class="menu__link" href="index.html" style="--order: 0">Home</a>
+      <a class="menu__link" href="about.html" style="--order: 1">About</a>
+      <a class="menu__link" href="project.html" style="--order: 2" data-current>Projects</a>
+    </nav>
+
+    <div class="menu__info" data-cursor="kv">
+      <p><strong>Address:</strong> <span>Hanoi, Vietnamese</span></p>
+      <p><strong>Mobile:</strong> <a href="tel:+84387676414">+84 387 676 414</a></p>
+      <p><strong>Email:</strong> <a class="menu__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a></p>
+    </div>
+
+    <div class="menu__ticker" data-cursor="kv" aria-hidden="true">
+      <div class="menu__track">
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="detail">
+
+    <!-- ===================== Title ===================== -->
+    <div class="detail__head container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal="rise">
+        <ol>
+          <li><a href="project.html">Projects</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li><a href="project.html">UX/UI</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li aria-current="page">Naver Connect</li>
+        </ol>
+      </nav>
+
+      <h1 class="detail__title" data-reveal="rise" style="--reveal-delay: 0.08s">NAVER CONNECT</h1>
+
+      <!-- The design's 1440 x 400 key visual: the programme's wordmark beside its robot and smart-farm capsule -->
+      <figure class="cs-cover" data-reveal="rise" data-reveal-amount="0.05" style="--reveal-delay: 0.16s">
+        <img src="assets/projects/naver-connect/banner.webp" alt="The 소프트웨어야 놀자 wordmark beside a robot with a laptop and a smart-farm capsule on a mint ribbon" width="2160" height="600">
+      </figure>
+    </div>
+
+    <article class="cs container" aria-label="Naver Connect project">
+
+      <!-- ===================== About ===================== -->
+      <section class="cs-about" aria-labelledby="cs-about-title">
+        <h2 class="cs-title" id="cs-about-title" data-reveal="rise">About the project</h2>
+        <div class="cs-about__body cs-text" data-reveal="rise">
+          <p>소프트웨어야 놀자 (“Software, let’s play”) is NAVER Connect Foundation’s coding and AI education programme for children. This project designed its AI &amp; Data practice: browser-based lessons where students from the third grade up work alongside a friendly robot, Sonolbot, to run a smart farm.</p>
+          <p>Each lesson starts from a short programme page, then moves into an illustrated practice space. In Grow a Fruit Farm and AI Smart Farm, students label fruit images, train a classification model and watch the robot sort and harvest the crop, so ideas such as supervised learning, image data and model bias are learned by doing.</p>
+          <p>The visual language pairs a bright violet with mint and pink accents, soft ribbon shapes and a cast of robot characters, keeping abstract ideas playful and approachable for young learners.</p>
+        </div>
+
+        <dl class="cs-facts" data-reveal="rise">
+          <div><dt>Project Type</dt><dd>UI Design</dd></div>
+          <div><dt>Year</dt><dd>2023</dd></div>
+          <div><dt>My Role</dt><dd>UI Designer</dd></div>
+          <div><dt>Client</dt><dd>NAVER Connect Foundation</dd></div>
+        </dl>
+
+        <div class="cs-media">
+          <figure class="cs-media__card" data-reveal="rise">
+            <img src="assets/projects/naver-connect/intro-screens.webp" alt="Sonolbot waving behind three lesson videos, inside a lavender ribbon" width="1062" height="607" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card" data-reveal="rise" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/intro-robot.webp" alt="A robot with a smiling screen face rising from a blue and mint W" width="1062" height="607" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card cs-media__card--wide" data-reveal="rise">
+            <img src="assets/projects/naver-connect/intro-laptop.webp" alt="The AI &amp; Data Practice page on a laptop over mint ribbons" width="2160" height="1215" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===================== Typography & Colour ===================== -->
+      <section class="cs-section" aria-labelledby="cs-type-title">
+        <h2 class="cs-title" id="cs-type-title" data-reveal="rise">Typography &amp; Colour</h2>
+        <div class="cs-type cs-type--cairo cs-type--inter cs-section__body" data-reveal="rise">
+          <p class="cs-type__name cs-type__name--outline cs-type__name--nanum"><img src="assets/projects/naver-connect/nanumsquareneo.svg" alt="NANUMSQUARENEO" width="1306" height="103"></p>
+          <ul class="cs-type__pills" aria-label="Weights">
+            <li style="font-weight: 300">Light</li>
+            <li style="font-weight: 400">Regular</li>
+            <li style="font-weight: 700">Bold</li>
+            <li style="font-weight: 900">Black</li>
+          </ul>
+          <ol class="cs-type__scale" aria-label="Type scale in px">
+            <li>16</li><li>20</li><li>24</li><li>32</li><li>48</li><li>64</li>
+          </ol>
+          <ul class="cs-swatches cs-swatches--nanum" aria-label="Colour palette">
+            <li style="--swatch: #5442e5">#5442e5</li>
+            <li style="--swatch: #181f41">#181F41</li>
+            <li style="--swatch: #00e7ae">#00e7ae</li>
+            <li style="--swatch: #da478f">#da478f</li>
+            <li style="--swatch: #48298f">#48298f</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== UI Design ===================== -->
+      <section class="cs-section" aria-labelledby="cs-ui-title">
+        <h2 class="cs-title" id="cs-ui-title" data-reveal="rise">UI Design</h2>
+        <!-- Two columns of full pages on light grey, as the design lays them out -->
+        <div class="cs-screens cs-screens--light cs-section__body" data-reveal="rise" data-reveal-amount="0.02">
+          <div class="cs-screens__col">
+            <img src="assets/projects/naver-connect/ui-illust-sorting.webp" alt="Illustration: Sonolbot scans tomatoes on a conveyor beside a robot arm" width="1256" height="942" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-illust-harvest.webp" alt="Illustration: a robot arm harvests tomatoes from greenhouse racks into a cart" width="1256" height="942" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-fruit-farm.webp" alt="Grow a Fruit Farm (키워봐요 과일농장): fruit on a conveyor, ready to sort" width="1256" height="1117" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-fruit-farm-grid.webp" alt="Grow a Fruit Farm: the robot at the greenhouse planting grid" width="1256" height="1183" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-smartfarm-sort.webp" alt="AI Smart Farm (인공지능 스마트팜): sorting tomatoes against the clock" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-smartfarm-night.webp" alt="AI Smart Farm: the greenhouse at night" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-smartfarm-farmer.webp" alt="AI Smart Farm: a farmer working with robots among the plants" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-smartfarm-crates.webp" alt="AI Smart Farm: a farmer with crates of harvested fruit" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-program.webp" alt="Programme page: Experience AI and data first-hand (직접 경험해보는 AI와 DATA)" width="1256" height="1086" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-practice-cloud.webp" alt="AI &amp; Data Practice page in purple, with a cloud illustration" width="1256" height="1089" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-practice-navy.webp" alt="AI &amp; Data Practice page in navy, with the smart-farm lesson card" width="1256" height="1111" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          </div>
+          <div class="cs-screens__col">
+            <img src="assets/projects/naver-connect/ui-illust-picking.webp" alt="Illustration: a robot arm picks tomatoes beside a delivery robot" width="1256" height="942" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-illust-greenhouse.webp" alt="Illustration: Sonolbot between rows of tomato plants" width="1256" height="942" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-illust-scan.webp" alt="Illustration: Sonolbot scans the tomato plants" width="1256" height="942" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-smartfarm-weigh.webp" alt="AI Smart Farm: a practice step with the robot and its fruit" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-fruit-farm-intro.webp" alt="Grow a Fruit Farm: Sonolbot introduces the smart-farm capsule" width="1256" height="1190" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-smartfarm-dark.webp" alt="AI Smart Farm: a darkened greenhouse step" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-smartfarm-score.webp" alt="AI Smart Farm: sorting results and score" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-smartfarm-title.webp" alt="AI Smart Farm: title screen" width="1256" height="1132" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-practice-capsule.webp" alt="AI &amp; Data Practice page with the robot and capsule illustration" width="1256" height="1089" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/naver-connect/ui-practice-guide.webp" alt="AI &amp; Data Practice page with a teacher and robot illustration" width="1256" height="1087" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/naver-connect/ui-practice-robot.webp" alt="AI &amp; Data Practice page with a yellow robot illustration" width="1256" height="1089" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- ===================== Other projects ===================== -->
+    <section class="detail__more container" aria-labelledby="more-title">
+      <h2 class="detail__title" id="more-title" data-reveal="rise">Other Projects</h2>
+
+      <div class="work-grid work-grid--three">
+        <a class="work-card work-card--compact" href="project-detail-fanstyle.html" data-reveal="rise" data-reveal-amount="0.2">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/fanstyle.webp" alt="FANSTYLE — Website for an Okinawa condominium developer" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>FANSTYLE</h3>
+          <p>Website for an Okinawa condominium developer</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-gdcollection1.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.08s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/gdcollection1.webp" alt="Graphic Design Collection 1 — Game, e-commerce and hardware campaign banners" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Graphic Design Collection 1</h3>
+          <p>Game, e-commerce and hardware campaign banners</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-timeless-landingpage.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.16s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/timeless-landingpage.webp" alt="Timeless Landingpage — Landing page for a luxury appraisal service" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Timeless Landingpage</h3>
+          <p>Landing page for a luxury appraisal service</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container" data-reveal="up" data-reveal-by="#contact">
+      <div class="footer__top">
+        <h2 class="footer__title">Let&rsquo;s Work Together</h2>
+        <div class="footer__contact">
+          <p>Available for work and always looking for exciting projects.</p>
+          <a class="footer__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+        <a href="index.html" data-cursor="button">Home</a>
+        <a href="about.html" data-cursor="button">About</a>
+        <a href="project.html" data-cursor="button">Projects</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+      <img src="assets/brand/logo-footer.svg" alt="" aria-hidden="true">
+      <p>&copy;2025 by Irisnguyen. all rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

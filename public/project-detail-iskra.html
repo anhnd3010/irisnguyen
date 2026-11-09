@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ISKRA — Irisnguyen</title>
+  <meta name="description" content="UI project by Iris — ISKRA, a Web3 gaming platform: Pioneer NFT sales and staking, the community tier system, a DEX, wallet and sign-in flows.">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ISKRA — Irisnguyen">
+  <meta property="og:description" content="Designing the ISKRA Web3 gaming platform, from Pioneer NFTs to the community tier system.">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Lexend:wght@300;400;500;600;700;900&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Arms the scroll reveals before the body paints; without script they
+       never hide anything. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-detail page-case page-iskra" style="--footer-gap: var(--space-lg)">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="index.html" aria-label="Irisnguyen — home">
+        <img src="assets/brand/logo.svg" alt="" width="59" height="34">
+      </a>
+
+      <!-- Stays above the open menu and turns into its close button: the two
+           icons share one cell and cross-fade. -->
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <img class="burger__open" src="assets/icons/hamburger.svg" alt="" width="30" height="24">
+        <svg class="burger__close" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M13.3926 34.6068L34.6058 13.3936M34.6074 34.6068L13.3942 13.3936"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== Menu ===================== -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="menu__links" aria-label="Main">
+      <a class="menu__link" href="index.html" style="--order: 0">Home</a>
+      <a class="menu__link" href="about.html" style="--order: 1">About</a>
+      <a class="menu__link" href="project.html" style="--order: 2" data-current>Projects</a>
+    </nav>
+
+    <div class="menu__info" data-cursor="kv">
+      <p><strong>Address:</strong> <span>Hanoi, Vietnamese</span></p>
+      <p><strong>Mobile:</strong> <a href="tel:+84387676414">+84 387 676 414</a></p>
+      <p><strong>Email:</strong> <a class="menu__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a></p>
+    </div>
+
+    <div class="menu__ticker" data-cursor="kv" aria-hidden="true">
+      <div class="menu__track">
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="detail">
+
+    <!-- ===================== Title ===================== -->
+    <div class="detail__head container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal="rise">
+        <ol>
+          <li><a href="project.html">Projects</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li><a href="project.html">UX/UI</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li aria-current="page">ISKRA</li>
+        </ol>
+      </nav>
+
+      <h1 class="detail__title" data-reveal="rise" style="--reveal-delay: 0.08s">ISKRA</h1>
+
+      <!-- The design's 1440 x 400 key visual: the ISKRA mark beside an isometric world -->
+      <figure class="cs-cover" data-reveal="rise" data-reveal-amount="0.05" style="--reveal-delay: 0.16s">
+        <img src="assets/projects/iskra/banner.webp" alt="The ISKRA logo beside an isometric illustration of explorers climbing pink and blue stairs" width="2160" height="600">
+      </figure>
+    </div>
+
+    <article class="cs container" aria-label="ISKRA project">
+
+      <!-- ===================== About ===================== -->
+      <section class="cs-about" aria-labelledby="cs-about-title">
+        <h2 class="cs-title" id="cs-about-title" data-reveal="rise">About the project</h2>
+        <div class="cs-about__body cs-text" data-reveal="rise">
+          <p>ISKRA is a Web3 gaming platform where players earn while they play. Its Pioneer NFTs give holders a share of the platform: node operation rewards, community rewards, governance staking and airdrops for upcoming games.</p>
+          <p>The project covers the platform’s main journeys: discovering the games on the home page, buying and staking Pioneer NFTs step by step, tracking Contribution Points through the ISKRA Community Tier, trading on the DEX and managing tokens in the wallet, plus sign-up, sign-in and password reset.</p>
+          <p>The interface sits on a deep navy night sky, with an isometric illustration world and a blue-to-pink gradient taken from the ISKRA mark, so complex crypto steps feel like part of a game.</p>
+        </div>
+
+        <dl class="cs-facts" data-reveal="rise">
+          <div><dt>Project Type</dt><dd>UI Design</dd></div>
+          <div><dt>Year</dt><dd>2023</dd></div>
+          <div><dt>My Role</dt><dd>UI Designer</dd></div>
+          <div><dt>Client</dt><dd>Iskra</dd></div>
+        </dl>
+
+        <div class="cs-media">
+          <figure class="cs-media__card" data-reveal="rise">
+            <img src="assets/projects/iskra/intro-mining.webp" alt="Isometric illustration of miners pushing carts of ISKRA tokens through a desert gate" width="1062" height="607" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card" data-reveal="rise" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/iskra/intro-icons.webp" alt="The ISKRA icon set: tokens, rewards, staking, swap and more" width="1062" height="607" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card cs-media__card--wide" data-reveal="rise">
+            <img src="assets/projects/iskra/intro-desk.webp" alt="The Community System page on a laptop" width="2160" height="1215" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===================== Typography & Colour ===================== -->
+      <section class="cs-section" aria-labelledby="cs-type-title">
+        <h2 class="cs-title" id="cs-type-title" data-reveal="rise">Typography &amp; Colour</h2>
+        <div class="cs-type cs-type--cairo cs-type--sofia cs-section__body" data-reveal="rise">
+          <!-- Sofia Pro isn't a web font here, so the specimen is its outlines,
+               traced from the Figma frame -->
+          <p class="cs-type__name cs-type__name--outline"><img src="assets/projects/iskra/sofia-pro.svg" alt="SOFIA PRO" width="809" height="114"></p>
+          <ul class="cs-type__pills" aria-label="Weights">
+            <li style="font-weight: 300">Light</li>
+            <li style="font-weight: 400">Regular</li>
+            <li style="font-weight: 700">Bold</li>
+            <li style="font-weight: 900">Black</li>
+          </ul>
+          <ol class="cs-type__scale" aria-label="Type scale in px">
+            <li>16</li><li>20</li><li>24</li><li>32</li><li>48</li><li>64</li>
+          </ol>
+          <ul class="cs-swatches" aria-label="Colour palette">
+            <li style="--swatch: #000000">#000000</li>
+            <li style="--swatch: #00339b">#00339B</li>
+            <li class="is-light" style="--swatch: #00ccff">#00CCFF</li>
+            <li style="--swatch: #ff2899">#FF2899</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== UI Design ===================== -->
+      <section class="cs-section" aria-labelledby="cs-ui-title">
+        <h2 class="cs-title" id="cs-ui-title" data-reveal="rise">UI Design</h2>
+        <!-- Two columns of full pages on light grey, as the design lays them out -->
+        <div class="cs-screens cs-screens--light cs-section__body" data-reveal="rise" data-reveal-amount="0.02">
+          <div class="cs-screens__col">
+            <img src="assets/projects/iskra/ui-home.webp" alt="Home: Pioneer NFTs now available, games, earn and news" width="1256" height="3349" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/iskra/ui-purchase.webp" alt="Purchase Pioneer NFT, step 4: stake your NFTs" width="1256" height="2024" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/iskra/ui-tier.webp" alt="ISKRA Community Tier: earn CP and enjoy rewards by tier" width="1256" height="3046" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/iskra/ui-dex.webp" alt="DEX: bridge and swap transactions" width="1256" height="1420" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/iskra/ui-congrats.webp" alt="Congratulations pop-ups after a purchase" width="1256" height="707" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/iskra/ui-token.webp" alt="Wallet: token balances on Mainnet and Ethereum" width="1256" height="1314" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+          </div>
+          <div class="cs-screens__col">
+            <img src="assets/projects/iskra/ui-signup.webp" alt="Get started: sign-up form" width="1256" height="864" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/iskra/ui-login.webp" alt="Welcome back: sign-in form" width="1256" height="707" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/iskra/ui-reset.webp" alt="Reset password" width="1256" height="707" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/iskra/ui-pioneer.webp" alt="Become a Pioneer and earn rewards: 1st sale round and benefits" width="1256" height="3970" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/iskra/ui-checkout.webp" alt="Pioneer NFT purchase: order and payment" width="1256" height="1871" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/iskra/ui-purchase.webp" alt="Purchase Pioneer NFT, step 4: stake your NFTs" width="1256" height="2024" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/iskra/ui-refer.webp" alt="How can I become a Pioneer, and refer a friend" width="1256" height="1798" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- ===================== Other projects ===================== -->
+    <section class="detail__more container" aria-labelledby="more-title">
+      <h2 class="detail__title" id="more-title" data-reveal="rise">Other Projects</h2>
+
+      <div class="work-grid work-grid--three">
+        <a class="work-card work-card--compact" href="project-detail-savills.html" data-reveal="rise" data-reveal-amount="0.2">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/savills.webp" alt="Savills Vietnam — Internal property-management platform" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Savills Vietnam</h3>
+          <p>Internal property-management platform</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-gdcollection2.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.08s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/gdcollection2.webp" alt="Graphic Design Collection 2 — Key visuals, posters and greeting cards" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Graphic Design Collection 2</h3>
+          <p>Key visuals, posters and greeting cards</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-melon.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.16s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/melon.webp" alt="Melon Website Design — Facial-recognition API website and developer portal" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Melon Website Design</h3>
+          <p>Facial-recognition API website and developer portal</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container" data-reveal="up" data-reveal-by="#contact">
+      <div class="footer__top">
+        <h2 class="footer__title">Let&rsquo;s Work Together</h2>
+        <div class="footer__contact">
+          <p>Available for work and always looking for exciting projects.</p>
+          <a class="footer__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+        <a href="index.html" data-cursor="button">Home</a>
+        <a href="about.html" data-cursor="button">About</a>
+        <a href="project.html" data-cursor="button">Projects</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+      <img src="assets/brand/logo-footer.svg" alt="" aria-hidden="true">
+      <p>&copy;2025 by Irisnguyen. all rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

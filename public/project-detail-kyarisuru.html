@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kyarisuru — Irisnguyen</title>
+  <meta name="description" content="UX/UI case study by Iris — Kyarisuru (キャリする), an anonymous career-consultation chat app for Japan: input analysis, sitemap, user flows, wireframes, brand and 94 app screens.">
+  <meta name="theme-color" content="#f6f6f6">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Kyarisuru — Irisnguyen">
+  <meta property="og:description" content="Turning a points-based chat consultation service into an anonymous, no-recruiting career app with its own concept and identity.">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Lexend:wght@400;500;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700;800;900&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Arms the scroll reveals before the body paints; without script they
+       never hide anything. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-detail page-case page-kyarisuru" style="--footer-gap: var(--space-lg)">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="index.html" aria-label="Irisnguyen — home">
+        <img src="assets/brand/logo.svg" alt="" width="59" height="34">
+      </a>
+
+      <!-- Stays above the open menu and turns into its close button: the two
+           icons share one cell and cross-fade. -->
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <img class="burger__open" src="assets/icons/hamburger.svg" alt="" width="30" height="24">
+        <svg class="burger__close" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path d="M13.3926 34.6068L34.6058 13.3936M34.6074 34.6068L13.3942 13.3936"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== Menu ===================== -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="menu__links" aria-label="Main">
+      <a class="menu__link" href="index.html" style="--order: 0">Home</a>
+      <a class="menu__link" href="about.html" style="--order: 1">About</a>
+      <a class="menu__link" href="project.html" style="--order: 2" data-current>Projects</a>
+    </nav>
+
+    <div class="menu__info" data-cursor="kv">
+      <p><strong>Address:</strong> <span>Hanoi, Vietnamese</span></p>
+      <p><strong>Mobile:</strong> <a href="tel:+84387676414">+84 387 676 414</a></p>
+      <p><strong>Email:</strong> <a class="menu__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a></p>
+    </div>
+
+    <div class="menu__ticker" data-cursor="kv" aria-hidden="true">
+      <div class="menu__track">
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+        <span class="menu__word">
+          <video src="assets/videos/service-product-design.mp4" muted loop playsinline preload="none"></video>
+          <span class="menu__word-text">READY TO WORK TOGETHER?</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="detail">
+
+    <!-- ===================== Title ===================== -->
+    <div class="detail__head container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal="rise">
+        <ol>
+          <li><a href="project.html">Projects</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li><a href="project.html">UX/UI</a>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg>
+          </li>
+          <li aria-current="page">Kyarisuru</li>
+        </ol>
+      </nav>
+
+      <h1 class="detail__title" data-reveal="rise" style="--reveal-delay: 0.08s">Kyarisuru</h1>
+
+      <!-- The design's 1440 x 400 key visual, logo and phone composed as one -->
+      <figure class="cs-cover" data-reveal="rise" data-reveal-amount="0.05" style="--reveal-delay: 0.16s">
+        <img src="assets/projects/kyarisuru/banner.webp" alt="The キャリする logo beside a phone showing the app's supporter list" width="2880" height="800">
+      </figure>
+    </div>
+
+    <article class="cs container" lang="vi" aria-label="Kyarisuru case study">
+
+      <!-- ===================== About ===================== -->
+      <section class="cs-about" aria-labelledby="cs-about-title">
+        <h2 class="cs-title" id="cs-about-title" lang="en" data-reveal="rise">About the project</h2>
+        <div class="cs-about__body cs-text" data-reveal="rise">
+          <p><span lang="ja">キャリする</span> là một nền tảng tư vấn nghề nghiệp dành cho thị trường Nhật Bản, được phát triển từ một dịch vụ chat tư vấn hiện có với mô hình trả phí bằng điểm. Dự án tập trung vào việc chuyển đổi cấu trúc của một dịch vụ đã có thành một sản phẩm mang định hướng nghề nghiệp rõ ràng hơn, đồng thời duy trì những chức năng cốt lõi đã được kiểm chứng.</p>
+          <p>Tôi phân tích ứng dụng tham chiếu và các yêu cầu từ khách hàng để xây dựng lại information architecture, wireframe và trải nghiệm người dùng từ đầu. Thay vì chỉ redesign giao diện, dự án tập trung vào việc tái định hướng mô hình tư vấn qua chat thành một sản phẩm có concept và nhận diện riêng, xoay quanh chủ đề phát triển sự nghiệp.</p>
+          <p>Tên <span lang="ja">「キャリする」</span> được kết hợp từ career và suru (“làm”), thể hiện ý tưởng “chủ động hành động cho sự nghiệp”. Concept này trở thành nền tảng để định hướng trải nghiệm và ngôn ngữ hình ảnh cho toàn bộ sản phẩm.</p>
+        </div>
+
+        <dl class="cs-facts" lang="en" data-reveal="rise">
+          <div><dt>Project Type</dt><dd>UX/UI Design</dd></div>
+          <div><dt>Year</dt><dd>2023</dd></div>
+          <div><dt>My Role</dt><dd>Lead Designer</dd></div>
+          <div><dt>Client</dt><dd>Japan Client</dd></div>
+        </dl>
+
+        <div class="cs-media">
+          <figure class="cs-media__card" data-reveal="rise">
+            <img src="assets/projects/kyarisuru/intro-logo.webp" alt="Logo Kyarisuru: biểu tượng ngọn lửa và lốc xoáy màu cam, xanh, kèm bản dựng lưới" width="1416" height="810" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card" data-reveal="rise" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/intro-phone.webp" alt="Icon app Kyarisuru trên màn hình chính của iPhone" width="1416" height="810" loading="lazy">
+          </figure>
+
+          <figure class="cs-media__card cs-media__card--wide" data-reveal="rise">
+            <img src="assets/projects/kyarisuru/intro-desk.webp" alt="Màn hình hồ sơ cố vấn của Kyarisuru trên điện thoại đặt cạnh laptop" width="2160" height="1215" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===================== Role & Scope ===================== -->
+      <section class="cs-section" aria-labelledby="cs-role-title">
+        <h2 class="cs-title" id="cs-role-title" lang="en" data-reveal="rise">Role &amp; Scope</h2>
+        <div class="cs-duo cs-section__body">
+          <div class="cs-panel cs-panel--blue" data-reveal="rise">
+            <h3 class="cs-pill">Vai trò của tôi</h3>
+            <ul class="cs-list">
+              <li>Phân tích yêu cầu của Kyarisuru và tài liệu của Stella, xác định phần giữ lại, phần cần tối ưu và phần xây mới.</li>
+              <li>Tối ưu UX cho ba luồng chính: tư vấn, đăng ký bằng karte, giữ và lấy lại tài khoản.</li>
+              <li>Dựng wireframe, đề xuất hai hướng UI (Type A, Type B) kèm prototype cho App User và App Supporter.</li>
+              <li>Thiết kế UI App User trong ba tuần cùng style guide và component, thiết kế logo và brand guideline.</li>
+            </ul>
+          </div>
+          <div class="cs-panel cs-panel--cyan" data-reveal="rise" style="--reveal-delay: 0.08s">
+            <h3 class="cs-pill">Hạng mục bàn giao</h3>
+            <ul class="cs-list">
+              <li>Logo &amp; Bộ quy chuẩn thương hiệu</li>
+              <li>Sitemap, user flow, wireframe</li>
+              <li>Proposal UI và prototype cho App User và App Supporter</li>
+              <li>Thiết kế UI App User Toàn bộ 94 Screen</li>
+              <li>Style Guide &amp; thư viện component của toàn bộ dự án</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Background ===================== -->
+      <section class="cs-section" aria-labelledby="cs-bg-title">
+        <h2 class="cs-title" id="cs-bg-title" lang="en" data-reveal="rise">Background</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead" data-reveal="rise">
+            <h3 class="cs-lead__title">Người đi làm cần một nơi để hỏi, nhưng không muốn bị “bán” cho một công việc mới</h3>
+            <p class="cs-text">Kyarisuru được định vị là dịch vụ tư vấn sự nghiệp “<span lang="ja">匿名・斡旋なし</span>”: ẩn danh và không môi giới việc làm. Định vị này nhắm vào ba rào cản khiến người đi làm ngại tìm lời khuyên, và cũng là ba điều thiết kế phải giải quyết.</p>
+          </div>
+
+          <ol class="cs-cols cs-cols--3" data-reveal="rise">
+            <li>
+              <p class="cs-kicker">Niềm tin</p>
+              <h4 class="cs-cols__title">Lời khuyên có động cơ</h4>
+              <p class="cs-text">Khi cố vấn hưởng hoa hồng từ việc giới thiệu việc làm, người dùng khó tin lời khuyên thực sự vì lợi ích của mình.</p>
+            </li>
+            <li>
+              <p class="cs-kicker">Riêng tư</p>
+              <h4 class="cs-cols__title">Sợ lộ danh tính</h4>
+              <p class="cs-text">Chuyển việc, mâu thuẫn với cấp trên hay lương thưởng đều là chủ đề nhạy cảm. Người dùng muốn hỏi mà không phải để lại tên thật.</p>
+            </li>
+            <li>
+              <p class="cs-kicker">Rào cản</p>
+              <h4 class="cs-cols__title">Bắt đầu quá nặng nề</h4>
+              <p class="cs-text">Đặt lịch, điền hồ sơ dài, gặp mặt trực tiếp khiến người dùng trì hoãn cho đến khi vấn đề đã lớn.</p>
+            </li>
+          </ol>
+
+          <blockquote class="cs-hmw cs-hmw--goal" data-reveal="rise">
+            <p>Mục tiêu thiết kế: giúp người đi làm hỏi về sự nghiệp dễ như nhắn tin cho bạn bè, vừa ẩn danh, vừa tin được người trả lời.</p>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ===================== Research ===================== -->
+      <section class="cs-section" aria-labelledby="cs-research-title">
+        <h2 class="cs-title" id="cs-research-title" lang="en" data-reveal="rise">Research</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead" data-reveal="rise">
+            <h3 class="cs-lead__title">Đọc kỹ đầu vào trước khi thiết kế màn hình đầu tiên</h3>
+            <p class="cs-text">Với tài liệu tính năng và một app đang vận hành trong tay, research tập trung khai thác hai nguồn này thay vì bắt đầu từ con số không. Với từng thành phần, tôi trả lời một câu hỏi: giữ nguyên, tối ưu, hay xây mới cho chủ đề sự nghiệp?</p>
+          </div>
+
+          <ul class="cs-cols cs-cols--3 cs-cols--bars" data-reveal="rise">
+            <li style="--bar: var(--ky-orange)">
+              <h4 class="cs-cols__title">Audit app tham chiếu</h4>
+              <p class="cs-text">Chụp và chú thích từng màn hình của Stella (splash, first screen, karte, login, home, tutorial, notification), ghi lại cơ chế đằng sau mỗi màn hình.</p>
+            </li>
+            <li style="--bar: var(--ky-cyan)">
+              <h4 class="cs-cols__title">Phân tích tài liệu tính năng</h4>
+              <p class="cs-text">Đối chiếu yêu cầu và trường dữ liệu của Kyarisuru với danh sách chức năng, screen list, đặc tả và screen flow của Stella để chốt phạm vi thiết kế.</p>
+            </li>
+            <li style="--bar: var(--ky-navy)">
+              <h4 class="cs-cols__title">Moodboard &amp; benchmark</h4>
+              <p class="cs-text">Hơn 80 hình tham khảo từ UI kit, app tuyển dụng và các bộ nhận diện dùng xanh dương, cam, làm nền cho hướng hình ảnh mới.</p>
+            </li>
+          </ul>
+
+          <!-- Keep / optimise / build matrix -->
+          <div class="cs-block">
+            <div class="cs-intro" data-reveal="rise">
+              <h3 class="cs-subhead">Ma trận giữ · tối ưu · xây mới</h3>
+              <p class="cs-text">Kết quả phân tích được gom thành một bảng quyết định, làm căn cứ cho cấu trúc, wireframe và giao diện ở các bước sau.</p>
+            </div>
+
+            <div class="cs-scroll" tabindex="0" role="region" aria-label="Ma trận giữ, tối ưu, xây mới" data-reveal="rise">
+              <table class="cs-table cs-table--matrix">
+                <caption class="visually-hidden">Quyết định cho từng thành phần của app tham chiếu khi chuyển sang Kyarisuru</caption>
+                <colgroup>
+                  <col style="width: 18.61%"><col style="width: 18.89%"><col style="width: 12.5%"><col>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">Thành phần</th>
+                    <th scope="col">Trong app tham chiếu</th>
+                    <th scope="col">Quyết định</th>
+                    <th scope="col">Áp dụng cho Kyarisuru</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Chat trả phí theo điểm</th>
+                    <td>Trừ điểm theo số ký tự hoặc theo phiên gọi</td>
+                    <td><span class="cs-decision cs-decision--keep">Giữ</span></td>
+                    <td>Giữ nguyên cơ chế; giá chat và giá gọi hiển thị ngay dưới tên cố vấn</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ranking &amp; review</th>
+                    <td>Xếp hạng cố vấn, đánh giá sau mỗi buổi tư vấn</td>
+                    <td><span class="cs-decision cs-decision--keep">Giữ</span></td>
+                    <td>Ranking theo ngày, tuần, tháng; review Good/Bad kèm nhận xét, review nổi bật gắn nhãn PickUp</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Karte hội thoại</th>
+                    <td>Trợ lý ảo hỏi thông tin thay cho biểu mẫu</td>
+                    <td><span class="cs-decision cs-decision--tune">Tối ưu</span></td>
+                    <td>Chỉ hỏi 4 mục khi đăng ký, lỗi phản hồi ngay trong bong bóng chat, thẻ karte để sửa từng mục; thông tin công việc và mong muốn chuyển việc để sau, trong hồ sơ tư vấn ở My page</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Danh sách &amp; hồ sơ cố vấn</th>
+                    <td>Screen Teller list dành cho thầy bói</td>
+                    <td><span class="cs-decision cs-decision--tune">Tối ưu</span></td>
+                    <td>Lọc theo chủ đề nghề nghiệp và 3 kiểu sắp xếp; thẻ hiển thị hạng, số sao, số review, “<span lang="ja">今すぐ相談OK</span>”; hồ sơ có slogan cá nhân và ảnh thật</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Mission &amp; điểm thưởng</th>
+                    <td>Không có tab riêng trong screen flow</td>
+                    <td><span class="cs-decision cs-decision--tune">Tối ưu</span></td>
+                    <td>Nâng thành tab chính thay cho Menu; Special (giới hạn thời gian) và Welcome (luôn mở) có thanh tiến độ và nút nhận thưởng</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Column</th>
+                    <td>Blog nằm trong tab Menu</td>
+                    <td><span class="cs-decision cs-decision--tune">Tối ưu</span></td>
+                    <td>Đưa lên Home để giữ chân người chưa sẵn sàng chat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">First screen &amp; thông điệp</th>
+                    <td>Màn hình chào gắn với chủ đề của app gốc</td>
+                    <td><span class="cs-decision cs-decision--new">Xây mới</span></td>
+                    <td>Lời hứa “<span lang="ja">匿名・斡旋なし</span>” ngay màn hình đầu, đăng nhập nhanh bằng Google/LINE</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Kiến trúc thông tin</th>
+                    <td>Tab Menu gom Timeline, Stella answer, Blog và mua điểm</td>
+                    <td><span class="cs-decision cs-decision--new">Xây mới</span></td>
+                    <td>Bỏ tính năng riêng của Stella; năm tab Home, Chat, Ranking, Mission, My page</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tên &amp; nhận diện</th>
+                    <td>Thương hiệu của app gốc</td>
+                    <td><span class="cs-decision cs-decision--new">Xây mới</span></td>
+                    <td>Tên <span lang="ja">キャリする</span>, logo lửa và lốc xoáy, hệ màu blue · cyan · orange</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Sitemap ===================== -->
+      <section class="cs-section" aria-labelledby="cs-sitemap-title">
+        <h2 class="cs-title" id="cs-sitemap-title" lang="en" data-reveal="rise">Sitemap</h2>
+        <div class="cs-section__body">
+          <div class="cs-lead cs-lead--tabs" data-reveal="rise">
+            <h3 class="cs-lead__title">Từ screen flow của app tham chiếu đến năm tab cho Kyarisuru</h3>
+            <p class="cs-text">Screen flow khách hàng gửi được dựng từ Stella, với tab Menu gom Timeline, Stella answer, Blog và mua điểm. Tôi bỏ các tính năng chỉ dành cho Stella, đưa danh sách cố vấn, ranking và column lên Home, rồi dùng vị trí của tab Menu cho Mission. Kết quả là năm tab: Home, Chat, Ranking, Mission, My page.</p>
+          </div>
+
+          <div class="cs-tree" lang="en" data-reveal="rise">
+            <p class="cs-tree__root">APP USER</p>
+            <ul class="cs-tree__cols">
+              <li>
+                <p class="cs-tree__head">Onboarding</p>
+                <ul class="cs-tree__kids">
+                  <li><span class="cs-tree__node">Splash</span></li>
+                  <li><span class="cs-tree__node">First screen</span>
+                    <ul class="cs-tree__kids">
+                      <li><span class="cs-tree__node">First karte</span></li>
+                      <li><span class="cs-tree__node">Tutorial</span></li>
+                      <li><span class="cs-tree__node">Login</span></li>
+                      <li><span class="cs-tree__node">Account reissue 1</span></li>
+                      <li><span class="cs-tree__node">Account reissue 2</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-tree__head">Home</p>
+                <ul class="cs-tree__kids">
+                  <li><span class="cs-tree__node">Notification</span></li>
+                  <li><span class="cs-tree__node">Supporter list</span></li>
+                  <li><span class="cs-tree__node">Supporter detail</span>
+                    <ul class="cs-tree__kids">
+                      <li><span class="cs-tree__node">Review post</span></li>
+                      <li><span class="cs-tree__node">Phone consult</span></li>
+                      <li><span class="cs-tree__node">Column list</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="cs-tree__node">Column detail</span>
+                    <ul class="cs-tree__kids">
+                      <li><span class="cs-tree__node">Review post</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-tree__head">Chat history</p>
+                <ul class="cs-tree__kids">
+                  <li><span class="cs-tree__node">Introduction</span></li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-tree__head">Ranking</p>
+                <ul class="cs-tree__kids">
+                  <li><span class="cs-tree__node">Daily</span></li>
+                  <li><span class="cs-tree__node">Weekly</span></li>
+                  <li><span class="cs-tree__node">Monthly</span></li>
+                </ul>
+              </li>
+              <li>
+                <p class="cs-tree__head">Mission</p>
+              </li>
+              <li>
+                <p class="cs-tree__head">My page</p>
+                <ul class="cs-tree__kids">
+                  <li><span class="cs-tree__node">Edit consult sheet</span></li>
+                  <li><span class="cs-tree__node">Account setting</span></li>
+                  <li><span class="cs-tree__node">Introduce friend</span></li>
+                  <li><span class="cs-tree__node">Help</span></li>
+                  <li><span class="cs-tree__node">Other setting</span>
+                    <ul class="cs-tree__kids">
+                      <li><span class="cs-tree__node">Notification setting</span></li>
+                      <li><span class="cs-tree__node">Block list</span></li>
+                      <li><span class="cs-tree__node">Deactive</span></li>
+                      <li><span class="cs-tree__node">About fee</span></li>
+                      <li><span class="cs-tree__node">Terms of use</span></li>
+                      <li><span class="cs-tree__node">Privacy policy</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== User flow ===================== -->
+      <section class="cs-section" aria-labelledby="cs-flow-title">
+        <h2 class="cs-title" id="cs-flow-title" lang="en" data-reveal="rise">User Flow</h2>
+        <div class="cs-section__body">
+
+          <!-- Flow A. Coordinates are the design's own, on its 1440 board. -->
+          <div class="cs-flow">
+            <div class="cs-intro" data-reveal="rise">
+              <h3 class="cs-subhead">A · Tìm cố vấn, tư vấn và quay lại</h3>
+            </div>
+            <div class="cs-scroll cs-scroll--flow" tabindex="0" role="region" aria-label="Sơ đồ user flow A: tìm cố vấn, tư vấn và quay lại" data-reveal="rise" data-reveal-amount="0.05">
+              <svg class="cs-flow__svg" viewBox="105 -2 1186 2305" style="--w: 1186" role="img" aria-labelledby="ky1-title ky1-desc">
+                <title id="ky1-title">User flow A: tìm cố vấn, tư vấn và quay lại</title>
+                <desc id="ky1-desc">Từ Home, người dùng xem Ranking, tìm theo chủ đề ở Supporter list, hoặc nhận thông báo cố vấn yêu thích online, rồi đến Supporter detail. Nếu không đủ điểm, họ mua hoặc nhận điểm rồi quay lại. Khi đủ điểm, họ chọn chat để vào Chat detail, hoặc gọi điện: xác nhận cuộc gọi, đang kết nối, và nếu cố vấn không nhận máy thì app gợi ý chuyển sang chat. Khi cố vấn nhận máy: đang gọi, có thể nạp nhanh để gọi tiếp, kết thúc cuộc gọi và xem tóm tắt. Cả hai nhánh kết thúc ở Review (Good/Bad, có thể bỏ qua) và cuộc tư vấn được lưu ở Chat history.</desc>
+                <defs>
+                  <marker id="ky1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1.5 9 5 0 8.5z"/></marker>
+                </defs>
+
+                <g class="fl-lines" marker-end="url(#ky1-arrow)">
+                  <path d="M776.3 57V107"/>
+                  <path d="M381.9 269.9V312.7"/>
+                  <path d="M776.3 269.9V312.7"/>
+                  <path d="M1158.8 386.4V502.9H902.8"/>
+                  <path d="M381.9 400.7V444.7H694.3V475.7"/>
+                  <path d="M776.3 400.7V475.7"/>
+                  <path d="M776.3 563.7V638.7"/>
+                  <path d="M880.8 701.2H1030.3"/>
+                  <path d="M776.3 763.7V838.7"/>
+                  <path d="M776.3 963.7V1052.2"/>
+                  <path d="M671.8 901.2H232.6V1038.7"/>
+                  <path d="M232.6 1126.7V1201.7"/>
+                  <path d="M232.6 1289.7V1364.7"/>
+                  <path d="M337.1 1427.2H428.8"/>
+                  <path d="M552.3 1212V1082.7H696.8"/>
+                  <path d="M232.6 1489.7V1564.7"/>
+                  <path d="M232.6 1652.7V1727.7"/>
+                  <path d="M232.6 1815.7V1890.7"/>
+                  <path d="M232.6 1978.7V2097.7H636.3"/>
+                  <path d="M776.3 1113.2V2053.7"/>
+                  <path d="M776.3 2141.7V2216.7"/>
+                  <path class="fl-dash" d="M1158.3 596V537.4H902.8"/>
+                  <path class="fl-dash" d="M552.3 1652.7V1683.1H289.5V1652.7"/>
+                </g>
+                <g class="fl-lines">
+                  <path d="M694.3 168V201.2H381.9V236.5"/>
+                  <path d="M776.3 168V236.5"/>
+                  <path d="M861.3 168V201.2H1158.8V324.6"/>
+                  <path d="M552.3 1383.2V1249.1"/>
+                  <path class="fl-dash" d="M1158.3 670.7V638.7"/>
+                </g>
+
+                <g class="fl-label">
+                  <text x="381.9" y="252.7">Xem ranking</text>
+                  <text x="776.3" y="252.7">Tìm theo chủ đề</text>
+                  <text x="1158.3" y="355.2"><tspan x="1158.3" dy="-0.6em">Thông báo cố vấn</tspan><tspan x="1158.3" dy="1.25em">yêu thích online</tspan></text>
+                  <text x="1157.8" y="617.5">Có điểm, quay lại</text>
+                  <text x="552.3" y="1230.8">Chuyển sang chat</text>
+                  <text x="421.4" y="1702.3">Nạp nhanh, gọi tiếp</text>
+                </g>
+                <g class="fl-branch">
+                  <text x="945.1" y="668.7">Không</text>
+                  <text x="818.3" y="787.7">Có</text>
+                  <text x="828.1" y="1000.9">Chat</text>
+                  <text x="452.2" y="875.8">Gọi điện</text>
+                  <text x="376.9" y="1401.2">Không</text>
+                  <text x="258.4" y="1522.5">Có</text>
+                </g>
+
+                <g class="fl-start">
+                  <rect x="639.8" y="0" width="273" height="57" rx="28.5"/>
+                  <text x="776.3" y="28.5">Muốn tư vấn sự nghiệp</text>
+                </g>
+                <g class="fl-node">
+                  <rect x="649.8" y="107" width="253" height="61" rx="4"/>
+                  <text x="776.3" y="137.5">Home</text>
+                  <rect x="258.4" y="312.7" width="247" height="88" rx="4"/>
+                  <text><tspan x="381.9" y="343.2">Ranking</tspan><tspan class="fl-sub" x="381.9" y="371.2">ngày · tuần · tháng</tspan></text>
+                  <rect x="649.8" y="312.7" width="253" height="88" rx="4"/>
+                  <text><tspan x="776.3" y="343.2">Supporter list</tspan><tspan class="fl-sub" x="776.3" y="371.2">lọc chủ đề · sắp xếp</tspan></text>
+                  <rect x="649.8" y="475.7" width="253" height="88" rx="4"/>
+                  <text><tspan x="776.3" y="506.2">Supporter detail</tspan><tspan class="fl-sub" x="776.3" y="534.2">hồ sơ · review · giá điểm</tspan></text>
+                  <rect x="1030.3" y="670.7" width="256" height="61" rx="4"/>
+                  <text x="1158.3" y="701.2">Mua hoặc nhận điểm</text>
+                  <rect x="696.8" y="1052.2" width="159" height="61" rx="4"/>
+                  <text x="776.3" y="1082.7">Chat detail</text>
+                  <rect x="109.1" y="1038.7" width="247" height="88" rx="4"/>
+                  <text><tspan x="232.6" y="1069.2">Xác nhận cuộc gọi</tspan><tspan class="fl-sub" x="232.6" y="1097.2">giá pt/phút · số dư</tspan></text>
+                  <rect x="109.1" y="1201.7" width="247" height="88" rx="4"/>
+                  <text><tspan x="232.6" y="1232.2">Đang kết nối</tspan><tspan class="fl-sub" x="232.6" y="1260.2">có thể huỷ</tspan></text>
+                  <rect x="109.1" y="1564.7" width="247" height="88" rx="4"/>
+                  <text><tspan x="232.6" y="1595.2">Đang gọi</tspan><tspan class="fl-sub" x="232.6" y="1623.2">giờ gọi · điểm còn lại</tspan></text>
+                  <rect x="428.8" y="1564.7" width="247" height="88" rx="4"/>
+                  <text><tspan x="552.3" y="1595.2">Đang kết nối</tspan><tspan class="fl-sub" x="552.3" y="1623.2">có thể huỷ</tspan></text>
+                  <rect x="109.1" y="1727.7" width="247" height="88" rx="4"/>
+                  <text><tspan x="232.6" y="1758.2">Kết thúc cuộc gọi</tspan><tspan class="fl-sub" x="232.6" y="1786.2">có thể huỷ</tspan></text>
+                  <rect x="109.1" y="1890.7" width="247" height="88" rx="4"/>
+                  <text><tspan x="232.6" y="1921.2">Tóm tắt cuộc gọi</tspan><tspan class="fl-sub" x="232.6" y="1949.2">thời lượng · điểm đã trừ</tspan></text>
+                  <rect x="636.3" y="2053.7" width="280" height="88" rx="4"/>
+                  <text><tspan x="776.3" y="2084.2">Review</tspan><tspan class="fl-sub" x="776.3" y="2112.2">Good / Bad · có thể bỏ qua</tspan></text>
+                </g>
+                <g class="fl-decision">
+                  <polygon points="776.3,638.7 880.8,701.2 776.3,763.7 671.8,701.2"/>
+                  <text x="776.3" y="701.2">Đủ điểm?</text>
+                  <polygon points="776.3,838.7 880.8,901.2 776.3,963.7 671.8,901.2"/>
+                  <text x="776.3" y="901.2">Đủ điểm?</text>
+                  <polygon points="232.6,1364.7 337.1,1427.2 232.6,1489.7 128.1,1427.2"/>
+                  <text x="232.6" y="1427.2"><tspan x="232.6" dy="-0.6em">Cố vấn</tspan><tspan x="232.6" dy="1.25em">nhận máy?</tspan></text>
+                </g>
+                <g class="fl-error">
+                  <rect x="428.8" y="1383.2" width="247" height="88" rx="4"/>
+                  <text><tspan x="552.3" y="1413.7">Không nhận máy</tspan><tspan class="fl-sub" x="552.3" y="1441.7">gợi ý chuyển sang chat</tspan></text>
+                </g>
+                <g class="fl-end">
+                  <rect x="635.3" y="2216.7" width="282" height="84" rx="42"/>
+                  <text><tspan x="776.3" y="2245.2">Tư vấn xong</tspan><tspan class="fl-sub" x="776.3" y="2273.2">Lưu ở Chat history</tspan></text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Flow B -->
+          <div class="cs-flow">
+            <div class="cs-intro" data-reveal="rise">
+              <h3 class="cs-subhead">B · Đăng ký bằng karte hội thoại</h3>
+            </div>
+            <div class="cs-scroll cs-scroll--flow" tabindex="0" role="region" aria-label="Sơ đồ user flow B: đăng ký bằng karte hội thoại" data-reveal="rise" data-reveal-amount="0.05">
+              <svg class="cs-flow__svg" viewBox="-4 -2 1241 1944" style="--w: 1241" role="img" aria-labelledby="ky2-title ky2-desc">
+                <title id="ky2-title">User flow B: đăng ký bằng karte hội thoại</title>
+                <desc id="ky2-desc">Lần đầu mở app, người dùng thấy First screen. Nếu đã có tài khoản, họ đăng nhập bằng email và mật khẩu; quên mật khẩu thì qua Account reissue 1 (nhập email) và Account reissue 2 (mật khẩu mới) rồi đăng nhập lại, còn nhập sai thì app báo lỗi theo 5 trường hợp. Nếu chưa có tài khoản, karte hội thoại hỏi lần lượt: tên hiển thị, giới tính, ngày sinh và mối bận tâm (tối đa 5). Tên hoặc ngày sinh không hợp lệ thì trợ lý báo lỗi ngay trong bong bóng chat để nhập hoặc chọn lại; chưa đủ 18 tuổi thì dừng đăng ký. Cuối cùng người dùng xem lại thẻ karte, sửa từng mục và vào Home.</desc>
+                <defs>
+                  <marker id="ky2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1.5 9 5 0 8.5z"/></marker>
+                </defs>
+
+                <g class="fl-lines" marker-end="url(#ky2-arrow)">
+                  <path d="M785.5 57V132"/>
+                  <path d="M785.5 193V268"/>
+                  <path d="M785.5 393V468"/>
+                  <path d="M681 330.5H123.5V454.5"/>
+                  <path d="M785.5 556V631"/>
+                  <path d="M890 693.5H985.6"/>
+                  <path d="M786 756V831"/>
+                  <path d="M786 919V994"/>
+                  <path d="M786 1082V1157"/>
+                  <path d="M890.7 1219.5H985.6"/>
+                  <path d="M786 1282V1357"/>
+                  <path d="M890.7 1419.5H985.6"/>
+                  <path d="M786 1482V1557"/>
+                  <path d="M786 1645V1720"/>
+                  <path d="M786 1808V1883"/>
+                  <path d="M123.5 542.5V616.5"/>
+                  <path d="M228 679H290.4"/>
+                  <path d="M413.9 724V799"/>
+                  <path d="M123.5 741.5V946.5"/>
+                  <path d="M228 1009H290.4"/>
+                  <path d="M123.5 1071.5V1911.5H668.5"/>
+                  <path class="fl-dash" d="M1051.4 512H912"/>
+                  <path class="fl-dash" d="M1051.4 1038H909.7"/>
+                  <path class="fl-dash" d="M537.4 1006H580.9V497.5H247"/>
+                </g>
+                <g class="fl-lines">
+                  <path class="fl-dash" d="M1109.1 649.5V540.8"/>
+                  <path class="fl-dash" d="M1109.1 1172.5V1059"/>
+                  <path class="fl-dash" d="M537.4 843.7H580.9"/>
+                </g>
+
+                <g class="fl-label">
+                  <text x="1109.1" y="513">Nhập lại</text>
+                  <text x="445.9" y="466">Đăng nhập lại</text>
+                  <text x="1108.6" y="1037">Chọn lại</text>
+                </g>
+                <g class="fl-branch">
+                  <text x="645.5" y="305">Có</text>
+                  <text x="833.5" y="423.5">Không</text>
+                  <text x="936.3" y="668.7">Không</text>
+                  <text x="815" y="787.7">Có</text>
+                  <text x="936.3" y="1193.5">Không</text>
+                  <text x="815" y="1312.5">Có</text>
+                  <text x="936.3" y="1390.5">Không</text>
+                  <text x="815" y="1512.5">Có</text>
+                  <text x="239.3" y="647">Không</text>
+                  <text x="150.9" y="763.1">Có</text>
+                  <text x="255.8" y="980">Sai</text>
+                  <text x="171.4" y="1094">Đúng</text>
+                </g>
+
+                <g class="fl-start">
+                  <rect x="684" y="0" width="203" height="57" rx="28.5"/>
+                  <text x="785.5" y="28.5">Mở app lần đầu</text>
+                </g>
+                <g class="fl-node">
+                  <rect x="659" y="132" width="253" height="61" rx="4"/>
+                  <text x="785.5" y="162.5">First screen</text>
+                  <rect x="659" y="468" width="253" height="88" rx="4"/>
+                  <text><tspan x="785.5" y="498.5">Nhập tên hiển thị</tspan><tspan class="fl-sub" x="785.5" y="526.5">Bước 1 · tên muốn dùng</tspan></text>
+                  <rect x="662.7" y="831" width="247" height="88" rx="4"/>
+                  <text><tspan x="786.2" y="861.5">Chọn giới tính</tspan><tspan class="fl-sub" x="786.2" y="889.5">Bước 2</tspan></text>
+                  <rect x="662.7" y="994" width="247" height="88" rx="4"/>
+                  <text><tspan x="786.2" y="1024.5">Chọn ngày sinh</tspan><tspan class="fl-sub" x="786.2" y="1052.5">Bước 3 · picker</tspan></text>
+                  <rect x="670.2" y="1557" width="232" height="88" rx="4"/>
+                  <text><tspan x="786.2" y="1587.5">Chọn mối bận tâm</tspan><tspan class="fl-sub" x="786.2" y="1615.5">Bước 4 · tối đa 5</tspan></text>
+                  <rect x="666.2" y="1720" width="236" height="88" rx="4"/>
+                  <text><tspan x="784.2" y="1750.5">Thẻ karte</tspan><tspan class="fl-sub" x="784.2" y="1778.5">xem lại, sửa từng mục</tspan></text>
+                  <rect x="0" y="454.5" width="247" height="88" rx="4"/>
+                  <text><tspan x="123.5" y="485">Login</tspan><tspan class="fl-sub" x="123.5" y="513">Email, mật khẩu</tspan></text>
+                  <rect x="290.4" y="636" width="247" height="88" rx="4"/>
+                  <text><tspan x="413.9" y="666.5">Account reissue 1</tspan><tspan class="fl-sub" x="413.9" y="694.5">Nhập email</tspan></text>
+                  <rect x="290.4" y="799" width="247" height="88" rx="4"/>
+                  <text><tspan x="413.9" y="829.5">Account reissue 2</tspan><tspan class="fl-sub" x="413.9" y="857.5">mật khẩu mới</tspan></text>
+                </g>
+                <g class="fl-decision">
+                  <polygon points="785.5,268 890,330.5 785.5,393 681,330.5"/>
+                  <text x="785.5" y="330.5"><tspan x="785.5" dy="-0.6em">Đã có</tspan><tspan x="785.5" dy="1.25em">tài khoản?</tspan></text>
+                  <polygon points="785.5,631 890,693.5 785.5,756 681,693.5"/>
+                  <text x="785.5" y="693.5"><tspan x="785.5" dy="-0.6em">Tên</tspan><tspan x="785.5" dy="1.25em">hợp lệ?</tspan></text>
+                  <polygon points="786.2,1157 890.7,1219.5 786.2,1282 681.7,1219.5"/>
+                  <text x="786.2" y="1219.5"><tspan x="786.2" dy="-0.6em">Ngày sinh</tspan><tspan x="786.2" dy="1.25em">hợp lệ?</tspan></text>
+                  <polygon points="786.2,1357 890.7,1419.5 786.2,1482 681.7,1419.5"/>
+                  <text x="786.2" y="1419.5"><tspan x="786.2" dy="-0.6em">Đủ</tspan><tspan x="786.2" dy="1.25em">18 tuổi?</tspan></text>
+                  <polygon points="123.5,616.5 228,679 123.5,741.5 19,679"/>
+                  <text x="123.5" y="679"><tspan x="123.5" dy="-0.6em">Nhớ</tspan><tspan x="123.5" dy="1.25em">mật khẩu?</tspan></text>
+                  <polygon points="123.5,946.5 228,1009 123.5,1071.5 19,1009"/>
+                  <text x="123.5" y="1009"><tspan x="123.5" dy="-0.6em">Đúng email &amp;</tspan><tspan x="123.5" dy="1.25em">mật khẩu?</tspan></text>
+                </g>
+                <g class="fl-error">
+                  <rect x="985.6" y="649.5" width="247" height="88" rx="4"/>
+                  <text><tspan x="1109.1" y="680">Trợ lý báo lỗi</tspan><tspan class="fl-sub" x="1109.1" y="708">trong bong bóng chat</tspan></text>
+                  <rect x="985.6" y="1172.5" width="247" height="88" rx="4"/>
+                  <text><tspan x="1109.1" y="1203">Báo lỗi ngày sinh</tspan><tspan class="fl-sub" x="1109.1" y="1231">ngày sinh không hợp lệ</tspan></text>
+                  <rect x="985.6" y="1375.5" width="247" height="88" rx="4"/>
+                  <text><tspan x="1109.1" y="1406">Dừng đăng ký</tspan><tspan class="fl-sub" x="1109.1" y="1434">không thể tiếp tục</tspan></text>
+                  <rect x="290.4" y="962" width="247" height="88" rx="4"/>
+                  <text><tspan x="413.9" y="992.5">Báo lỗi</tspan><tspan class="fl-sub" x="413.9" y="1020.5">5 trường hợp</tspan></text>
+                </g>
+                <g class="fl-end">
+                  <rect x="668.5" y="1883" width="231" height="57" rx="28.5"/>
+                  <text x="784" y="1911.5">Vào Home</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Wireframe ===================== -->
+      <section class="cs-section" aria-labelledby="cs-wire-title">
+        <h2 class="cs-title" id="cs-wire-title" lang="en" data-reveal="rise">Wireframe</h2>
+        <!-- Four columns cut off at the design's 2083px and faded out. The
+             shots carry their own 1px frame and rounded corners. -->
+        <div class="cs-wire cs-wire--4 cs-section__body" data-reveal="rise" data-reveal-amount="0.05">
+          <div class="cs-wire__col">
+            <img src="assets/projects/kyarisuru/wf-home.webp" alt="Wireframe Home: danh sách cố vấn, ranking và column" width="684" height="2404" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-home-2.webp" alt="Wireframe Home khi có thông báo mới" width="684" height="1072" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-supporter.webp" alt="Wireframe hồ sơ cố vấn" width="684" height="594" loading="lazy">
+          </div>
+          <div class="cs-wire__col">
+            <img src="assets/projects/kyarisuru/wf-blog.webp" alt="Wireframe danh sách column" width="684" height="1141" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-blog-detail.webp" alt="Wireframe chi tiết column và bài liên quan" width="684" height="1731" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-ranking.webp" alt="Wireframe Ranking theo ngày, tuần, tháng" width="684" height="1193" loading="lazy">
+          </div>
+          <div class="cs-wire__col">
+            <img src="assets/projects/kyarisuru/wf-first-screen.webp" alt="Wireframe First screen với đăng nhập Google và LINE" width="684" height="1074" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-chat-history.webp" alt="Wireframe lịch sử tư vấn" width="684" height="1409" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-mission.webp" alt="Wireframe Mission: Special và Welcome" width="684" height="1587" loading="lazy">
+          </div>
+          <div class="cs-wire__col">
+            <img src="assets/projects/kyarisuru/wf-points.webp" alt="Wireframe nhận điểm khi liên kết SNS" width="684" height="1994" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-chat-sticker.webp" alt="Wireframe chat với bảng sticker" width="684" height="1406" loading="lazy">
+            <img src="assets/projects/kyarisuru/wf-chat-photo.webp" alt="Wireframe chat khi gửi ảnh" width="684" height="670" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Typography & Colour ===================== -->
+      <section class="cs-section" aria-labelledby="cs-type-title">
+        <h2 class="cs-title" id="cs-type-title" lang="en" data-reveal="rise">Typography &amp; Colour</h2>
+        <div class="cs-type cs-type--jp cs-section__body" lang="en" data-reveal="rise">
+          <p class="cs-type__name" aria-label="Typeface: Noto Sans JP">NOTO SANS JP</p>
+          <ul class="cs-type__pills" aria-label="Weights">
+            <li style="font-weight: 300">Light</li>
+            <li style="font-weight: 400">Regular</li>
+            <li style="font-weight: 500">Medium</li>
+            <li style="font-weight: 700">Bold</li>
+            <li style="font-weight: 900">Black</li>
+          </ul>
+          <dl class="cs-type__samples">
+            <div><dt>Hiragana</dt><dd lang="ja">あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん</dd></div>
+            <div><dt>Katakana</dt><dd lang="ja">アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン</dd></div>
+            <div><dt>Kanji</dt><dd lang="ja">一 二 三 四 五 六 七 八 九 十 日 月 火 水 木 金 土 石 山 川 人 女 男 子 学生 先生 年 会 これ それ あれ ここ そこ あそこ だれ</dd></div>
+            <div><dt>Latin</dt><dd>ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890</dd></div>
+          </dl>
+          <ol class="cs-type__scale" aria-label="Type scale in px">
+            <li>16</li><li>20</li><li>24</li><li>32</li><li>48</li><li>64</li>
+          </ol>
+          <ul class="cs-swatches cs-swatches--5" aria-label="Colour palette">
+            <li style="--swatch: #00aeef">#00AEEF</li>
+            <li style="--swatch: #3768cf">#3768CF</li>
+            <li style="--swatch: #fb8500">#FB8500</li>
+            <li style="--swatch: #000000">#000000</li>
+            <li class="is-light is-white" style="--swatch: #ffffff">#FFFFFF</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== UI Design ===================== -->
+      <section class="cs-section" aria-labelledby="cs-ui-title">
+        <h2 class="cs-title" id="cs-ui-title" lang="en" data-reveal="rise">UI Design</h2>
+        <div class="cs-screens cs-screens--4 cs-section__body" data-reveal="rise" data-reveal-amount="0.02">
+          <div class="cs-screens__col">
+            <img src="assets/projects/kyarisuru/ui-home.webp" alt="Home: danh sách cố vấn, ranking Daily và column" width="604" height="2964" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/kyarisuru/ui-home-2.webp" alt="Home khi có thông báo mới" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-supporter.webp" alt="Hồ sơ cố vấn với lời nhắn, quy trình tư vấn và nút chat, gọi" width="604" height="2200" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/kyarisuru/ui-login.webp" alt="Màn hình đăng nhập" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+          </div>
+          <div class="cs-screens__col">
+            <img src="assets/projects/kyarisuru/ui-column.webp" alt="Danh sách column" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/kyarisuru/ui-column-detail.webp" alt="Chi tiết column và bài liên quan" width="604" height="1586" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-ranking.webp" alt="Ranking Daily, Weekly, Monthly" width="604" height="2254" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/kyarisuru/ui-settings.webp" alt="Cài đặt và dịch vụ" width="604" height="1115" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-notice-chat.webp" alt="Thông báo về tin nhắn chat" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          </div>
+          <div class="cs-screens__col">
+            <img src="assets/projects/kyarisuru/ui-first-screen.webp" alt="First screen: logo キャリする, nút bắt đầu, đăng nhập Google và LINE" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-chat-history.webp" alt="Lịch sử tư vấn" width="604" height="1320" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/kyarisuru/ui-mission.webp" alt="Mission: Special và Welcome với thanh tiến độ và nút nhận thưởng" width="604" height="2134" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-notice.webp" alt="Thông báo kèm banner khuyến mãi" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/kyarisuru/ui-notice-settings.webp" alt="Cài đặt thông báo" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-karte.webp" alt="Karte hội thoại khi đăng ký lần đầu" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          </div>
+          <div class="cs-screens__col">
+            <img src="assets/projects/kyarisuru/ui-invite.webp" alt="Giới thiệu bạn bè nhận 500P" width="604" height="2968" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-chat-sticker.webp" alt="Chat với cố vấn, mở bảng sticker" width="604" height="1310" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+            <img src="assets/projects/kyarisuru/ui-chat-photo.webp" alt="Chat với cố vấn, chọn ảnh để gửi" width="604" height="1074" loading="lazy" data-reveal="rise" data-reveal-amount="0.15" style="--reveal-delay: 0.08s">
+            <img src="assets/projects/kyarisuru/ui-mypage.webp" alt="My page với thẻ karte tư vấn" width="604" height="2320" loading="lazy" data-reveal="rise" data-reveal-amount="0.15">
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- ===================== Other projects ===================== -->
+    <section class="detail__more container" aria-labelledby="more-title">
+      <h2 class="detail__title" id="more-title" data-reveal="rise">Other Projects</h2>
+
+      <div class="work-grid work-grid--three">
+        <a class="work-card work-card--compact" href="project-detail-krafton-india.html" data-reveal="rise" data-reveal-amount="0.2">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/krafton-india.webp" alt="KRAFTON India — Corporate website for games, esports and careers" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>KRAFTON India</h3>
+          <p>Corporate website for games, esports and careers</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-naver-connect.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.08s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/naver-connect.webp" alt="Naver Connect — AI &amp; data practice lessons for young learners" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>Naver Connect</h3>
+          <p>AI &amp; data practice lessons for young learners</p>
+        </a>
+
+        <a class="work-card work-card--compact" href="project-detail-fanstyle.html" data-reveal="rise" data-reveal-amount="0.2" style="--reveal-delay: 0.16s">
+          <div class="work-card__panel">
+            <img src="assets/thumbs/fanstyle.webp" alt="FANSTYLE — Website for an Okinawa condominium developer" width="1320" height="704" loading="lazy">
+          </div>
+          <h3>FANSTYLE</h3>
+          <p>Website for an Okinawa condominium developer</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container" data-reveal="up" data-reveal-by="#contact">
+      <div class="footer__top">
+        <h2 class="footer__title">Let&rsquo;s Work Together</h2>
+        <div class="footer__contact">
+          <p>Available for work and always looking for exciting projects.</p>
+          <a class="footer__mail" href="mailto:anhnd3010@gmail.com">anhnd3010@gmail.com</a>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+        <a href="index.html" data-cursor="button">Home</a>
+        <a href="about.html" data-cursor="button">About</a>
+        <a href="project.html" data-cursor="button">Projects</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom" data-reveal="up" data-reveal-by="#contact" data-reveal-amount="0.8">
+      <img src="assets/brand/logo-footer.svg" alt="" aria-hidden="true">
+      <p>&copy;2025 by Irisnguyen. all rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script>
+    /* A flow chart wider than the screen opens on its spine rather than its
+       left edge; the charts are drawn around the middle of their board. */
+    (function () {
+      var boxes = document.querySelectorAll('.cs-scroll--flow');
+      function centre() {
+        Array.prototype.forEach.call(boxes, function (box) {
+          box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
+        });
+      }
+      centre();
+      addEventListener('load', centre);
+    })();
+  </script>
+</body>
+</html>
