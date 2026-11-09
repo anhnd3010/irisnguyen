@@ -1,9 +1,0 @@
-// Cloudflare Workers static assets: the site is the public/ folder, served as is.
-{
-  "name": "irisnguyen",
-  "compatibility_date": "2026-11-01",
-  "assets": {
-    "directory": "./public",
-    "not_found_handling": "404-page"
-  }
-}

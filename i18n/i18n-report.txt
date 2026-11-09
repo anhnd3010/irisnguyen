@@ -1,0 +1,278 @@
+UNUSED
+Close menu
+User flow A: find an adviser, consult and come back
+From Home, users check the Ranking, search by topic in the Supporter list, or get a notice that a favourite adviser is online, then reach Supporter detail. Without enough points they buy or earn some and come back. With enough points they choose chat to open Chat detail, or a call: confirm the call, connecting, and if the adviser doesn’t answer the app suggests switching to chat. When the adviser answers: on the call, a quick top-up to keep talking, end the call and see the summary. Both branches end at Review (Good/Bad, can be skipped) and the consultation is saved in Chat history.
+View ranking
+Search by topic
+Favourite adviser
+is online
+Got points, go back
+Switch to chat
+Top up, keep calling
+Call
+Wants career advice
+day · week · month
+topic filter · sort
+profile · reviews · point price
+Buy or earn points
+Confirm the call
+pt/min price · balance
+Connecting
+can cancel
+On the call
+call time · points left
+End the call
+Call summary
+duration · points used
+Good / Bad · can skip
+Enough points?
+Adviser
+answers?
+No answer
+suggest switching to chat
+Consultation done
+Saved in Chat history
+User flow B: sign up through the conversational karte
+On first opening the app, users see the First screen. With an account, they sign in with email and password; if they forget the password they go through Account reissue 1 (enter email) and Account reissue 2 (new password) and sign in again, and a wrong entry shows one of 5 error cases. Without an account, the conversational karte asks in turn for a display name, gender, date of birth and concerns (up to 5). An invalid name or date of birth gets an error right in the chat bubble so it can be re-entered or re-picked; under 18, sign-up stops. Finally users review the karte card, edit any item and enter Home.
+Re-enter
+Sign in again
+Pick again
+Wrong
+Right
+Opens the app for the first time
+Enter a display name
+Step 1 · preferred name
+Choose gender
+Step 2
+Choose date of birth
+Step 3 · picker
+Choose concerns
+Step 4 · up to 5
+Karte card
+review, edit each item
+Email, password
+Enter email
+new password
+Has an
+account?
+Name
+valid?
+Date of birth
+Aged
+18+?
+Remembers
+password?
+Assistant shows an error
+in the chat bubble
+Date-of-birth error
+invalid date of birth
+Sign-up stops
+cannot continue
+Error
+5 cases
+Enter Home
+Correct email &
+User flow: trying the API
+From the homepage, a developer reaches Docs: Getting Your API Key through the Developer Hub or Explore API docs, or goes straight to the dashboard through Start Building Free. Without an API key, they sign up and create one on the dashboard, then return to Docs: Quick Example, copy the sample code and call the API. A 200 response means the call succeeded; otherwise they check Docs: Error Handling, fix the request and try again.
+Key ready, go back
+Fix and retry
+Wants to test the API
+sign up · create API key
+Response
+Copy sample code, call API
+API call
+succeeded
+User flow: requesting an enterprise quote
+From the homepage, the buyer opens Pricing to compare plans and read the FAQ, or goes straight to Contact Sales. If they need the Enterprise plan, they open Contact Sales, fill in the form and submit it; if not, Get Started takes them to sign up for the Basic plan on the dashboard. When every required field is filled in and the email is valid, Sales follows up; otherwise errors appear under each field so the form can be fixed and resubmitted.
+Fix and resubmit
+Needs an enterprise quote
+Basic plan sign-up
+Needs the
+Required fields
+valid email?
+Compare plans, FAQ,
+switch billing period
+Fill in form, submit
+Inline field errors
+Sales
+follows up
+
+LEFT AS IS
+index.html | Email:
+index.html | anhnd3010@gmail.com
+index.html | Kyarisuru
+index.html | KRAFTON India
+index.html | Naver Connect
+index.html | FANSTYLE
+index.html | ©2025 by Irisnguyen. all rights reserved.
+index.html | Menu
+index.html | Irisnguyen — Product & Graphic Designer
+about.html | Graphic Designer
+about.html | AZGroup
+about.html | UX/UI &amp; Graphic Designer
+about.html | NST &amp; EOE EnglishCenter
+about.html | UX/UI Designer
+about.html | VTC Intecom
+about.html | Sami
+about.html | Lussom
+about.html | UX/UI Designer – Part Leader
+about.html | Hivelab Vina
+about.html | Figma
+about.html | Framer
+about.html | Photoshop
+about.html | Illustrator
+about.html | Spine2D
+project.html | UX/UI
+project.html | Timeless Landingpage
+project.html | OTAFF
+project.html | Keystone Marketing Company
+project.html | ISKRA
+project.html | Savills Vietnam
+project-detail-fanstyle.html | UI Designer
+project-detail-fanstyle.html | MONTSERRAT
+project-detail-fanstyle.html | Light
+project-detail-fanstyle.html | Regular
+project-detail-fanstyle.html | Medium
+project-detail-fanstyle.html | Bold
+project-detail-fanstyle.html | #E60023
+project-detail-fanstyle.html | FANSTYLE — Irisnguyen
+project-detail-gdcollection1.html | Irisnguyen
+project-detail-iskra.html | Iskra
+project-detail-iskra.html | Black
+project-detail-iskra.html | #00339B
+project-detail-iskra.html | #00CCFF
+project-detail-iskra.html | #FF2899
+project-detail-iskra.html | SOFIA PRO
+project-detail-iskra.html | ISKRA — Irisnguyen
+project-detail-krafton-india.html | KRAFTON INDIA
+project-detail-krafton-india.html | Lead Designer
+project-detail-krafton-india.html | Krafton India
+project-detail-krafton-india.html | NOTO SANS KR
+project-detail-krafton-india.html | #FFFFFF
+project-detail-krafton-india.html | KRAFTON INDIA — Irisnguyen
+project-detail-ksmc.html | CAIRO
+project-detail-ksmc.html | #FFD200
+project-detail-ksmc.html | Keystone Marketing Company — Irisnguyen
+project-detail-kyarisuru.html | Moodboard &amp; benchmark
+project-detail-kyarisuru.html | Ranking &amp; review
+project-detail-kyarisuru.html | Column
+project-detail-kyarisuru.html | Sitemap
+project-detail-kyarisuru.html | APP USER
+project-detail-kyarisuru.html | Onboarding
+project-detail-kyarisuru.html | Splash
+project-detail-kyarisuru.html | First screen
+project-detail-kyarisuru.html | First karte
+project-detail-kyarisuru.html | Tutorial
+project-detail-kyarisuru.html | Login
+project-detail-kyarisuru.html | Account reissue 1
+project-detail-kyarisuru.html | Account reissue 2
+project-detail-kyarisuru.html | Notification
+project-detail-kyarisuru.html | Supporter list
+project-detail-kyarisuru.html | Supporter detail
+project-detail-kyarisuru.html | Review post
+project-detail-kyarisuru.html | Phone consult
+project-detail-kyarisuru.html | Column detail
+project-detail-kyarisuru.html | Chat history
+project-detail-kyarisuru.html | Introduction
+project-detail-kyarisuru.html | Ranking
+project-detail-kyarisuru.html | Daily
+project-detail-kyarisuru.html | Weekly
+project-detail-kyarisuru.html | Monthly
+project-detail-kyarisuru.html | Mission
+project-detail-kyarisuru.html | My page
+project-detail-kyarisuru.html | Edit consult sheet
+project-detail-kyarisuru.html | Account setting
+project-detail-kyarisuru.html | Introduce friend
+project-detail-kyarisuru.html | Help
+project-detail-kyarisuru.html | Other setting
+project-detail-kyarisuru.html | Notification setting
+project-detail-kyarisuru.html | Block list
+project-detail-kyarisuru.html | Deactive
+project-detail-kyarisuru.html | About fee
+project-detail-kyarisuru.html | Terms of use
+project-detail-kyarisuru.html | Privacy policy
+project-detail-kyarisuru.html | User Flow
+project-detail-kyarisuru.html | Wireframe
+project-detail-kyarisuru.html | NOTO SANS JP
+project-detail-kyarisuru.html | Hiragana
+project-detail-kyarisuru.html | Katakana
+project-detail-kyarisuru.html | Kanji
+project-detail-kyarisuru.html | Latin
+project-detail-kyarisuru.html | ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890
+project-detail-kyarisuru.html | #00AEEF
+project-detail-kyarisuru.html | #3768CF
+project-detail-kyarisuru.html | #FB8500
+project-detail-kyarisuru.html | Ranking Daily, Weekly, Monthly
+project-detail-kyarisuru.html | Kyarisuru — Irisnguyen
+project-detail-melon.html | Melon
+project-detail-melon.html | Discover
+project-detail-melon.html | Define
+project-detail-melon.html | Ideate
+project-detail-melon.html | Storyboard
+project-detail-melon.html | Sitemap · User flows
+project-detail-melon.html | Design
+project-detail-melon.html | Wireframes
+project-detail-melon.html | UI · Style guide
+project-detail-melon.html | Validate
+project-detail-melon.html | Cloud API
+project-detail-melon.html | On-premise
+project-detail-melon.html | Low-code
+project-detail-melon.html | Affinity map
+project-detail-melon.html | Insight 1
+project-detail-melon.html | Insight 2
+project-detail-melon.html | Insight 3
+project-detail-melon.html | Insight 4
+project-detail-melon.html | Kenta Sato, 28
+project-detail-melon.html | Yuki Tanaka, 44
+project-detail-melon.html | Mika Hayashi, 36
+project-detail-melon.html | 3 · Built for Developers
+project-detail-melon.html | 4 · Developer Hub
+project-detail-melon.html | Homepage
+project-detail-melon.html | Products
+project-detail-melon.html | Facial Recognition API
+project-detail-melon.html | Local Server
+project-detail-melon.html | Hardware Terminal
+project-detail-melon.html | Low-code / No-code Apps
+project-detail-melon.html | Developers
+project-detail-melon.html | Developer Hub
+project-detail-melon.html | Getting started
+project-detail-melon.html | SDK &amp; Examples
+project-detail-melon.html | Support
+project-detail-melon.html | Documentation
+project-detail-melon.html | API Reference
+project-detail-melon.html | Quick Access (MO)
+project-detail-melon.html | Pricing
+project-detail-melon.html | Plans
+project-detail-melon.html | Compare plans
+project-detail-melon.html | FAQ
+project-detail-melon.html | Contact Sales
+project-detail-melon.html | Form
+project-detail-melon.html | Footer: Company, Legal
+project-detail-melon.html | User Flows
+project-detail-melon.html | POPPINS
+project-detail-melon.html | Semibold
+project-detail-melon.html | #61B6CD
+project-detail-melon.html | #D7D7D7
+project-detail-melon.html | Local API Server: Private, Secure & Offline-Ready
+project-detail-melon.html | Low-code: Plug-and-Play, Customizable & Launch-Ready
+project-detail-naver-connect.html | NAVER CONNECT
+project-detail-naver-connect.html | NAVER Connect Foundation
+project-detail-naver-connect.html | #5442e5
+project-detail-naver-connect.html | #181F41
+project-detail-naver-connect.html | #00e7ae
+project-detail-naver-connect.html | #da478f
+project-detail-naver-connect.html | #48298f
+project-detail-naver-connect.html | NANUMSQUARENEO
+project-detail-naver-connect.html | Naver Connect — Irisnguyen
+project-detail-otaff.html | #003C88
+project-detail-otaff.html | #4A86D2
+project-detail-otaff.html | OTAFF — Irisnguyen
+project-detail-savills.html | SAVILLS VIETNAM
+project-detail-savills.html | INTER
+project-detail-savills.html | #FFE850
+project-detail-savills.html | #CE171E
+project-detail-savills.html | Savills Vietnam — Irisnguyen
+project-detail-timeless-landingpage.html | TIMELESS LANDINGPAGE
+project-detail-timeless-landingpage.html | PRETENDARD
+project-detail-timeless-landingpage.html | #FDE500
+project-detail-timeless-landingpage.html | Timeless Landingpage — Irisnguyen
