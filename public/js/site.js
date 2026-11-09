@@ -339,3 +339,38 @@
     }, { threshold: group.amount }).observe(group.target);
   });
 })();
+
+/* Language switch (EN / VI) in the header. The choice is remembered per
+   browser and set on <html lang>; a 'languagechange' event on document
+   (detail: { lang }) lets translated copy follow once it exists. Only the
+   switch itself is wired so far — the pages are still in English. */
+(function () {
+  var groups = document.querySelectorAll('.lang');
+  if (!groups.length) return;
+
+  var KEY = 'iris-lang';
+  var root = document.documentElement;
+
+  function read() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+
+  function set(lang, announce) {
+    root.setAttribute('lang', lang);
+    Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+    });
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+    if (announce) document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang: lang } }));
+  }
+
+  var saved = read();
+  if (saved === 'en' || saved === 'vi') set(saved, true);
+
+  Array.prototype.forEach.call(groups, function (group) {
+    group.addEventListener('click', function (event) {
+      var button = event.target.closest('button[data-lang]');
+      if (button) set(button.dataset.lang, true);
+    });
+  });
+})();

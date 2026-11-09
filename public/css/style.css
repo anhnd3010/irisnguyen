@@ -242,13 +242,40 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .header__logo { flex: none; }
 .header__logo img { width: 59px; height: 34px; }
 
+/* EN / VI, just left of the burger: the current language in ink, the other faded */
+.lang {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.lang button {
+  display: grid;
+  place-items: center;
+  min-width: 32px;
+  height: 48px;
+  padding: 0 4px;
+  opacity: 0.35;
+  transition: opacity 0.25s ease;
+}
+.lang button:hover,
+.lang button:focus-visible,
+.lang button[aria-pressed="true"] { opacity: 1; }
+.lang button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.lang__sep { opacity: 0.35; }
+
 .burger {
   flex: none;
   display: grid;
   place-items: center;
   width: 48px;
   height: 48px;
-  margin-left: 35px;
+  margin-left: 20px;
 }
 .burger > * { grid-area: 1 / 1; transition: opacity 0.5s var(--spring); }
 .burger__open { width: 30px; height: 24px; }
@@ -2903,7 +2930,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    -------------------------------------------------------------------------- */
 @media (max-width: 1280px) {
   .header { padding: 24px 24px 0; }
-  .burger { margin-left: 16px; }
+  .burger { margin-left: 12px; }
   .menu { --side: 24px; }
 }
 

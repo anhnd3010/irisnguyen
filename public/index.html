@@ -74,6 +74,14 @@
         <img src="assets/brand/logo.svg" alt="" width="59" height="34">
       </a>
 
+      <!-- Language switch: site.js remembers the choice, sets <html lang> and
+           fires a 'languagechange' event for the translated copy to follow -->
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+        <span class="lang__sep" aria-hidden="true">/</span>
+        <button type="button" data-lang="vi" aria-pressed="false" lang="vi">VI</button>
+      </div>
+
       <!-- Stays above the open menu and turns into its close button: the two
            icons share one cell and cross-fade. -->
       <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
