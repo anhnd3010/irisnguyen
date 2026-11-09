@@ -248,7 +248,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: grid;
   place-items: center;
   height: 48px;
-  min-width: 48px;
   margin-left: auto;
   padding: 0 4px;
   font-family: var(--font-display);
@@ -257,8 +256,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   line-height: 1;
   color: var(--ink);
   transition: opacity 0.25s ease;
+  position: relative;
 }
 .lang:hover { opacity: 0.6; }
+/* A thin divider between the toggle and the burger, as tall as the burger icon,
+   centred between the letters and the icon: the header's 24px flex gap plus the
+   burger's margin (--lang-gap), the button's 4px padding and the 9px of empty
+   button around the 30px icon */
+.lang::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc((24px + var(--lang-gap, 20px) + 13px) / -2);
+  width: 2px;
+  height: 24px;
+  background: currentColor;
+  opacity: 0.3;
+  translate: 0 -50%;
+  pointer-events: none;
+}
 
 .burger {
   flex: none;
@@ -2922,6 +2938,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 1280px) {
   .header { padding: 24px 24px 0; }
   .burger { margin-left: 12px; }
+  .lang { --lang-gap: 12px; }
   .menu { --side: 24px; }
 }
 
