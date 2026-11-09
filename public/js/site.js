@@ -340,37 +340,43 @@
   });
 })();
 
-/* Language switch (EN / VI) in the header. The choice is remembered per
-   browser and set on <html lang>; a 'languagechange' event on document
-   (detail: { lang }) lets translated copy follow once it exists. Only the
-   switch itself is wired so far — the pages are still in English. */
+/* Language toggle in the header: it shows the current language (EN or VN)
+   and a press swaps to the other. The choice is remembered per browser and
+   set on <html lang>; a 'languagechange' event on document (detail: { lang })
+   lets translated copy follow once it exists. Only the toggle is wired so
+   far — the pages are still in English. */
 (function () {
-  var groups = document.querySelectorAll('.lang');
-  if (!groups.length) return;
+  var toggles = document.querySelectorAll('.lang');
+  if (!toggles.length) return;
 
   var KEY = 'iris-lang';
   var root = document.documentElement;
+  var LABEL = { en: 'EN', vi: 'VN' };
+  var NAME = { en: 'English', vi: 'Vietnamese' };
+  var current = 'en';
 
   function read() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
 
   function set(lang, announce) {
+    current = lang;
+    var other = lang === 'en' ? 'vi' : 'en';
     root.setAttribute('lang', lang);
-    Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (button) {
-      button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+    Array.prototype.forEach.call(toggles, function (toggle) {
+      toggle.textContent = LABEL[lang];
+      toggle.setAttribute('aria-label', 'Language: ' + NAME[lang] + '. Switch to ' + NAME[other]);
     });
     try { localStorage.setItem(KEY, lang); } catch (e) {}
     if (announce) document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang: lang } }));
   }
 
   var saved = read();
-  if (saved === 'en' || saved === 'vi') set(saved, true);
+  if (saved === 'en' || saved === 'vi') set(saved, saved !== 'en');
 
-  Array.prototype.forEach.call(groups, function (group) {
-    group.addEventListener('click', function (event) {
-      var button = event.target.closest('button[data-lang]');
-      if (button) set(button.dataset.lang, true);
+  Array.prototype.forEach.call(toggles, function (toggle) {
+    toggle.addEventListener('click', function () {
+      set(current === 'en' ? 'vi' : 'en', true);
     });
   });
 })();

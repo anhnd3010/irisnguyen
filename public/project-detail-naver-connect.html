@@ -33,13 +33,10 @@
         <img src="assets/brand/logo.svg" alt="" width="59" height="34">
       </a>
 
-      <!-- Language switch: site.js remembers the choice, sets <html lang> and
-           fires a 'languagechange' event for the translated copy to follow -->
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
-        <span class="lang__sep" aria-hidden="true">/</span>
-        <button type="button" data-lang="vi" aria-pressed="false" lang="vi">VN</button>
-      </div>
+      <!-- Language switch: shows the current language; a press swaps to the other.
+           site.js remembers the choice, sets <html lang> and fires a
+           'languagechange' event for the translated copy to follow -->
+      <button class="lang" type="button" aria-label="Language: English. Switch to Vietnamese">EN</button>
 
       <!-- Stays above the open menu and turns into its close button: the two
            icons share one cell and cross-fade. -->
