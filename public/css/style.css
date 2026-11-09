@@ -242,22 +242,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .header__logo { flex: none; }
 .header__logo img { width: 59px; height: 34px; }
 
-/* EN / VI, just left of the burger: the current language in ink, the other faded */
+/* EN / VN, just left of the burger: the current language in ink, the other faded.
+   34px puts Lexend's cap height (0.70em) at 24px, the burger icon's height. */
 .lang {
   display: flex;
   align-items: center;
   margin-left: auto;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 34px;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   color: var(--ink);
 }
 .lang button {
   display: grid;
   place-items: center;
-  min-width: 32px;
   height: 48px;
   padding: 0 4px;
   opacity: 0.35;
@@ -266,8 +266,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .lang button:hover,
 .lang button:focus-visible,
 .lang button[aria-pressed="true"] { opacity: 1; }
-.lang button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
-.lang__sep { opacity: 0.35; }
+.lang__sep { padding: 0 2px; opacity: 0.35; }
 
 .burger {
   flex: none;
