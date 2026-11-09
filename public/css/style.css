@@ -243,7 +243,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .header__logo img { width: 59px; height: 34px; }
 
 /* EN / VN toggle, just left of the burger: it shows the current language and
-   a press swaps to the other. 28px Lexend caps are about 20px tall. */
+   a press swaps to the other. 24px Lexend caps are about 17px tall. */
 .lang {
   display: grid;
   place-items: center;
@@ -252,7 +252,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 0 4px;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1;
   color: var(--ink);
   transition: opacity 0.25s ease;
