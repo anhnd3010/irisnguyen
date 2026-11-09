@@ -36,7 +36,7 @@
       <!-- Language switch: shows the current language; a press swaps to the other.
            site.js remembers the choice, sets <html lang> and fires a
            'languagechange' event for the translated copy to follow -->
-      <button class="lang" type="button" aria-label="Language: English. Switch to Vietnamese">EN</button>
+      <button class="lang" type="button" data-no-i18n aria-label="Language: English. Switch to Vietnamese">EN</button>
 
       <!-- Stays above the open menu and turns into its close button: the two
            icons share one cell and cross-fade. -->
@@ -783,6 +783,8 @@
   </footer>
 
   <script src="js/site.js"></script>
+  <script src="js/i18n-dict.js"></script>
+  <script src="js/i18n.js"></script>
   <script>
     /* A flow chart wider than the screen opens on its spine rather than its
        left edge; the charts are drawn around the middle of their board. */
