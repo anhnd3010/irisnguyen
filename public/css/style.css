@@ -259,6 +259,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: relative;
 }
 .lang:hover { opacity: 0.6; }
+/* Hidden for now: the site is English-only until the toggle is switched back on (see site.js) */
+.lang { display: none; }
 /* A thin divider between the toggle and the burger, as tall as the burger icon,
    centred between the letters and the icon: the header's 24px flex gap plus the
    burger's margin (--lang-gap), the button's 4px padding and the 9px of empty

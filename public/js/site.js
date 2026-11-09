@@ -350,6 +350,14 @@
   if (!toggles.length) return;
 
   var KEY = 'iris-lang';
+
+  // Switched off for now (per the owner): the toggle is hidden in style.css and every
+  // page stays in English. Set ENABLED to true and remove the .lang display rule to bring it back.
+  var ENABLED = false;
+  if (!ENABLED) {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    return;
+  }
   var root = document.documentElement;
   var LABEL = { en: 'EN', vi: 'VN' };
   var NAME = { en: 'English', vi: 'Vietnamese' };
